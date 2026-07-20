@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-label="Share of Predicted Decisions">
+<style>
+text{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Arial,sans-serif;fill:#111827}.title{font-size:44px;font-weight:850}.subtitle{font-size:22px;fill:#667085}.axis{stroke:#344054;stroke-width:3}.grid{stroke:#d0d5dd;stroke-width:1.5}.label{font-size:28px;font-weight:650}.tick{font-size:22px;fill:#475467}.value{font-size:27px;font-weight:850;text-anchor:middle}.legend{font-size:25px;font-weight:650}
+</style>
+<rect x="0" y="0" width="1280" height="720" fill="#ffffff"/>
+<rect x="16" y="16" width="1248" height="688" rx="22" fill="#ffffff" stroke="#d0d5dd" stroke-width="2"/>
+<text x="46" y="68" class="title">Share of Predicted Decisions</text>
+<style>.center{font-size:30px;text-anchor:middle;font-weight:700;fill:#475467}.big{font-size:48px;text-anchor:middle;font-weight:900}.donut{fill:none;stroke-width:58;transform:rotate(-90deg);transform-origin:405px 380px}</style>
+<circle cx="405" cy="380" r="170" fill="none" stroke="#e8edf1" stroke-width="58"/>
+<circle cx="405" cy="380" r="170" class="donut" stroke="#157347" stroke-dasharray="100.84 967.30" stroke-dashoffset="-0.00"/>
+<circle cx="405" cy="380" r="170" class="donut" stroke="#c77700" stroke-dasharray="939.99 128.15" stroke-dashoffset="-100.84"/>
+<circle cx="405" cy="380" r="170" class="donut" stroke="#b42318" stroke-dasharray="27.30 1040.84" stroke-dashoffset="-1040.84"/>
+<text x="405" y="366" class="center">Papers</text>
+<text x="405" y="424" class="big">5,868</text>
+<rect x="760" y="256" width="34" height="34" rx="8" fill="#157347"/>
+<text x="816" y="284" class="label">Accept: 554 (9.4%)</text>
+<rect x="760" y="334" width="34" height="34" rx="8" fill="#c77700"/>
+<text x="816" y="362" class="label">Modify: 5,164 (88.0%)</text>
+<rect x="760" y="412" width="34" height="34" rx="8" fill="#b42318"/>
+<text x="816" y="440" class="label">Reject: 150 (2.6%)</text>
+</svg>

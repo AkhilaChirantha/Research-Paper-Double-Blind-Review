@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-label="System architecture diagram">
+<style>
+text{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Arial,sans-serif;fill:#111827}
+.title{font-size:46px;font-weight:850}
+.subtitle{font-size:24px;fill:#667085}
+.box-title{font-size:25px;font-weight:800}
+.box-text{font-size:18px;fill:#344054}
+.arrow{stroke:#475467;stroke-width:4;fill:none;marker-end:url(#arrow)}
+.box{fill:#ffffff;stroke:#cbd5e1;stroke-width:3}
+.data{fill:#e8f3ff}.process{fill:#fff7e6}.model{fill:#eaf8ef}.ai{fill:#f2edff}.output{fill:#fff0f0}
+</style>
+<defs>
+  <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+    <path d="M2,2 L10,6 L2,10 Z" fill="#475467"/>
+  </marker>
+</defs>
+<rect x="0" y="0" width="1600" height="900" fill="#ffffff"/>
+<rect x="22" y="22" width="1556" height="856" rx="26" fill="#ffffff" stroke="#d0d5dd" stroke-width="3"/>
+<text x="58" y="78" class="title">AI-Assisted Double-Blind Paper Screening Framework</text>
+<text x="60" y="116" class="subtitle">Proposal-aligned workflow: cleaning, anonymization, screening, explanation, fine-tuning data, and reports</text>
+
+<rect x="70" y="190" width="250" height="140" rx="18" class="box data"/>
+<text x="95" y="232" class="box-title">OpenReview Data</text>
+<text x="95" y="268" class="box-text">Metadata</text>
+<text x="95" y="296" class="box-text">Research papers</text>
+<text x="95" y="324" class="box-text">Reviewer comments</text>
+
+<path d="M320 260 L390 260" class="arrow"/>
+
+<rect x="390" y="190" width="250" height="140" rx="18" class="box process"/>
+<text x="415" y="232" class="box-title">Dataset Cleaning</text>
+<text x="415" y="268" class="box-text">Remove empty reviews</text>
+<text x="415" y="296" class="box-text">Filter real reviewers</text>
+<text x="415" y="324" class="box-text">Keep usable papers</text>
+
+<path d="M640 260 L710 260" class="arrow"/>
+
+<rect x="710" y="190" width="250" height="140" rx="18" class="box process"/>
+<text x="735" y="232" class="box-title">Double-Blind Prep</text>
+<text x="735" y="268" class="box-text">Mask reviewer IDs</text>
+<text x="735" y="296" class="box-text">Mask links/emails</text>
+<text x="735" y="324" class="box-text">Create JSONL data</text>
+
+<path d="M960 260 L1030 260" class="arrow"/>
+
+<rect x="1030" y="190" width="250" height="140" rx="18" class="box model"/>
+<text x="1055" y="232" class="box-title">Local Screening</text>
+<text x="1055" y="268" class="box-text">Accept</text>
+<text x="1055" y="296" class="box-text">Modify</text>
+<text x="1055" y="324" class="box-text">Reject-risk</text>
+
+<path d="M1155 330 L1155 410" class="arrow"/>
+
+<rect x="1030" y="410" width="250" height="150" rx="18" class="box ai"/>
+<text x="1055" y="452" class="box-title">Confidential AI Review</text>
+<text x="1055" y="488" class="box-text">local_only</text>
+<text x="1055" y="516" class="box-text">abstract_only</text>
+<text x="1055" y="544" class="box-text">section_summary_only</text>
+
+<path d="M1030 485 L960 485" class="arrow"/>
+
+<rect x="710" y="410" width="250" height="150" rx="18" class="box ai"/>
+<text x="735" y="452" class="box-title">OpenAI Explanation</text>
+<text x="735" y="488" class="box-text">Strengths</text>
+<text x="735" y="516" class="box-text">Weaknesses</text>
+<text x="735" y="544" class="box-text">Modifications</text>
+
+<path d="M835 560 L835 640" class="arrow"/>
+
+<rect x="710" y="640" width="250" height="130" rx="18" class="box model"/>
+<text x="735" y="682" class="box-title">SFT / LoRA Setup</text>
+<text x="735" y="718" class="box-text">5,868 examples</text>
+<text x="735" y="746" class="box-text">Train / validation</text>
+
+<path d="M710 485 L640 485" class="arrow"/>
+
+<rect x="390" y="410" width="250" height="150" rx="18" class="box process"/>
+<text x="415" y="452" class="box-title">Section Summaries</text>
+<text x="415" y="488" class="box-text">Abstract</text>
+<text x="415" y="516" class="box-text">Method</text>
+<text x="415" y="544" class="box-text">Results / limits</text>
+
+<path d="M390 485 L320 485" class="arrow"/>
+
+<rect x="70" y="410" width="250" height="150" rx="18" class="box output"/>
+<text x="95" y="452" class="box-title">Final Outputs</text>
+<text x="95" y="488" class="box-text">Evaluation reports</text>
+<text x="95" y="516" class="box-text">Poster figures</text>
+<text x="95" y="544" class="box-text">Thesis evidence</text>
+
+<rect x="70" y="650" width="570" height="120" rx="18" fill="#f8fafc" stroke="#cbd5e1" stroke-width="3"/>
+<text x="100" y="695" class="box-title">Current Dataset Limitation</text>
+<text x="100" y="733" class="box-text">The current dataset contains accepted papers only; Reject is modeled as reviewer-derived risk.</text>
+</svg>

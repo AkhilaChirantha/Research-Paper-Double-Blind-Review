@@ -1,0 +1,27 @@
+__pycache__/
+*.py[cod]
+.venv/
+.venv312/
+outputs/
+.env
+data/Analyse Critaria/
+data/Research Papers/
+data/processed/
+data/sft/
+.dist/
+.qodo/
+
+# Keep deployable lightweight artifacts, but avoid future large model/report dumps.
+models/*
+!models/
+!models/research_review_model.json
+
+reports/*
+!reports/
+!reports/*.md
+!reports/*.html
+!reports/*.csv
+!reports/*.json
+!reports/poster_figures/
+!reports/poster_figures/*.svg
+!reports/poster_figures/*.md

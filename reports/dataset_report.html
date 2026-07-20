@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Research Review Dataset Report</title>
+  <style>
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; margin: 0; color: #172026; background: #f6f7f9; }
+main { max-width: 1180px; margin: 0 auto; padding: 32px 22px 56px; }
+h1 { margin: 0 0 8px; font-size: 34px; }
+h2 { margin-top: 34px; font-size: 22px; }
+.muted { color: #5d6975; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+.metric { background: white; border: 1px solid #dfe5eb; border-radius: 8px; padding: 18px; }
+.metric strong { display: block; font-size: 30px; margin-bottom: 4px; }
+.panel { background: white; border: 1px solid #dfe5eb; border-radius: 8px; padding: 18px; margin-top: 16px; overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+th, td { text-align: left; border-bottom: 1px solid #e7ebef; padding: 10px 12px; vertical-align: top; }
+th { background: #f0f3f6; color: #34404c; font-weight: 650; }
+.chart { width: 100%; height: auto; display: block; }
+.chart-title { font-size: 18px; font-weight: 700; fill: #172026; }
+.axis-label { font-size: 13px; fill: #46515c; }
+.value-label { font-size: 12px; fill: #172026; }
+.center { text-anchor: middle; }
+.bar { fill: #2477b3; }
+.axis-line { stroke: #aeb8c2; stroke-width: 1; }
+li { margin: 8px 0; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Research Review Dataset Report</h1>
+  <p class="muted">Generated from <code>data/Analyse Critaria/metadata.json</code>. Charts are based only on the current local dataset.</p>
+
+  <section class="grid">
+    <div class="metric"><strong>7,253</strong><span>Papers</span></div>
+    <div class="metric"><strong>30,244</strong><span>Reviewer reviews</span></div>
+    <div class="metric"><strong>5.93</strong><span>Average reviewer rating</span></div>
+  </section>
+
+  <h2>Charts</h2>
+  <div class="grid">
+    <div class="panel"><svg viewBox="0 0 760 320" class="chart" role="img" aria-label="Decision Distribution">
+<text x="20" y="26" class="chart-title">Decision Distribution</text>
+<text x="20" y="62" class="axis-label">Accept (poster)</text>
+<rect x="170" y="47" width="550.0" height="20" rx="4" class="bar"></rect>
+<text x="728.0" y="62" class="value-label">6421.0</text>
+<text x="20" y="96" class="axis-label">Accept (spotlight)</text>
+<rect x="170" y="81" width="60.3" height="20" rx="4" class="bar"></rect>
+<text x="238.3" y="96" class="value-label">704.0</text>
+<text x="20" y="130" class="axis-label">Accept (oral)</text>
+<rect x="170" y="115" width="11.0" height="20" rx="4" class="bar"></rect>
+<text x="189.0" y="130" class="value-label">128.0</text>
+</svg></div>
+    <div class="panel"><svg viewBox="0 0 760 320" class="chart" role="img" aria-label="Derived Paper Quality Classes">
+<text x="20" y="26" class="chart-title">Derived Paper Quality Classes</text>
+<text x="20" y="62" class="axis-label">Needs modification</text>
+<rect x="170" y="47" width="550.0" height="20" rx="4" class="bar"></rect>
+<text x="728.0" y="62" class="value-label">4672.0</text>
+<text x="20" y="96" class="axis-label">Good paper</text>
+<rect x="170" y="81" width="212.1" height="20" rx="4" class="bar"></rect>
+<text x="390.1" y="96" class="value-label">1802.0</text>
+<text x="20" y="130" class="axis-label">Reject-risk</text>
+<rect x="170" y="115" width="91.7" height="20" rx="4" class="bar"></rect>
+<text x="269.7" y="130" class="value-label">779.0</text>
+</svg></div>
+    <div class="panel"><svg viewBox="0 0 760 320" class="chart" role="img" aria-label="Reviewer Rating Distribution">
+<text x="20" y="26" class="chart-title">Reviewer Rating Distribution</text>
+<line x1="48" y1="266" x2="740" y2="266" class="axis-line"></line>
+<rect x="60.3" y="265.8" width="43.6" height="0.2" rx="4" class="bar"></rect>
+<text x="82.1" y="258.8" class="value-label center">8</text>
+<text x="82.1" y="292" class="axis-label center">1</text>
+<rect x="128.5" y="264.7" width="43.6" height="1.3" rx="4" class="bar"></rect>
+<text x="150.3" y="257.7" class="value-label center">61</text>
+<text x="150.3" y="292" class="axis-label center">2</text>
+<rect x="196.7" y="249.4" width="43.6" height="16.6" rx="4" class="bar"></rect>
+<text x="218.5" y="242.4" class="value-label center">754</text>
+<text x="218.5" y="292" class="axis-label center">3</text>
+<rect x="264.9" y="217.7" width="43.6" height="48.3" rx="4" class="bar"></rect>
+<text x="286.7" y="210.7" class="value-label center">2190</text>
+<text x="286.7" y="292" class="axis-label center">4</text>
+<rect x="333.1" y="107.2" width="43.6" height="158.8" rx="4" class="bar"></rect>
+<text x="354.9" y="100.2" class="value-label center">7203</text>
+<text x="354.9" y="292" class="axis-label center">5</text>
+<rect x="401.3" y="42.0" width="43.6" height="224.0" rx="4" class="bar"></rect>
+<text x="423.1" y="35.0" class="value-label center">10163</text>
+<text x="423.1" y="292" class="axis-label center">6</text>
+<rect x="469.5" y="91.7" width="43.6" height="174.3" rx="4" class="bar"></rect>
+<text x="491.3" y="84.7" class="value-label center">7906</text>
+<text x="491.3" y="292" class="axis-label center">7</text>
+<rect x="537.7" y="226.5" width="43.6" height="39.5" rx="4" class="bar"></rect>
+<text x="559.5" y="219.5" class="value-label center">1794</text>
+<text x="559.5" y="292" class="axis-label center">8</text>
+<rect x="605.9" y="262.9" width="43.6" height="3.1" rx="4" class="bar"></rect>
+<text x="627.7" y="255.9" class="value-label center">141</text>
+<text x="627.7" y="292" class="axis-label center">9</text>
+<rect x="674.1" y="265.5" width="43.6" height="0.5" rx="4" class="bar"></rect>
+<text x="695.9" y="258.5" class="value-label center">24</text>
+<text x="695.9" y="292" class="axis-label center">10</text>
+</svg></div>
+    <div class="panel"><svg viewBox="0 0 760 360" class="chart" role="img" aria-label="Most Common Reviewer Concern Areas">
+<text x="20" y="26" class="chart-title">Most Common Reviewer Concern Areas</text>
+<text x="20" y="62" class="axis-label">limited experiments</text>
+<rect x="170" y="47" width="550.0" height="20" rx="4" class="bar"></rect>
+<text x="728.0" y="62" class="value-label">22655.0</text>
+<text x="20" y="96" class="axis-label">clarity / writing</text>
+<rect x="170" y="81" width="313.0" height="20" rx="4" class="bar"></rect>
+<text x="491.0" y="96" class="value-label">12893.0</text>
+<text x="20" y="130" class="axis-label">novelty / contribution</text>
+<rect x="170" y="115" width="257.5" height="20" rx="4" class="bar"></rect>
+<text x="435.5" y="130" class="value-label">10608.0</text>
+<text x="20" y="164" class="axis-label">reproducibility</text>
+<rect x="170" y="149" width="212.6" height="20" rx="4" class="bar"></rect>
+<text x="390.6" y="164" class="value-label">8759.0</text>
+<text x="20" y="198" class="axis-label">technical soundness</text>
+<rect x="170" y="183" width="197.5" height="20" rx="4" class="bar"></rect>
+<text x="375.5" y="198" class="value-label">8135.0</text>
+<text x="20" y="232" class="axis-label">related work</text>
+<rect x="170" y="217" width="155.4" height="20" rx="4" class="bar"></rect>
+<text x="333.4" y="232" class="value-label">6403.0</text>
+<text x="20" y="266" class="axis-label">limitations / ethics</text>
+<rect x="170" y="251" width="105.8" height="20" rx="4" class="bar"></rect>
+<text x="283.8" y="266" class="value-label">4356.0</text>
+</svg></div>
+  </div>
+
+  <h2>Decision Tables</h2>
+  <div class="grid">
+    <div class="panel"><table><thead><tr><th>Decision</th><th>Papers</th><th>Share</th></tr></thead><tbody><tr><td>Accept (poster)</td><td>6421</td><td>88.5%</td></tr><tr><td>Accept (spotlight)</td><td>704</td><td>9.7%</td></tr><tr><td>Accept (oral)</td><td>128</td><td>1.8%</td></tr></tbody></table></div>
+    <div class="panel"><table><thead><tr><th>Derived class</th><th>Papers</th><th>Share</th></tr></thead><tbody><tr><td>Needs modification</td><td>4672</td><td>64.4%</td></tr><tr><td>Good paper</td><td>1802</td><td>24.8%</td></tr><tr><td>Reject-risk</td><td>779</td><td>10.7%</td></tr></tbody></table></div>
+  </div>
+
+  <h2>Reviewer Scores</h2>
+  <div class="grid">
+    <div class="panel"><table><thead><tr><th>Rating</th><th>Reviews</th><th>Share</th></tr></thead><tbody><tr><td>1</td><td>8</td><td>0.0%</td></tr><tr><td>2</td><td>61</td><td>0.2%</td></tr><tr><td>3</td><td>754</td><td>2.5%</td></tr><tr><td>4</td><td>2190</td><td>7.2%</td></tr><tr><td>5</td><td>7203</td><td>23.8%</td></tr><tr><td>6</td><td>10163</td><td>33.6%</td></tr><tr><td>7</td><td>7906</td><td>26.1%</td></tr><tr><td>8</td><td>1794</td><td>5.9%</td></tr><tr><td>9</td><td>141</td><td>0.5%</td></tr><tr><td>10</td><td>24</td><td>0.1%</td></tr></tbody></table></div>
+    <div class="panel"><table><thead><tr><th>Decision</th><th>Reviews</th><th>Avg rating</th><th>Median</th></tr></thead><tbody><tr><td>Accept (oral)</td><td>536</td><td>7.09</td><td>7.0</td></tr><tr><td>Accept (poster)</td><td>26755</td><td>5.83</td><td>6.0</td></tr><tr><td>Accept (spotlight)</td><td>2953</td><td>6.63</td><td>7.0</td></tr></tbody></table></div>
+    <div class="panel"><table><thead><tr><th>Score type</th><th>Count</th><th>Average</th><th>Median</th></tr></thead><tbody><tr><td>Soundness</td><td>30244</td><td>2.97</td><td>3.0</td></tr><tr><td>Presentation</td><td>30244</td><td>2.91</td><td>3.0</td></tr><tr><td>Contribution</td><td>30244</td><td>2.76</td><td>3.0</td></tr><tr><td>Confidence</td><td>30244</td><td>3.57</td><td>4.0</td></tr></tbody></table></div>
+    <div class="panel"><table><thead><tr><th>Text length</th><th>Count</th><th>Average</th><th>Median</th></tr></thead><tbody><tr><td>Abstract words</td><td>7253</td><td>127.2</td><td>127.0</td></tr><tr><td>Review words</td><td>30244</td><td>251.0</td><td>222.0</td></tr></tbody></table></div>
+  </div>
+
+  <h2>Common Review Concerns</h2>
+  <div class="panel"><table><thead><tr><th>Concern area</th><th>Reviews mentioning it</th><th>Share of reviews</th></tr></thead><tbody><tr><td>limited experiments</td><td>22655</td><td>74.9%</td></tr><tr><td>clarity / writing</td><td>12893</td><td>42.6%</td></tr><tr><td>novelty / contribution</td><td>10608</td><td>35.1%</td></tr><tr><td>reproducibility</td><td>8759</td><td>29.0%</td></tr><tr><td>technical soundness</td><td>8135</td><td>26.9%</td></tr><tr><td>related work</td><td>6403</td><td>21.2%</td></tr><tr><td>limitations / ethics</td><td>4356</td><td>14.4%</td></tr></tbody></table></div>
+
+  <h2>Frequent Weakness / Question Terms</h2>
+  <div class="grid">
+    <div class="panel"><table><thead><tr><th>Weakness term</th><th>Count</th></tr></thead><tbody><tr><td>authors</td><td>21739</td></tr><tr><td>method</td><td>19473</td></tr><tr><td>which</td><td>17123</td></tr><tr><td>model</td><td>16365</td></tr><tr><td>should</td><td>13739</td></tr><tr><td>methods</td><td>11484</td></tr><tr><td>models</td><td>10862</td></tr><tr><td>learning</td><td>10721</td></tr><tr><td>performance</td><td>10379</td></tr><tr><td>what</td><td>10262</td></tr><tr><td>data</td><td>10154</td></tr><tr><td>experiments</td><td>10036</td></tr><tr><td>section</td><td>9789</td></tr><tr><td>line</td><td>9547</td></tr><tr><td>seems</td><td>9071</td></tr><tr><td>while</td><td>8523</td></tr><tr><td>training</td><td>8461</td></tr><tr><td>however</td><td>8322</td></tr><tr><td>different</td><td>8242</td></tr><tr><td>used</td><td>8212</td></tr></tbody></table></div>
+    <div class="panel"><table><thead><tr><th>Question term</th><th>Count</th></tr></thead><tbody><tr><td>what</td><td>14455</td></tr><tr><td>authors</td><td>12214</td></tr><tr><td>line</td><td>9200</td></tr><tr><td>model</td><td>8648</td></tr><tr><td>method</td><td>8053</td></tr><tr><td>which</td><td>6059</td></tr><tr><td>please</td><td>5956</td></tr><tr><td>performance</td><td>5723</td></tr><tr><td>should</td><td>5703</td></tr><tr><td>section</td><td>5682</td></tr><tr><td>data</td><td>5500</td></tr><tr><td>different</td><td>5377</td></tr><tr><td>used</td><td>5128</td></tr><tr><td>training</td><td>5092</td></tr><tr><td>figure</td><td>4755</td></tr><tr><td>provide</td><td>4726</td></tr><tr><td>models</td><td>4716</td></tr><tr><td>seems</td><td>4528</td></tr><tr><td>methods</td><td>4500</td></tr><tr><td>when</td><td>4435</td></tr></tbody></table></div>
+  </div>
+
+  <h2>Suggestions</h2>
+  <div class="panel"><ul><li>Prioritize stronger experiments: add stronger baselines, ablations, dataset diversity, and clearer metric reporting.</li><li>Improve presentation before submission: make contribution bullets explicit, define notation early, and rewrite unclear method sections.</li><li>Sharpen novelty claims: say exactly what is new compared with the closest related work, not only that the method performs well.</li><li>Reduce technical-risk comments: state assumptions, proof scope, failure cases, and why the experimental evidence supports the claims.</li><li>Add reproducibility details: code link, hyperparameters, compute budget, seeds, implementation details, and data preprocessing.</li><li>Strengthen related work: compare directly against the closest papers reviewers are likely to cite.</li><li>Because this dataset has accepted papers only, add rejected papers later if you want a stronger true accept/reject classifier.</li></ul></div>
+</main>
+</body>
+</html>

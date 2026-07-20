@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Final Evaluation Report</title>
+  <style>
+body { margin: 0; background: #f6f7f9; color: #111827; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; }
+main { max-width: 1160px; margin: 0 auto; padding: 34px 22px 60px; }
+h1 { font-size: 38px; margin: 0 0 8px; }
+h2 { margin-top: 34px; font-size: 24px; }
+.muted { color: #667085; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; margin: 18px 0; }
+.metric, .panel { background: #fff; border: 1px solid #d0d5dd; border-radius: 10px; padding: 16px; }
+.metric strong { display: block; font-size: 31px; margin-bottom: 4px; }
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+th, td { text-align: left; border-bottom: 1px solid #eaecf0; padding: 10px 12px; }
+th { background: #eef2f6; }
+li { margin: 7px 0; line-height: 1.45; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Final Evaluation Report</h1>
+  <p class="muted">Research Review prototype aligned with the proposal: dataset cleaning, double-blind preparation, SFT dataset, local screening, confidentiality modes, and AI review support.</p>
+  <section class="grid"><div class="metric"><strong>5,868</strong><span>Cleaned papers</span></div><div class="metric"><strong>5,868</strong><span>SFT examples</span></div><div class="metric"><strong>5,868</strong><span>Section summaries</span></div><div class="metric"><strong>15</strong><span>AI reviewed papers</span></div></section>
+
+  <h2>Dataset Cleaning</h2>
+  <div class="panel"><table><thead><tr><th>Metric</th><th>Value</th></tr></thead><tbody><tr><td>Metadata papers</td><td>7,253</td></tr><tr><td>Missing markdown files</td><td>1,385</td></tr><tr><td>No real reviewer review</td><td>0</td></tr><tr><td>Cleaned papers kept</td><td>5,868</td></tr><tr><td>Good paper derived</td><td>1,468</td></tr><tr><td>Needs modification derived</td><td>3,778</td></tr><tr><td>Reject-risk derived</td><td>622</td></tr></tbody></table></div>
+
+  <h2>Local Screening Results</h2>
+  <div class="panel"><table><thead><tr><th>Decision</th><th>Papers</th></tr></thead><tbody><tr><td>Accept</td><td>554</td></tr><tr><td>Modify</td><td>5,164</td></tr><tr><td>Reject</td><td>150</td></tr><tr><td>Missing file</td><td>0</td></tr></tbody></table></div>
+
+  <h2>SFT Dataset</h2>
+  <div class="panel"><table><thead><tr><th>Split</th><th>Examples</th></tr></thead><tbody><tr><td>Total examples</td><td>5,868</td></tr><tr><td>Training examples</td><td>5,282</td></tr><tr><td>Validation examples</td><td>586</td></tr></tbody></table></div>
+
+  <h2>System Capabilities</h2>
+  <div class="panel"><ul>
+    <li>Cleaned OpenReview-style dataset by removing unusable/non-review rows.</li>
+    <li>Prepared double-blind paper/review data with identity masking.</li>
+    <li>Created SFT-ready chat JSONL for fine-tuning a double-blind reviewer model.</li>
+    <li>Implemented local Accept/Modify/Reject-risk screening.</li>
+    <li>Added OpenAI-assisted explanation and advanced AI review scripts.</li>
+    <li>Added confidentiality modes: local only, abstract only, section summary only, and full paper with consent.</li>
+    <li>Generated poster-ready charts and supervisor-facing documentation.</li>
+  </ul></div>
+
+  <h2>Core Outputs</h2>
+  <div class="panel"><table><thead><tr><th>Output</th><th>Path</th><th>Size</th></tr></thead><tbody><tr><td>Clean papers</td><td>data/processed/clean_papers.json</td><td>91.3 MB</td></tr><tr><td>SFT train</td><td>data/sft/train.jsonl</td><td>70.1 MB</td></tr><tr><td>Paper decisions</td><td>reports/paper_decisions.html</td><td>3.2 MB</td></tr><tr><td>Poster figures</td><td>reports/poster_figures/</td><td>folder</td></tr><tr><td>System architecture</td><td>reports/poster_figures/SYSTEM_ARCHITECTURE.svg</td><td>4.6 KB</td></tr><tr><td>Thesis methodology</td><td>THESIS_METHODOLOGY_SECTION.md</td><td>9.4 KB</td></tr><tr><td>Presentation outline</td><td>PRESENTATION_OUTLINE.md</td><td>3.9 KB</td></tr><tr><td>Confidentiality guide</td><td>CONFIDENTIALITY_GUIDE.md</td><td>1.7 KB</td></tr></tbody></table></div>
+
+  <h2>Limitations</h2>
+  <div class="panel"><ul>
+    <li>The current dataset contains accepted papers only; reject labels are derived as risk labels from reviewer scores.</li>
+    <li>Many markdown files contain abstract/review text rather than full manuscript sections.</li>
+    <li>Fine-tuning pipeline is ready, but full LoRA training may require GPU resources.</li>
+    <li>OpenAI review is optional and must respect confidentiality mode selection.</li>
+  </ul></div>
+</main>
+</body>
+</html>
