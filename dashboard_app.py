@@ -167,8 +167,10 @@ def render_paper_table() -> None:
         "accept_probability",
         "modify_probability",
         "reject_probability",
-        "suggestions",
     ]
+    for optional in ["xai_focus", "suggestion_1", "suggestion_2", "suggestion_3", "suggestions"]:
+        if optional in filtered.columns:
+            columns.append(optional)
     st.dataframe(filtered[columns], use_container_width=True, height=560)
     st.download_button(
         "Download Filtered CSV",

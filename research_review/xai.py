@@ -126,13 +126,13 @@ def explain_prediction(model: dict, prediction: dict, top_n: int = 8) -> dict:
 
 def build_xai_recommendations(prediction: dict, risk_factors: list[dict], limit: int = 6) -> list[str]:
     recommendations = []
-    for gap in prediction.get("feature_gaps", []):
-        if gap not in recommendations:
-            recommendations.append(gap)
     for item in risk_factors:
         suggestion = item.get("recommendation")
         if suggestion and suggestion not in recommendations:
             recommendations.append(str(suggestion))
+    for gap in prediction.get("feature_gaps", []):
+        if gap not in recommendations:
+            recommendations.append(gap)
     if not recommendations:
         recommendations.append("The local XAI layer found no major structural risk; polish clarity and reviewer framing.")
     return recommendations[:limit]

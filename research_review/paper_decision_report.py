@@ -24,16 +24,27 @@ def ensure_model(model_path: Path) -> dict:
     return train(DEFAULT_CRITERIA_PATH, DEFAULT_PAPERS_DIR, model_path)
 
 
+def xai_focus_text(xai_review: dict) -> str:
+    factors = xai_review.get("risk_factors") or xai_review.get("key_factors") or []
+    if not factors:
+        return "No major XAI risk factor detected."
+    parts = []
+    for item in factors[:3]:
+        value = item.get("value", "")
+        parts.append(f"{item.get('label', item.get('feature'))}: {value}")
+    return "; ".join(parts)
+
+
 def short_suggestions(prediction: dict, xai_review: dict) -> list[str]:
-    gaps = xai_review.get("recommendations") or prediction.get("feature_gaps") or []
+    recommendations = xai_review.get("recommendations") or prediction.get("feature_gaps") or []
     verdict = prediction["verdict"]
-    suggestions = list(gaps[:4])
+    suggestions = list(recommendations[:4])
     if verdict == "GOOD_PAPER":
-        suggestions.insert(0, "XAI: paper looks submission-ready; polish clarity and check reviewer-risk areas.")
+        suggestions.insert(0, "XAI indicates this paper is close to submission-ready; polish the listed risk factors.")
     elif verdict == "NEEDS_MODIFICATION":
-        suggestions.insert(0, "XAI: revise before submission; focus on the highest-risk factors.")
+        suggestions.insert(0, "XAI recommends revision before submission based on the listed risk factors.")
     else:
-        suggestions.insert(0, "XAI: major revision needed before submission; strengthen evidence and contribution framing.")
+        suggestions.insert(0, "XAI flags high rejection risk; address the listed weaknesses before submission.")
     return suggestions[:5]
 
 
@@ -65,6 +76,10 @@ def build_rows(
                     "accept_probability": "",
                     "modify_probability": "",
                     "reject_probability": "",
+                    "xai_focus": "",
+                    "suggestion_1": "Paper markdown file not found in data/Research Papers.",
+                    "suggestion_2": "",
+                    "suggestion_3": "",
                     "suggestions": "Paper markdown file not found in data/Research Papers.",
                 }
             )
@@ -74,6 +89,7 @@ def build_rows(
         prediction = predict_with_model(model, text)
         xai_review = explain_prediction(model, prediction, top_n=5)
         probabilities = prediction["probabilities"]
+        suggestions = short_suggestions(prediction, xai_review)
         rows.append(
             {
                 "paper_id": paper_id,
@@ -84,7 +100,11 @@ def build_rows(
                 "accept_probability": round(probabilities.get("good_paper", 0.0), 4),
                 "modify_probability": round(probabilities.get("needs_modification", 0.0), 4),
                 "reject_probability": round(probabilities.get("reject_risk", 0.0), 4),
-                "suggestions": " ".join(short_suggestions(prediction, xai_review)),
+                "xai_focus": xai_focus_text(xai_review),
+                "suggestion_1": suggestions[0] if len(suggestions) > 0 else "",
+                "suggestion_2": suggestions[1] if len(suggestions) > 1 else "",
+                "suggestion_3": suggestions[2] if len(suggestions) > 2 else "",
+                "suggestions": " ".join(suggestions),
             }
         )
     return rows
@@ -185,6 +205,10 @@ def html_table(rows: list[dict]) -> str:
         "Accept P",
         "Modify P",
         "Reject P",
+        "XAI Focus",
+        "Suggestion 1",
+        "Suggestion 2",
+        "Suggestion 3",
         "Suggestions",
     ]
     body = []
@@ -200,6 +224,10 @@ def html_table(rows: list[dict]) -> str:
             f"<td>{html.escape(str(row['accept_probability']))}</td>"
             f"<td>{html.escape(str(row['modify_probability']))}</td>"
             f"<td>{html.escape(str(row['reject_probability']))}</td>"
+            f"<td>{html.escape(str(row.get('xai_focus', '')))}</td>"
+            f"<td>{html.escape(str(row.get('suggestion_1', '')))}</td>"
+            f"<td>{html.escape(str(row.get('suggestion_2', '')))}</td>"
+            f"<td>{html.escape(str(row.get('suggestion_3', '')))}</td>"
             f"<td>{html.escape(str(row['suggestions']))}</td>"
             "</tr>"
         )
