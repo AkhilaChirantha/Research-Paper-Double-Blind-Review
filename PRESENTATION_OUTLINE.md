@@ -119,20 +119,26 @@ Purpose:
 - fine-tune a double-blind reviewer model
 - combine multiple reviews into one feedback response
 
-## Slide 10: OpenAI Explanation Layer
+## Slide 10: XAI Explanation Layer
 
-Current prototype uses:
+Default explanation method:
 
 ```text
-gpt-4.1-mini
+Local XAI feature-distance explanation
 ```
 
 Used to generate:
 
-- strengths
-- weaknesses
-- section-level modifications
-- acceptance plan
+- feature-level decision factors
+- paper-specific risk factors
+- XAI-based modification suggestions
+- proposal-aligned explanations
+
+Optional secondary layer:
+
+```text
+OpenAI / gpt-4.1-mini for extra detailed natural-language feedback
+```
 - natural-language explanations
 
 Later this can shift to:
@@ -211,4 +217,3 @@ The project provides:
 - OpenAI explanation layer
 - confidentiality-preserving modes
 - supervisor-ready reports and charts
-

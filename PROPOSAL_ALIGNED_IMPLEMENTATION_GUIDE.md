@@ -101,7 +101,7 @@ Because current dataset has no rejected labels, project should be framed as:
 
 ```text
 An AI-assisted double-blind research paper screening and feedback framework
-with local risk estimation and OpenAI-based natural language explanations.
+with local risk estimation, XAI-based explanations, and optional OpenAI-based natural language feedback.
 ```
 
 This still matches proposal because:
@@ -112,13 +112,7 @@ This still matches proposal because:
 - explainability is included
 - author pre-submission support is included
 
-XAI can be replaced temporarily by OpenAI natural-language explanations.
-
-Later:
-
-```text
-OpenAI explanation layer -> XAI / SHAP / LIME / local fine-tuned model explanation
-```
+XAI is now the default explanation layer. OpenAI remains only as an optional secondary layer for richer suggestions.
 
 ## 5. Step-by-Step Implementation Plan
 
@@ -514,27 +508,14 @@ This supports:
 
 ## Step 09: Explainability Strategy
 
-Proposal says XAI.
-
-Because currently we use OpenAI API, temporary explanation method:
-
-```text
-AI-generated natural language explanation
-```
-
-But thesis should say:
-
-```text
-In the prototype, OpenAI-generated explanations are used as an explanation layer.
-In the final system, XAI methods such as SHAP/LIME or feature-importance analysis can be integrated with the local model.
-```
+Proposal says XAI. Therefore the default explanation method is now the local XAI layer.
 
 Final XAI plan:
 
 - feature importance from local model
 - section-level contribution
 - reviewer-score-derived explanation
-- natural language explanation by LLM
+- optional natural language explanation by LLM/OpenAI
 
 This supports:
 

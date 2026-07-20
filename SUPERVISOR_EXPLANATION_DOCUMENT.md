@@ -92,7 +92,7 @@ Methana `Reject-risk` kiyanne actual conference reject label ekak newei. Eka rev
 
 ## 5. System Architecture
 
-System eka layers dekak use karanawa.
+System eka main layers thunak use karanawa.
 
 ### 5.1 Local Criteria-Based Model
 
@@ -110,11 +110,29 @@ Local model output:
 - modify probability
 - reject probability
 
-### 5.2 OpenAI AI Review Layer
+### 5.2 XAI Explanation Layer
 
-Local model eka decision estimate karata, detailed suggestions rule-based widiyata denna madi.
+Proposal eke mention wela thiyenne XAI nisa default explanation layer eka XAI widiyata update karala thiyenawa.
 
-E nisa OpenAI API layer ekak add karala thiyenawa.
+XAI layer eka local model output eka explain karanawa:
+
+- mona features decision ekata support kalada
+- mona features reviewer risk eka wadi kalada
+- e XAI factors walin paper-specific suggestions generate karanawa
+
+Examples:
+
+- weak experiments/evaluation evidence
+- missing ablation study
+- low citation coverage
+- weak limitation discussion
+- high sentence complexity
+
+### 5.3 Optional OpenAI AI Review Layer
+
+XAI layer eka default. Userta thawa detailed natural-language suggestions one nam OpenAI optional layer eka use karanna puluwan.
+
+OpenAI API layer eka optional widiyata add karala thiyenawa.
 
 OpenAI layer eka paper content balala:
 
@@ -127,7 +145,7 @@ OpenAI layer eka paper content balala:
 
 generate karanawa.
 
-Me layer eka manually hard-code karapu suggestion system ekak newei. AI model eka paper content and local model output dekama consider karala feedback denawa.
+Me layer eka default nemei. Proposal-aligned default eka XAI.
 
 ## 6. Local Model Details
 
@@ -203,20 +221,19 @@ Each row includes:
 - reject probability
 - local suggestions
 
-## 9. Why OpenAI Layer Is Added
+## 9. Why XAI Is Default and OpenAI Is Optional
 
-Local model eke suggestions generic/structural nature ekak thiyenawa.
+Proposal eke XAI mention karala thiyena nisa system eke default explanation method eka XAI.
 
-Example:
+XAI eken:
 
-- add stronger baselines
-- add ablations
-- clarify method
-- add limitations
+- model decision eka explain karanawa
+- paper-specific risk factors identify karanawa
+- feature evidence walin suggestions generate karanawa
 
-But research paper review ekakata meka madi. Supervisor ta pennanna and real author feedback denna paper-specific comments one.
+OpenAI add karala thiyenne optional deeper feedback layer ekak widiyata.
 
-E nisa OpenAI API use karanawa.
+OpenAI optional feedback:
 
 OpenAI eken expected feedback:
 

@@ -204,6 +204,66 @@ def svg_matrix(comparison: dict, width: int = 1120, height: int = 820) -> str:
     return "\n".join(parts)
 
 
+def svg_system_architecture(width: int = 1600, height: int = 900) -> str:
+    def box(x: int, y: int, w: int, h: int, title: str, lines: list[str], css: str) -> list[str]:
+        parts = [f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="18" class="box {css}"/>']
+        parts.append(f'<text x="{x + 25}" y="{y + 42}" class="box-title">{html.escape(title)}</text>')
+        for index, line in enumerate(lines):
+            parts.append(f'<text x="{x + 25}" y="{y + 78 + index * 28}" class="box-text">{html.escape(line)}</text>')
+        return parts
+
+    parts = [
+        f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}" role="img" aria-label="System architecture diagram">',
+        "<style>",
+        "text{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Arial,sans-serif;fill:#111827}",
+        ".title{font-size:46px;font-weight:850}",
+        ".subtitle{font-size:24px;fill:#667085}",
+        ".box-title{font-size:25px;font-weight:800}",
+        ".box-text{font-size:18px;fill:#344054}",
+        ".arrow{stroke:#475467;stroke-width:4;fill:none;marker-end:url(#arrow)}",
+        ".box{fill:#ffffff;stroke:#cbd5e1;stroke-width:3}",
+        ".data{fill:#e8f3ff}.process{fill:#fff7e6}.model{fill:#eaf8ef}.xai{fill:#eaf0ff}.ai{fill:#f2edff}.output{fill:#fff0f0}",
+        "</style>",
+        "<defs>",
+        '  <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">',
+        '    <path d="M2,2 L10,6 L2,10 Z" fill="#475467"/>',
+        "  </marker>",
+        "</defs>",
+        f'<rect x="0" y="0" width="{width}" height="{height}" fill="#ffffff"/>',
+        f'<rect x="22" y="22" width="{width - 44}" height="{height - 44}" rx="26" fill="#ffffff" stroke="#d0d5dd" stroke-width="3"/>',
+        '<text x="58" y="78" class="title">AI-Assisted Double-Blind Paper Screening Framework</text>',
+        '<text x="60" y="116" class="subtitle">Proposal-aligned default: local screening + XAI explanations; OpenAI is optional for extra feedback</text>',
+    ]
+
+    parts.extend(box(70, 190, 250, 140, "OpenReview Data", ["Metadata", "Research papers", "Reviewer comments"], "data"))
+    parts.append('<path d="M320 260 L390 260" class="arrow"/>')
+    parts.extend(box(390, 190, 250, 140, "Dataset Cleaning", ["Remove empty reviews", "Filter real reviewers", "Keep usable papers"], "process"))
+    parts.append('<path d="M640 260 L710 260" class="arrow"/>')
+    parts.extend(box(710, 190, 250, 140, "Double-Blind Prep", ["Mask reviewer IDs", "Mask links/emails", "Create JSONL data"], "process"))
+    parts.append('<path d="M960 260 L1030 260" class="arrow"/>')
+    parts.extend(box(1030, 190, 250, 140, "Local Screening", ["Accept", "Modify", "Reject-risk"], "model"))
+
+    parts.append('<path d="M1155 330 L1155 410" class="arrow"/>')
+    parts.extend(box(1030, 410, 250, 150, "XAI Explanation", ["Feature importance", "Risk factors", "XAI suggestions"], "xai"))
+    parts.append('<path d="M1030 485 L960 485" class="arrow"/>')
+    parts.extend(box(710, 410, 250, 150, "Section Summaries", ["Abstract", "Method", "Results / limits"], "process"))
+    parts.append('<path d="M710 485 L640 485" class="arrow"/>')
+    parts.extend(box(390, 410, 250, 150, "Confidential Modes", ["local_only", "abstract_only", "section_summary_only"], "ai"))
+    parts.append('<path d="M390 485 L320 485" class="arrow"/>')
+    parts.extend(box(70, 410, 250, 150, "Final Outputs", ["Decision table", "XAI suggestions", "Poster / thesis reports"], "output"))
+
+    parts.append('<path d="M1155 560 L1155 640" class="arrow"/>')
+    parts.extend(box(1030, 640, 250, 130, "Optional OpenAI", ["More detailed review", "Only with consent"], "ai"))
+    parts.append('<path d="M1030 705 L960 705" class="arrow"/>')
+    parts.extend(box(710, 640, 250, 130, "SFT / LoRA Setup", ["5,868 examples", "Train / validation"], "model"))
+
+    parts.append('<rect x="70" y="650" width="570" height="120" rx="18" fill="#f8fafc" stroke="#cbd5e1" stroke-width="3"/>')
+    parts.append('<text x="100" y="695" class="box-title">Current Dataset Limitation</text>')
+    parts.append('<text x="100" y="733" class="box-text">Current dataset contains accepted papers only; Reject is modeled as reviewer-derived risk.</text>')
+    parts.append("</svg>")
+    return "\n".join(parts)
+
+
 def write(path: Path, content: str) -> None:
     path.write_text(content, encoding="utf-8")
 
@@ -269,6 +329,7 @@ def main() -> None:
     )
     write(output_dir / "02_quality_score_distribution.svg", svg_quality_histogram(local_rows))
     write(output_dir / "03_decision_share.svg", svg_donut("Share of Predicted Decisions", local_counts))
+    write(output_dir / "SYSTEM_ARCHITECTURE.svg", svg_system_architecture())
 
     comparison = read_json(Path(args.openai_json)) if Path(args.openai_json).exists() else None
     if comparison:

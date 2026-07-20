@@ -255,9 +255,9 @@ Missing ewath include karanna:
 python3 paper_decisions.py --include-missing
 ```
 
-## 7. Suggestions
+## 7. XAI-Based Suggestions
 
-Local suggestions generate wenne local feature gaps walin.
+Default suggestions generate wenne XAI layer eken. XAI layer eka local model prediction eka explain karala, paper-specific risk factors identify karanawa.
 
 Examples:
 
@@ -270,7 +270,7 @@ Examples:
 - Include ablations or sensitivity analysis.
 - Add limitations/failure cases.
 
-Important: `reports/paper_decisions.json` eke default suggestions OpenAI API eken generate karapu ewa newei. Ewa local rule-based suggestions.
+Important: `reports/paper_decisions.json` eke default suggestions OpenAI API eken generate karapu ewa newei. Ewa local XAI-based suggestions. OpenAI is optional for extra detailed feedback only.
 
 ## 8. Dataset Summary Report
 
