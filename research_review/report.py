@@ -3,7 +3,12 @@ from __future__ import annotations
 import json
 
 
-def render_markdown(path: str, local_prediction: dict, ai_review: dict | None = None) -> str:
+def render_markdown(
+    path: str,
+    local_prediction: dict,
+    ai_review: dict | None = None,
+    xai_review: dict | None = None,
+) -> str:
     lines = [
         f"# Blind Review Report",
         "",
@@ -23,6 +28,21 @@ def render_markdown(path: str, local_prediction: dict, ai_review: dict | None = 
         lines.extend(f"- {gap}" for gap in gaps)
     else:
         lines.append("- No major structural gaps detected by the local model.")
+
+    if xai_review:
+        lines.extend(["", "## XAI Explanation", ""])
+        lines.append(f"**Method:** {xai_review['method']}")
+        lines.append("")
+        lines.append("### Key Decision Factors")
+        lines.append("")
+        for item in xai_review["key_factors"]:
+            direction = "supports" if item["direction"] == "supports_decision" else "raises risk for"
+            lines.append(
+                f"- **{item['label']}**: value `{item['value']}`, "
+                f"contribution `{item['contribution']}` ({direction} the prediction)."
+            )
+        lines.extend(["", "### XAI-Based Recommendations", ""])
+        lines.extend(f"- {recommendation}" for recommendation in xai_review["recommendations"])
 
     if ai_review:
         lines.extend(

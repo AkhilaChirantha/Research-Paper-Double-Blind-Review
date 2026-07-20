@@ -2,10 +2,11 @@
 
 Blind-review assistant for research papers before submission.
 
-It has two layers:
+It has three layers:
 
 1. A local Python ML model trained from `data/Analyse Critaria/metadata.json` and `data/Research Papers/*.md`.
-2. An optional OpenAI API reviewer that gives structured section-level recommendations.
+2. A default local XAI layer that explains the model decision and generates XAI-based recommendations.
+3. An optional OpenAI API reviewer that gives extra structured section-level recommendations.
 
 The local model is intentionally conservative. Your current dataset contains accepted NeurIPS papers only, so the training script derives three practical classes from reviewer ratings and sub-scores:
 
@@ -55,10 +56,16 @@ models/research_review_model.json
 python review_paper.py "data/Research Papers/7WTA298wts.md"
 ```
 
+This uses the proposal-aligned default mode:
+
+```text
+XAI Local Review
+```
+
 ## Review With OpenAI Recommendations
 
 ```bash
-python review_paper.py "data/Research Papers/7WTA298wts.md" --use-openai --md-output reports/7WTA298wts.md --json-output reports/7WTA298wts.json
+python review_paper.py "data/Research Papers/7WTA298wts.md" --review-mode xai-openai --confidentiality-mode section_summary_only --md-output reports/7WTA298wts.md --json-output reports/7WTA298wts.json
 ```
 
 ## Run the Dashboard

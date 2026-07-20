@@ -12,6 +12,7 @@ from research_review.confidentiality import ConfidentialityMode, parse_mode, pre
 from research_review.io import read_document
 from research_review.model import load_model, predict_with_model, training_summary
 from research_review.openai_reviewer import get_openai_recommendation
+from research_review.xai import explain_prediction
 
 
 ROOT = Path(__file__).resolve().parent
@@ -225,10 +226,16 @@ def render_openai_comparison() -> None:
 
 def render_single_review() -> None:
     st.title("Review a New Paper")
-    st.caption("Default mode is local-only. OpenAI is optional and controlled below.")
+    st.caption("Default model is XAI/local. OpenAI is optional for deeper suggestions.")
 
     uploaded = st.file_uploader("Upload paper", type=["md", "txt", "tex", "pdf"])
-    use_openai = st.toggle("Use OpenAI for detailed suggestions", value=False)
+    review_mode = st.radio(
+        "Review model",
+        ["XAI Local Review", "XAI + OpenAI Detailed Review"],
+        index=0,
+        help="Proposal-aligned default is XAI. OpenAI is only an optional extra suggestion layer.",
+    )
+    use_openai = review_mode == "XAI + OpenAI Detailed Review"
     mode_value = st.selectbox(
         "Confidentiality mode",
         [mode.value for mode in ConfidentialityMode],
@@ -250,6 +257,7 @@ def render_single_review() -> None:
         review_text, audit = prepare_review_text(text, uploaded.name, mode)
         model = load_review_model()
         prediction = predict_with_model(model, review_text)
+        xai_review = explain_prediction(model, prediction)
     except Exception as exc:
         st.error(f"Could not review paper: {exc}")
         return
@@ -272,6 +280,19 @@ def render_single_review() -> None:
     gaps = prediction.get("feature_gaps") or ["No major structural gaps detected by the local model."]
     for gap in gaps:
         st.write(f"- {gap}")
+
+    st.subheader("XAI Explanation")
+    st.caption("This is the proposal-aligned default explanation layer.")
+    factors = pd.DataFrame(xai_review["key_factors"])
+    if not factors.empty:
+        st.dataframe(
+            factors[["label", "value", "contribution", "direction", "recommendation"]],
+            use_container_width=True,
+            height=300,
+        )
+    st.markdown("**XAI-Based Suggestions**")
+    for recommendation in xai_review["recommendations"]:
+        st.write(f"- {recommendation}")
 
     with st.expander("Confidentiality Audit", expanded=False):
         st.json(audit)

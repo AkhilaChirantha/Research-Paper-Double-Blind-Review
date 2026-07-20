@@ -11,6 +11,7 @@ OpenReview-style dataset
 -> dataset cleaning
 -> double-blind anonymization
 -> local screening model
+-> XAI feature explanation
 -> section summarization
 -> confidentiality-aware AI review
 -> SFT dataset creation
@@ -18,7 +19,7 @@ OpenReview-style dataset
 -> final evaluation and reporting
 ```
 
-The original proposal focused on a machine learning and explainable AI framework for predicting research paper acceptance. In this implementation, the XAI component is represented in the prototype by a natural-language explanation layer using the OpenAI API. The design remains extensible so that future versions can replace or augment this explanation layer with SHAP, LIME, or feature-importance explanations from a local model.
+The original proposal focused on a machine learning and explainable AI framework for predicting research paper acceptance readiness. In this implementation, the default explanation component is a local XAI layer that explains the screening model using feature-level evidence. The OpenAI API is retained only as an optional secondary layer for richer natural-language feedback when the user explicitly requests it.
 
 ## 2. Dataset Collection
 
@@ -214,9 +215,31 @@ Mode descriptions:
 
 The system blocks OpenAI usage in `local_only` mode and records a confidentiality audit in JSON outputs.
 
-## 9. AI-Assisted Explanation Layer
+## 9. XAI-Assisted Explanation Layer
 
-The OpenAI API is used to generate natural-language feedback. In the current implementation, the configured model is:
+The default explanation method is a local XAI layer. After the local screening model predicts Accept, Modify, or Reject-risk, the XAI module identifies which paper features most strongly support the decision and which features raise reviewer risk.
+
+The XAI layer explains features such as:
+
+- abstract detail
+- section structure
+- citation coverage
+- method section presence
+- experiment/evaluation section presence
+- result and quantitative evidence
+- baseline comparisons
+- ablation studies
+- reproducibility evidence
+- novelty framing
+- limitations discussion
+
+These feature-level explanations are converted into reviewer-style recommendations. For example, if the XAI layer identifies missing experiments and weak quantitative evidence as risk factors, the system recommends strengthening the evaluation section with datasets, metrics, baselines, and result analysis.
+
+This approach is aligned with the proposal because recommendations are generated from explainable local model evidence rather than from a black-box external API by default.
+
+## 9.1 Optional OpenAI Feedback Layer
+
+The OpenAI API is kept as an optional secondary layer for users who need more detailed natural-language feedback. In the current implementation, the configured model is:
 
 ```text
 gpt-4.1-mini
@@ -232,7 +255,7 @@ The AI review layer provides:
 - acceptance improvement plan
 - supervisor-friendly notes
 
-This layer is used as a practical explanation component during the prototype phase. Future work can incorporate formal XAI methods such as SHAP or LIME.
+This layer is not the default proposal-aligned explanation method. It is used only when the user selects the OpenAI option and chooses an allowed confidentiality mode. Future work can additionally incorporate formal XAI libraries such as SHAP or LIME.
 
 ## 10. SFT Dataset Creation
 
@@ -334,7 +357,6 @@ Future improvements include:
 
 ## 15. Summary
 
-The implemented system is a research-grade prototype for AI-assisted double-blind paper screening. It combines local reviewer-derived risk estimation, confidentiality-preserving document processing, OpenAI-based natural-language explanations, SFT dataset construction, and a LoRA fine-tuning pipeline.
+The implemented system is a research-grade prototype for AI-assisted double-blind paper screening. It combines local reviewer-derived risk estimation, XAI-based feature explanations, confidentiality-preserving document processing, optional OpenAI-based natural-language feedback, SFT dataset construction, and a LoRA fine-tuning pipeline.
 
 This methodology aligns with the proposal goal of developing a machine learning and explainable AI framework for pre-submission research paper acceptance prediction, while transparently addressing the limitation that the current dataset lacks true rejected-paper labels.
-

@@ -6,9 +6,9 @@ import html
 from pathlib import Path
 
 from research_review.config import DEFAULT_CRITERIA_PATH, DEFAULT_MODEL_PATH, DEFAULT_PAPERS_DIR
-from research_review.features import summarize_feature_gaps
 from research_review.io import read_document, read_json, write_json
 from research_review.model import load_model, predict_with_model, train
+from research_review.xai import explain_prediction
 
 
 VERDICT_LABELS = {
@@ -24,16 +24,16 @@ def ensure_model(model_path: Path) -> dict:
     return train(DEFAULT_CRITERIA_PATH, DEFAULT_PAPERS_DIR, model_path)
 
 
-def short_suggestions(prediction: dict) -> list[str]:
-    gaps = prediction.get("feature_gaps") or []
+def short_suggestions(prediction: dict, xai_review: dict) -> list[str]:
+    gaps = xai_review.get("recommendations") or prediction.get("feature_gaps") or []
     verdict = prediction["verdict"]
     suggestions = list(gaps[:4])
     if verdict == "GOOD_PAPER":
-        suggestions.insert(0, "Paper looks submission-ready; polish clarity and check reviewer-risk areas.")
+        suggestions.insert(0, "XAI: paper looks submission-ready; polish clarity and check reviewer-risk areas.")
     elif verdict == "NEEDS_MODIFICATION":
-        suggestions.insert(0, "Revise before submission; focus on the highest-risk reviewer concerns.")
+        suggestions.insert(0, "XAI: revise before submission; focus on the highest-risk factors.")
     else:
-        suggestions.insert(0, "Major revision needed before submission; strengthen evidence and contribution framing.")
+        suggestions.insert(0, "XAI: major revision needed before submission; strengthen evidence and contribution framing.")
     return suggestions[:5]
 
 
@@ -72,6 +72,7 @@ def build_rows(
 
         text = read_document(paper_path)
         prediction = predict_with_model(model, text)
+        xai_review = explain_prediction(model, prediction, top_n=5)
         probabilities = prediction["probabilities"]
         rows.append(
             {
@@ -83,7 +84,7 @@ def build_rows(
                 "accept_probability": round(probabilities.get("good_paper", 0.0), 4),
                 "modify_probability": round(probabilities.get("needs_modification", 0.0), 4),
                 "reject_probability": round(probabilities.get("reject_risk", 0.0), 4),
-                "suggestions": " ".join(short_suggestions(prediction)),
+                "suggestions": " ".join(short_suggestions(prediction, xai_review)),
             }
         )
     return rows

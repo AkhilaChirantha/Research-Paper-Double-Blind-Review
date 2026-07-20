@@ -165,6 +165,7 @@ Raw OpenReview-style dataset
 -> double-blind anonymization
 -> local feature extraction
 -> local screening model
+-> XAI feature explanation and recommendations
 -> section summarization
 -> optional OpenAI feedback generation
 -> SFT dataset creation
@@ -175,6 +176,7 @@ Raw OpenReview-style dataset
 Main components:
 
 - Local ML model
+- XAI explanation layer
 - OpenAI feedback layer
 - Confidentiality layer
 - SFT dataset generation
@@ -335,7 +337,7 @@ Reasons:
 - current stage eka prototype/research framework stage
 - local model should be explainable and fast
 - dependency problems avoid karanna
-- OpenAI layer handles natural-language deep feedback
+- XAI layer handles default proposal-aligned explanations; OpenAI is optional for deeper natural-language feedback
 
 ## 9. Local Model Training
 
@@ -411,9 +413,42 @@ Interpretation:
 
 Again, `Reject` means `Reject-risk`, not true final rejected paper.
 
-## 11. OpenAI API Layer
+## 11. XAI Explanation Layer
 
-OpenAI API use kale paper-specific feedback generate karanna.
+Proposal eke mention karala thiyenne suggestions/explanations XAI eken gannawa kiyala. E nisa current final architecture eke default explanation method eka XAI.
+
+Main file:
+
+```text
+research_review/xai.py
+```
+
+XAI layer eka local model prediction eka explain karanawa:
+
+- model eka Accept / Modify / Reject-risk kiyala predict kale ai
+- mona features decision eka support karanawada
+- mona features risk raise karanawada
+- e feature evidence walin mona modifications suggest karanna onada
+
+XAI method:
+
+```text
+Local XAI feature-distance explanation
+```
+
+Meka external paid API ekak newei. API key one na. Local machine eke run wenawa.
+
+XAI suggestions examples:
+
+- experiments/evaluation section weak nam experiments strengthen karanna
+- citation coverage adu nam related work strengthen karanna
+- baseline terms adu nam stronger baselines add karanna
+- ablation terms adu nam ablation/sensitivity analysis add karanna
+- limitations missing nam limitations section add karanna
+
+## 12. Optional OpenAI API Layer
+
+OpenAI API use kale optional paper-specific detailed feedback generate karanna.
 
 Current model:
 
@@ -434,9 +469,9 @@ Main file:
 research_review/openai_reviewer.py
 ```
 
-### 11.1 Why OpenAI Is Added
+### 12.1 Why OpenAI Is Kept
 
-Local model eka decision and structural gaps denawa, but detailed reviewer-style natural-language suggestions generic wenna puluwan.
+XAI layer eka default explanation layer eka. But sometimes userta more detailed natural-language reviewer feedback one wenna puluwan.
 
 OpenAI layer eka add kale:
 
@@ -447,7 +482,7 @@ OpenAI layer eka add kale:
 - acceptance plan generate karanna
 - supervisor-friendly explanation create karanna
 
-### 11.2 OpenAI Output
+### 12.2 OpenAI Output
 
 OpenAI review schema includes:
 
@@ -467,7 +502,7 @@ reports/advanced_ai_reviews.csv
 reports/advanced_ai_reviews.html
 ```
 
-### 11.3 Why Only Selected Papers Use OpenAI
+### 12.3 Why Only Selected Papers Use OpenAI
 
 OpenAI API paid and limited.
 
@@ -897,21 +932,19 @@ Future improvement:
 - compare base model vs fine-tuned model
 - evaluate generated feedback quality
 
-### 20.3 XAI Layer
+### 20.3 Advanced XAI Tools
 
-Proposal had XAI direction. Current prototype uses:
+Current system already has a local XAI explanation layer. Advanced third-party XAI tools are future improvements:
 
-- local model probabilities
-- structural feature gaps
-- OpenAI natural-language explanations
-
-Formal XAI tools such as SHAP/LIME are not yet added.
+- SHAP
+- LIME
+- feature contribution visualizations
 
 Reason:
 
+- current local XAI layer is lightweight and dependency-free
 - current local model is simple and interpretable
-- project currently prioritized working AI reviewer and confidentiality pipeline
-- OpenAI used temporarily as explanation layer
+- advanced XAI libraries can be added after real accepted/rejected labels are collected
 
 Future improvement:
 
@@ -927,10 +960,11 @@ Short explanation:
 This system is an AI-assisted pre-submission double-blind review framework. 
 It first cleans and anonymizes OpenReview-style data, derives practical 
 screening labels from reviewer scores because the dataset does not contain 
-true rejected papers, trains a local screening model, and uses OpenAI only 
-for selected detailed natural-language feedback under confidentiality modes. 
-It also prepares an SFT dataset and LoRA fine-tuning pipeline for future 
-custom model development.
+true rejected papers, trains a local screening model, and uses a local XAI 
+layer as the default explanation and suggestion mechanism. OpenAI is kept 
+only as an optional extra layer for selected detailed natural-language 
+feedback under confidentiality modes. It also prepares an SFT dataset and 
+LoRA fine-tuning pipeline for future custom model development.
 ```
 
 ## 22. Expected Supervisor Questions and Answers
@@ -945,7 +979,7 @@ Not fully. Current dataset has only accepted final decisions, so the system is f
 
 Answer:
 
-The local model is useful for fast screening and probability estimation. But it cannot produce rich paper-specific reviewer feedback. OpenAI generates natural-language explanations, section-level suggestions, and acceptance plans.
+OpenAI is not the default model. The default is local model + XAI. OpenAI is optional for richer natural-language reviewer feedback when the user asks for more suggestions.
 
 ### Q3: Does every paper go to OpenAI?
 
@@ -978,7 +1012,8 @@ Answer:
 There are multiple AI parts:
 
 - local ML screening model
-- OpenAI API feedback generation
+- local XAI explanation and recommendation layer
+- optional OpenAI API feedback generation
 - SFT dataset generation for future fine-tuning
 - LoRA fine-tuning setup
 
@@ -986,7 +1021,7 @@ There are multiple AI parts:
 
 Answer:
 
-Manual/rule-based suggestions are generic. OpenAI produces paper-specific suggestions by reading the selected paper content or section summaries and combining it with local model output.
+Simple manual suggestions are generic. The XAI layer produces recommendations from the features that actually influenced the local model prediction. OpenAI is optional when the user wants longer natural-language feedback.
 
 ### Q9: Is full fine-tuning completed?
 
@@ -1058,7 +1093,8 @@ PRESENTATION_OUTLINE.md
 - real dataset cleaning pipeline
 - paper-by-paper review output
 - local ML model
-- OpenAI reviewer integration
+- XAI reviewer explanation layer
+- optional OpenAI reviewer integration
 - confidentiality controls
 - double-blind anonymized data
 - SFT dataset generation
@@ -1072,9 +1108,9 @@ PRESENTATION_OUTLINE.md
 - dataset does not include true rejected final labels
 - reject category is derived reject-risk, not true reject
 - local model is lightweight
-- OpenAI output depends on prompt/model behavior
+- optional OpenAI output depends on prompt/model behavior
 - full LoRA fine-tuning not completed yet
-- formal XAI methods are future work
+- advanced XAI libraries such as SHAP/LIME are future work
 - current markdown papers may not contain complete full-paper sections for every record
 
 ## 26. Future Work
@@ -1091,7 +1127,7 @@ Recommended future improvements:
 - improve PDF section extraction
 - add user authentication if deployed online
 - add storage for uploaded review reports
-- switch OpenAI explanation layer to XAI/local fine-tuned model if required
+- add advanced XAI/local fine-tuned explanation model if required
 
 ## 27. Final Position of the Project
 
@@ -1106,7 +1142,8 @@ It includes:
 - dataset preparation
 - double-blind cleaning
 - local ML model
-- OpenAI suggestion system
+- XAI suggestion system
+- optional OpenAI suggestion system
 - confidentiality framework
 - report generation
 - figures
@@ -1130,5 +1167,5 @@ This is not yet a fully supervised final accept/reject prediction model because 
 Best explanation:
 
 ```text
-The current system estimates paper readiness and rejection risk, generates reviewer-style feedback using OpenAI, and prepares the foundation for future fine-tuning and XAI-based explanations.
+The current system estimates paper readiness and rejection risk, generates reviewer-style feedback using a default local XAI layer, keeps OpenAI as an optional extra suggestion layer, and prepares the foundation for future fine-tuning and advanced XAI explanations.
 ```
