@@ -68,14 +68,15 @@ text{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Arial,sans-serif;fill
 <path d="M1155 560 L1155 640" class="arrow"/>
 <rect x="1030" y="640" width="250" height="130" rx="18" class="box ai"/>
 <text x="1055" y="682" class="box-title">Optional OpenAI</text>
-<text x="1055" y="718" class="box-text">More detailed review</text>
+<text x="1055" y="718" class="box-text">Detailed review</text>
 <text x="1055" y="746" class="box-text">Only with consent</text>
 <path d="M1030 705 L960 705" class="arrow"/>
 <rect x="710" y="640" width="250" height="130" rx="18" class="box model"/>
-<text x="735" y="682" class="box-title">SFT / LoRA Setup</text>
+<text x="735" y="682" class="box-title">SFT / LoRA</text>
 <text x="735" y="718" class="box-text">5,868 examples</text>
 <text x="735" y="746" class="box-text">Train / validation</text>
 <rect x="70" y="650" width="570" height="120" rx="18" fill="#f8fafc" stroke="#cbd5e1" stroke-width="3"/>
 <text x="100" y="695" class="box-title">Current Dataset Limitation</text>
-<text x="100" y="733" class="box-text">Current dataset contains accepted papers only; Reject is modeled as reviewer-derived risk.</text>
+<text x="100" y="728" class="box-text">Accepted final labels only in current data.</text>
+<text x="100" y="756" class="box-text">Reject is modeled as reviewer-derived risk.</text>
 </svg>

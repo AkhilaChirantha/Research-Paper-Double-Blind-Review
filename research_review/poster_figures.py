@@ -253,13 +253,14 @@ def svg_system_architecture(width: int = 1600, height: int = 900) -> str:
     parts.extend(box(70, 410, 250, 150, "Final Outputs", ["Decision table", "XAI suggestions", "Poster / thesis reports"], "output"))
 
     parts.append('<path d="M1155 560 L1155 640" class="arrow"/>')
-    parts.extend(box(1030, 640, 250, 130, "Optional OpenAI", ["More detailed review", "Only with consent"], "ai"))
+    parts.extend(box(1030, 640, 250, 130, "Optional OpenAI", ["Detailed review", "Only with consent"], "ai"))
     parts.append('<path d="M1030 705 L960 705" class="arrow"/>')
-    parts.extend(box(710, 640, 250, 130, "SFT / LoRA Setup", ["5,868 examples", "Train / validation"], "model"))
+    parts.extend(box(710, 640, 250, 130, "SFT / LoRA", ["5,868 examples", "Train / validation"], "model"))
 
     parts.append('<rect x="70" y="650" width="570" height="120" rx="18" fill="#f8fafc" stroke="#cbd5e1" stroke-width="3"/>')
     parts.append('<text x="100" y="695" class="box-title">Current Dataset Limitation</text>')
-    parts.append('<text x="100" y="733" class="box-text">Current dataset contains accepted papers only; Reject is modeled as reviewer-derived risk.</text>')
+    parts.append('<text x="100" y="728" class="box-text">Accepted final labels only in current data.</text>')
+    parts.append('<text x="100" y="756" class="box-text">Reject is modeled as reviewer-derived risk.</text>')
     parts.append("</svg>")
     return "\n".join(parts)
 
