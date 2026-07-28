@@ -1,0 +1,41 @@
+{
+  "dataset": "/Users/akhila/Documents/Projects/Research Review/data/PeerRead Set/peerread_features.csv",
+  "total_rows": 4492,
+  "labels": {
+    "Reject": 2536,
+    "Accept": 1956
+  },
+  "splits": {
+    "train": 4028,
+    "dev": 225,
+    "test": 239
+  },
+  "conferences": {
+    "acl_2017": 1,
+    "arxiv.cs.ai_2007-2017": 1023,
+    "arxiv.cs.cl_2007-2017": 1102,
+    "arxiv.cs.lg_2007-2017": 2018,
+    "iclr_2017": 348
+  },
+  "by_conference": {
+    "acl_2017": {
+      "Reject": 1
+    },
+    "arxiv.cs.ai_2007-2017": {
+      "Accept": 259,
+      "Reject": 764
+    },
+    "arxiv.cs.cl_2007-2017": {
+      "Accept": 437,
+      "Reject": 665
+    },
+    "arxiv.cs.lg_2007-2017": {
+      "Accept": 1113,
+      "Reject": 905
+    },
+    "iclr_2017": {
+      "Accept": 147,
+      "Reject": 201
+    }
+  }
+}

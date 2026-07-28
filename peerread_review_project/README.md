@@ -27,7 +27,12 @@ From the repository root:
 
 ```bash
 .venv312/bin/python peerread_review_project/train_peerread_model.py
+.venv312/bin/python peerread_review_project/dataset_report.py
 .venv312/bin/python peerread_review_project/generate_peerread_reports.py
+.venv312/bin/python peerread_review_project/section_summaries.py
+.venv312/bin/python peerread_review_project/create_sft_dataset.py
+.venv312/bin/python peerread_review_project/poster_figures.py
+.venv312/bin/python peerread_review_project/final_evaluation.py
 .venv312/bin/streamlit run peerread_review_project/dashboard_app.py
 ```
 
@@ -43,3 +48,9 @@ peerread_review_project/reports/
 Default explanations are local XAI explanations. No XAI API key is required.
 
 OpenAI is not required for this PeerRead supervised model.
+
+Optional OpenAI sample:
+
+```bash
+.venv312/bin/python peerread_review_project/top_peerread_openai.py --per-group 3
+```

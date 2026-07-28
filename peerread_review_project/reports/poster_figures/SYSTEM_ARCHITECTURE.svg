@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+<defs><marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M2,2 L10,6 L2,10 Z" fill="#475467"/></marker></defs>
+<rect width="100%" height="100%" fill="#ffffff"/>
+<rect x="22" y="22" width="1556" height="856" rx="26" fill="#ffffff" stroke="#d0d5dd" stroke-width="3"/>
+<text x="58" y="78" style="font:850 46px Arial;fill:#111827">PeerRead Supervised Review Framework</text>
+<text x="60" y="116" style="font:24px Arial;fill:#667085">True Accept/Reject labels + local supervised model + XAI suggestions</text>
+<rect x="70" y="190" width="250" height="140" rx="18" fill="#e8f3ff" stroke="#cbd5e1" stroke-width="3"/>
+<text x="94" y="232" style="font:800 25px Arial;fill:#111827">PeerRead Data</text>
+<text x="94" y="268" style="font:18px Arial;fill:#344054">Accepted labels</text>
+<text x="94" y="296" style="font:18px Arial;fill:#344054">Rejected labels</text>
+<text x="94" y="324" style="font:18px Arial;fill:#344054">Paper sections</text>
+<path d="M320 260 L390 260" stroke="#475467" stroke-width="4" marker-end="url(#arrow)"/>
+<rect x="390" y="190" width="250" height="140" rx="18" fill="#fff7e6" stroke="#cbd5e1" stroke-width="3"/>
+<text x="414" y="232" style="font:800 25px Arial;fill:#111827">Feature Extraction</text>
+<text x="414" y="268" style="font:18px Arial;fill:#344054">Section counts</text>
+<text x="414" y="296" style="font:18px Arial;fill:#344054">Review scores</text>
+<text x="414" y="324" style="font:18px Arial;fill:#344054">Text evidence</text>
+<path d="M640 260 L710 260" stroke="#475467" stroke-width="4" marker-end="url(#arrow)"/>
+<rect x="710" y="190" width="250" height="140" rx="18" fill="#eaf8ef" stroke="#cbd5e1" stroke-width="3"/>
+<text x="734" y="232" style="font:800 25px Arial;fill:#111827">Supervised Model</text>
+<text x="734" y="268" style="font:18px Arial;fill:#344054">Accept / Reject</text>
+<text x="734" y="296" style="font:18px Arial;fill:#344054">Modify borderline</text>
+<text x="734" y="324" style="font:18px Arial;fill:#344054">Probabilities</text>
+<path d="M960 260 L1030 260" stroke="#475467" stroke-width="4" marker-end="url(#arrow)"/>
+<rect x="1030" y="190" width="250" height="140" rx="18" fill="#eaf0ff" stroke="#cbd5e1" stroke-width="3"/>
+<text x="1054" y="232" style="font:800 25px Arial;fill:#111827">XAI Explanation</text>
+<text x="1054" y="268" style="font:18px Arial;fill:#344054">Risk factors</text>
+<text x="1054" y="296" style="font:18px Arial;fill:#344054">Feature effects</text>
+<text x="1054" y="324" style="font:18px Arial;fill:#344054">Suggestions</text>
+<path d="M1155 330 L1155 410" stroke="#475467" stroke-width="4" marker-end="url(#arrow)"/>
+<rect x="1030" y="410" width="250" height="145" rx="18" fill="#f2edff" stroke="#cbd5e1" stroke-width="3"/>
+<text x="1054" y="452" style="font:800 25px Arial;fill:#111827">Optional OpenAI</text>
+<text x="1054" y="488" style="font:18px Arial;fill:#344054">Extra feedback</text>
+<text x="1054" y="516" style="font:18px Arial;fill:#344054">Only if enabled</text>
+<path d="M1030 482 L960 482" stroke="#475467" stroke-width="4" marker-end="url(#arrow)"/>
+<rect x="710" y="410" width="250" height="145" rx="18" fill="#fff0f0" stroke="#cbd5e1" stroke-width="3"/>
+<text x="734" y="452" style="font:800 25px Arial;fill:#111827">Reports</text>
+<text x="734" y="488" style="font:18px Arial;fill:#344054">Decision table</text>
+<text x="734" y="516" style="font:18px Arial;fill:#344054">Metrics</text>
+<text x="734" y="544" style="font:18px Arial;fill:#344054">Charts</text>
+<path d="M710 482 L640 482" stroke="#475467" stroke-width="4" marker-end="url(#arrow)"/>
+<rect x="390" y="410" width="250" height="145" rx="18" fill="#eaf8ef" stroke="#cbd5e1" stroke-width="3"/>
+<text x="414" y="452" style="font:800 25px Arial;fill:#111827">SFT Dataset</text>
+<text x="414" y="488" style="font:18px Arial;fill:#344054">Train JSONL</text>
+<text x="414" y="516" style="font:18px Arial;fill:#344054">Validation JSONL</text>
+<path d="M390 482 L320 482" stroke="#475467" stroke-width="4" marker-end="url(#arrow)"/>
+<rect x="70" y="410" width="250" height="145" rx="18" fill="#fff7e6" stroke="#cbd5e1" stroke-width="3"/>
+<text x="94" y="452" style="font:800 25px Arial;fill:#111827">Dashboard</text>
+<text x="94" y="488" style="font:18px Arial;fill:#344054">Filters</text>
+<text x="94" y="516" style="font:18px Arial;fill:#344054">XAI table</text>
+<text x="94" y="544" style="font:18px Arial;fill:#344054">Downloads</text>
+<rect x="70" y="650" width="570" height="120" rx="18" fill="#f8fafc" stroke="#cbd5e1" stroke-width="3"/>
+<text x="100" y="695" style="font:800 25px Arial;fill:#111827">Dataset Advantage</text>
+<text x="100" y="728" style="font:18px Arial;fill:#344054">PeerRead contains true accepted and rejected papers.</text>
+<text x="100" y="756" style="font:18px Arial;fill:#344054">This supports supervised accept/reject training.</text>
+</svg>

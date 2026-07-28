@@ -1,0 +1,205 @@
+{
+  "paper_id": "382.0",
+  "title": "Creating Training Corpora for NLG Micro-Planning",
+  "actual_label": "Reject",
+  "prediction": {
+    "decision": "Reject",
+    "accept_probability": 0.1391,
+    "reject_probability": 0.8609,
+    "features": {
+      "author_count": 0.0,
+      "title_word_count": 6.0,
+      "abstract_word_count": 0.0,
+      "introduction_word_count": 412.0,
+      "methodology_word_count": 555.0,
+      "experiments_word_count": 0.0,
+      "results_word_count": 1254.0,
+      "conclusion_word_count": 453.0,
+      "section_count": 11.0,
+      "total_word_count": 4968.0,
+      "review_count": 2.0,
+      "average_recommendation": 3.5,
+      "average_confidence": 4.0,
+      "recommendation_std": 0.7071067811865476,
+      "confidence_std": 0.0,
+      "minimum_recommendation": 3.0,
+      "maximum_recommendation": 4.0,
+      "title_character_count": 48.0,
+      "average_title_word_length": 7.166666666666667,
+      "single_author": 0.0,
+      "multi_author": 0.0,
+      "large_collaboration": 0.0,
+      "contains_colon": 0.0,
+      "contains_question": 0.0,
+      "contains_dash": 1.0,
+      "has_introduction": 1.0,
+      "has_related_work": 0.0,
+      "has_background": 0.0,
+      "has_methodology": 1.0,
+      "has_experiments": 0.0,
+      "has_results": 1.0,
+      "has_discussion": 0.0,
+      "has_conclusion": 1.0,
+      "has_appendix": 0.0,
+      "citation_like_count": 8.0,
+      "numeric_result_count": 5.0,
+      "baseline_terms": 20.0,
+      "ablation_terms": 0.0,
+      "reproducibility_terms": 47.0,
+      "limitation_terms": 3.0,
+      "novelty_terms": 14.0,
+      "readability_sentence_words": 19.257894736842104
+    },
+    "scaled_features": [
+      -3.292375005695759,
+      -0.05694969652954195,
+      0.0,
+      -0.1448375206248442,
+      0.34818479231695904,
+      -1.4200858374273995,
+      1.1917010381794433,
+      1.0303079561871826,
+      -0.4462332447884365,
+      0.039018499385967326,
+      1.4602757060882487,
+      2.827802628405579,
+      3.7190590486691435,
+      3.2316466423543875,
+      -0.22977895660410047,
+      2.793863110570438,
+      2.8610188465833626,
+      0.07484607254777144,
+      0.263569414062387,
+      -0.3519714882933397,
+      -2.6685141449757177,
+      -0.4554492867024756,
+      -0.4673230195461177,
+      -0.11656896716833992,
+      1.473653128557425,
+      0.17219858227709428,
+      -1.03435339588788,
+      -0.4629798230496663,
+      0.47401303265114736,
+      -1.4933694672376379,
+      0.880028033193857,
+      -0.5494311567359855,
+      0.5735279810964995,
+      -0.2722743714221619,
+      0.026761291124941158,
+      -0.05681058636536286,
+      1.5039386581191614,
+      -0.3231563259117335,
+      1.7164413382940518,
+      1.549113533058464,
+      0.31939541537762023,
+      0.20901844691959676
+    ]
+  },
+  "xai": {
+    "method": "PeerRead local XAI feature-distance explanation",
+    "key_factors": [
+      {
+        "feature": "average_confidence",
+        "label": "Reviewer confidence",
+        "value": 4.0,
+        "contribution": -1.3068,
+        "direction": "supports_reject",
+        "recommendation": "Improve clarity so reviewers can judge the contribution with higher confidence."
+      },
+      {
+        "feature": "minimum_recommendation",
+        "label": "Lowest recommendation",
+        "value": 3.0,
+        "contribution": 0.8567,
+        "direction": "supports_accept",
+        "recommendation": "Find and fix the strongest negative reviewer concern."
+      },
+      {
+        "feature": "average_recommendation",
+        "label": "Reviewer recommendation score",
+        "value": 3.5,
+        "contribution": 0.6655,
+        "direction": "supports_accept",
+        "recommendation": "Address reviewer concerns that lowered recommendation scores."
+      },
+      {
+        "feature": "conclusion_word_count",
+        "label": "Conclusion Word Count",
+        "value": 453.0,
+        "contribution": -0.5158,
+        "direction": "supports_reject",
+        "recommendation": "Improve this paper aspect before submission."
+      },
+      {
+        "feature": "author_count",
+        "label": "Author Count",
+        "value": 0.0,
+        "contribution": -0.4504,
+        "direction": "supports_reject",
+        "recommendation": "Improve this paper aspect before submission."
+      },
+      {
+        "feature": "maximum_recommendation",
+        "label": "Highest recommendation",
+        "value": 4.0,
+        "contribution": 0.4423,
+        "direction": "supports_accept",
+        "recommendation": "Improve this paper aspect before submission."
+      }
+    ],
+    "risk_factors": [
+      {
+        "feature": "average_confidence",
+        "label": "Reviewer confidence",
+        "value": 4.0,
+        "contribution": -1.3068,
+        "direction": "supports_reject",
+        "recommendation": "Improve clarity so reviewers can judge the contribution with higher confidence."
+      },
+      {
+        "feature": "conclusion_word_count",
+        "label": "Conclusion Word Count",
+        "value": 453.0,
+        "contribution": -0.5158,
+        "direction": "supports_reject",
+        "recommendation": "Improve this paper aspect before submission."
+      },
+      {
+        "feature": "author_count",
+        "label": "Author Count",
+        "value": 0.0,
+        "contribution": -0.4504,
+        "direction": "supports_reject",
+        "recommendation": "Improve this paper aspect before submission."
+      },
+      {
+        "feature": "recommendation_std",
+        "label": "Recommendation Std",
+        "value": 0.707,
+        "contribution": -0.2936,
+        "direction": "supports_reject",
+        "recommendation": "Improve this paper aspect before submission."
+      },
+      {
+        "feature": "has_experiments",
+        "label": "Has Experiments",
+        "value": 0.0,
+        "contribution": -0.289,
+        "direction": "supports_reject",
+        "recommendation": "Improve this paper aspect before submission."
+      },
+      {
+        "feature": "review_count",
+        "label": "Review Count",
+        "value": 2.0,
+        "contribution": -0.286,
+        "direction": "supports_reject",
+        "recommendation": "Improve this paper aspect before submission."
+      }
+    ],
+    "recommendations": [
+      "Improve clarity so reviewers can judge the contribution with higher confidence.",
+      "Improve this paper aspect before submission."
+    ]
+  }
+}

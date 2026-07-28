@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<rect x="16" y="16" width="1248" height="688" rx="22" fill="#ffffff" stroke="#d0d5dd" stroke-width="2"/>
+<text x="54" y="78" style="font:850 44px Arial;fill:#111827">PeerRead Actual Labels</text>
+<rect x="160" y="258.34384858044166" width="150" height="331.65615141955834" rx="14" fill="#157347"/>
+<text x="235" y="238.34384858044166" text-anchor="middle" style="font:800 28px Arial;fill:#111827">1,956</text>
+<text x="235" y="650" text-anchor="middle" style="font:700 26px Arial;fill:#344054">Accept</text>
+<rect x="460" y="160.0" width="150" height="430.0" rx="14" fill="#b42318"/>
+<text x="535" y="140.0" text-anchor="middle" style="font:800 28px Arial;fill:#111827">2,536</text>
+<text x="535" y="650" text-anchor="middle" style="font:700 26px Arial;fill:#344054">Reject</text>
+</svg>
