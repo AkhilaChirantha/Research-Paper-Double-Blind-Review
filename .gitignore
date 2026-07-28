@@ -6,6 +6,7 @@ outputs/
 .env
 data/Analyse Critaria/
 data/Research Papers/
+data/PeerRead Set/
 data/processed/
 data/sft/
 .dist/
