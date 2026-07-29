@@ -37,6 +37,14 @@ def load_training_summary() -> dict:
 
 
 @st.cache_data(show_spinner=False)
+def load_openai_reviews() -> dict:
+    path = DEFAULT_REPORT_DIR / "peerread_openai_reviews.json"
+    if not path.exists():
+        return {}
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+@st.cache_data(show_spinner=False)
 def load_dataset_rows() -> list[dict]:
     return read_peerread_rows(DEFAULT_DATASET_PATH)
 
@@ -128,12 +136,143 @@ def render_evaluation() -> None:
         st.markdown(summary_md.read_text(encoding="utf-8"))
 
 
+def render_advanced_metrics(payload: dict) -> None:
+    st.title("Advanced Thesis Metrics")
+    training = load_training_summary()
+    if not training:
+        st.warning("Run `.venv312/bin/python peerread_review_project/train_peerread_model.py` first.")
+        return
+
+    metrics = []
+    for split_name, key in [("Dev", "dev_evaluation"), ("Test", "test_evaluation")]:
+        eval_row = training.get(key, {})
+        metrics.extend(
+            [
+                {"split": split_name, "metric": "Accuracy", "value": eval_row.get("accuracy", 0)},
+                {"split": split_name, "metric": "Precision", "value": eval_row.get("accept_precision", 0)},
+                {"split": split_name, "metric": "Recall", "value": eval_row.get("accept_recall", 0)},
+                {"split": split_name, "metric": "F1 Score", "value": eval_row.get("accept_f1", 0)},
+            ]
+        )
+    metric_df = pd.DataFrame(metrics)
+    st.subheader("Classification Metrics")
+    st.dataframe(metric_df, use_container_width=True, hide_index=True)
+    st.bar_chart(metric_df, x="metric", y="value", color="split", height=320)
+
+    test_confusion = training.get("test_evaluation", {}).get("confusion", {})
+    heatmap_df = pd.DataFrame(
+        [
+            [test_confusion.get("reject_as_reject", 0), test_confusion.get("reject_as_accept", 0)],
+            [test_confusion.get("accept_as_reject", 0), test_confusion.get("accept_as_accept", 0)],
+        ],
+        index=["Actual Reject", "Actual Accept"],
+        columns=["Predicted Reject", "Predicted Accept"],
+    )
+    st.subheader("Test Confusion Matrix")
+    st.dataframe(heatmap_df.style.background_gradient(cmap="Blues"), use_container_width=True)
+
+    rows = payload.get("papers", [])
+    if rows:
+        df = pd.DataFrame(rows)
+        df["probability_bin"] = pd.cut(
+            df["accept_probability"].astype(float),
+            bins=[i / 10 for i in range(11)],
+            include_lowest=True,
+        ).astype(str)
+        prob_df = df.groupby(["probability_bin", "actual_label"], observed=False).size().reset_index(name="papers")
+        st.subheader("Accept Probability Distribution by Actual Label")
+        st.bar_chart(prob_df, x="probability_bin", y="papers", color="actual_label", height=330)
+
+        calibration = (
+            df.groupby("probability_bin", observed=False)
+            .agg(
+                average_probability=("accept_probability", "mean"),
+                observed_accept_rate=("actual_label", lambda values: (values == "Accept").mean()),
+                papers=("paper_id", "count"),
+            )
+            .reset_index()
+        )
+        st.subheader("Regression-Style Calibration Table")
+        st.caption("This checks whether predicted accept probability behaves like a calibrated numeric prediction.")
+        st.dataframe(calibration, use_container_width=True, hide_index=True)
+
+    figure_dir = DEFAULT_REPORT_DIR / "poster_figures"
+    figures = [
+        "03_classification_metrics.svg",
+        "04_test_confusion_heatmap.svg",
+        "05_probability_distribution.svg",
+        "06_feature_importance.svg",
+        "07_probability_calibration.svg",
+    ]
+    existing = [figure_dir / name for name in figures if (figure_dir / name).exists()]
+    if existing:
+        st.subheader("Poster/Thesis Figures")
+        tabs = st.tabs([path.stem for path in existing])
+        for tab, path in zip(tabs, existing):
+            with tab:
+                st.image(str(path), use_container_width=True)
+
+
+def render_xai_openai(payload: dict) -> None:
+    st.title("XAI and Optional OpenAI Comparison")
+    st.caption("Default path is local XAI. OpenAI is optional and only appears after running the OpenAI script.")
+    rows = payload.get("papers", [])
+    if rows:
+        df = pd.DataFrame(rows)
+        xai_columns = [
+            "paper_id",
+            "title",
+            "actual_label",
+            "predicted_decision",
+            "accept_probability",
+            "xai_focus",
+            "suggestion_1",
+            "suggestion_2",
+            "suggestion_3",
+        ]
+        st.subheader("Local XAI Suggestions")
+        st.dataframe(df[xai_columns], use_container_width=True, height=360)
+
+    openai_payload = load_openai_reviews()
+    if not openai_payload:
+        st.subheader("Optional OpenAI Reviews")
+        st.info(
+            "OpenAI comparison file is not generated yet. Run "
+            "`.venv312/bin/python peerread_review_project/top_peerread_openai.py --per-group 3` "
+            "only when you want to spend API credits."
+        )
+        return
+
+    ai_rows = openai_payload.get("papers", [])
+    comparison_rows = []
+    for item in ai_rows:
+        ai_review = item.get("ai_review") or {}
+        comparison_rows.append(
+            {
+                "group": item.get("group"),
+                "paper_id": item.get("paper_id"),
+                "title": item.get("title"),
+                "local_decision": item.get("local_decision"),
+                "accept_probability": item.get("accept_probability"),
+                "openai_verdict": ai_review.get("verdict"),
+                "openai_summary": ai_review.get("summary") or ai_review.get("recommendation") or str(ai_review)[:300],
+            }
+        )
+    st.subheader("XAI vs OpenAI Comparison")
+    st.dataframe(pd.DataFrame(comparison_rows), use_container_width=True, height=520)
+
+
 def render_figures() -> None:
     st.title("PeerRead Poster Figures")
     figure_dir = DEFAULT_REPORT_DIR / "poster_figures"
     figures = [
         figure_dir / "01_peerread_predicted_decisions.svg",
         figure_dir / "02_peerread_actual_labels.svg",
+        figure_dir / "03_classification_metrics.svg",
+        figure_dir / "04_test_confusion_heatmap.svg",
+        figure_dir / "05_probability_distribution.svg",
+        figure_dir / "06_feature_importance.svg",
+        figure_dir / "07_probability_calibration.svg",
         figure_dir / "SYSTEM_ARCHITECTURE.svg",
     ]
     existing = [path for path in figures if path.exists()]
@@ -181,14 +320,26 @@ def main() -> None:
     model = load_peerread_model()
     page = st.sidebar.radio(
         "Navigation",
-        ["Overview", "Paper Table", "Dataset/Evaluation", "Poster Figures", "Single Paper Review"],
+        [
+            "Overview",
+            "Paper Table",
+            "XAI / OpenAI Comparison",
+            "Dataset/Evaluation",
+            "Advanced Metrics",
+            "Poster Figures",
+            "Single Paper Review",
+        ],
     )
     if page == "Overview":
         render_overview(payload, model)
     elif page == "Paper Table":
         render_table(payload)
+    elif page == "XAI / OpenAI Comparison":
+        render_xai_openai(payload)
     elif page == "Dataset/Evaluation":
         render_evaluation()
+    elif page == "Advanced Metrics":
+        render_advanced_metrics(payload)
     elif page == "Poster Figures":
         render_figures()
     else:

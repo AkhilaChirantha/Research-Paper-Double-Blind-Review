@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<rect x="16" y="16" width="1248" height="688" rx="22" fill="#ffffff" stroke="#d0d5dd" stroke-width="2"/>
+<text x="54" y="78" style="font:850 42px Arial;fill:#111827">Accept Probability Distribution</text>
+<text x="54" y="116" style="font:22px Arial;fill:#667085">Predicted probability grouped by true PeerRead label</text>
+<line x1="90" y1="590" x2="1190" y2="590" stroke="#98a2b3" stroke-width="2"/>
+<rect x="115" y="550.3389830508474" width="38" height="39.66101694915254" fill="#b42318"/>
+<rect x="157" y="587.3559322033898" width="38" height="2.6440677966101696" fill="#157347"/>
+<text x="155" y="630" text-anchor="middle" style="font:15px Arial;fill:#667085">0.0-0.1</text>
+<rect x="220" y="450.52542372881356" width="38" height="139.47457627118644" fill="#b42318"/>
+<rect x="262" y="564.2203389830509" width="38" height="25.779661016949152" fill="#157347"/>
+<text x="260" y="630" text-anchor="middle" style="font:15px Arial;fill:#667085">0.1-0.2</text>
+<rect x="325" y="278.66101694915255" width="38" height="311.33898305084745" fill="#b42318"/>
+<rect x="367" y="493.49152542372883" width="38" height="96.50847457627118" fill="#157347"/>
+<text x="365" y="630" text-anchor="middle" style="font:15px Arial;fill:#667085">0.2-0.3</text>
+<rect x="430" y="217.18644067796612" width="38" height="372.8135593220339" fill="#b42318"/>
+<rect x="472" y="402.93220338983053" width="38" height="187.0677966101695" fill="#157347"/>
+<text x="470" y="630" text-anchor="middle" style="font:15px Arial;fill:#667085">0.3-0.4</text>
+<rect x="535" y="200.0" width="38" height="390.0" fill="#b42318"/>
+<rect x="577" y="257.50847457627117" width="38" height="332.49152542372883" fill="#157347"/>
+<text x="575" y="630" text-anchor="middle" style="font:15px Arial;fill:#667085">0.4-0.5</text>
+<rect x="640" y="313.6949152542373" width="38" height="276.3050847457627" fill="#b42318"/>
+<rect x="682" y="237.0169491525424" width="38" height="352.9830508474576" fill="#157347"/>
+<text x="680" y="630" text-anchor="middle" style="font:15px Arial;fill:#667085">0.5-0.6</text>
+<rect x="745" y="468.37288135593224" width="38" height="121.62711864406779" fill="#b42318"/>
+<rect x="787" y="371.2033898305085" width="38" height="218.79661016949152" fill="#157347"/>
+<text x="785" y="630" text-anchor="middle" style="font:15px Arial;fill:#667085">0.6-0.7</text>
+<rect x="850" y="565.542372881356" width="38" height="24.45762711864407" fill="#b42318"/>
+<rect x="892" y="519.271186440678" width="38" height="70.72881355932203" fill="#157347"/>
+<text x="890" y="630" text-anchor="middle" style="font:15px Arial;fill:#667085">0.7-0.8</text>
+<rect x="955" y="589.3389830508474" width="38" height="0.6610169491525424" fill="#b42318"/>
+<rect x="997" y="584.0508474576271" width="38" height="5.9491525423728815" fill="#157347"/>
+<text x="995" y="630" text-anchor="middle" style="font:15px Arial;fill:#667085">0.8-0.9</text>
+<rect x="1060" y="590.0" width="38" height="0.0" fill="#b42318"/>
+<rect x="1102" y="590.0" width="38" height="0.0" fill="#157347"/>
+<text x="1100" y="630" text-anchor="middle" style="font:15px Arial;fill:#667085">0.9-1.0</text>
+<rect x="910" y="70" width="22" height="22" fill="#b42318"/><text x="942" y="88" style="font:18px Arial;fill:#344054">Actual Reject</text>
+<rect x="1070" y="70" width="22" height="22" fill="#157347"/><text x="1102" y="88" style="font:18px Arial;fill:#344054">Actual Accept</text>
+</svg>

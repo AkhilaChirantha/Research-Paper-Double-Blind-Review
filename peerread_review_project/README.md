@@ -43,6 +43,14 @@ peerread_review_project/models/
 peerread_review_project/reports/
 ```
 
+Dashboard views include:
+
+- paper-by-paper XAI suggestions
+- optional XAI vs OpenAI comparison
+- dataset and final evaluation summary
+- accuracy, precision, recall, F1, confusion heatmap, probability distribution, feature importance, and calibration figures
+- poster/thesis-ready SVG figures
+
 ## XAI
 
 Default explanations are local XAI explanations. No XAI API key is required.

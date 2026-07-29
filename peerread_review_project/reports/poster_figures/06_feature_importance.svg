@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<rect x="16" y="16" width="1248" height="688" rx="22" fill="#ffffff" stroke="#d0d5dd" stroke-width="2"/>
+<text x="54" y="78" style="font:850 42px Arial;fill:#111827">Top Logistic Regression Feature Weights</text>
+<text x="54" y="116" style="font:22px Arial;fill:#667085">Green increases accept probability; red increases reject probability</text>
+<text x="70" y="179" style="font:18px Arial;fill:#344054">conclusion_word_count</text>
+<rect x="420" y="155" width="620.0" height="28" rx="7" fill="#b42318"/>
+<text x="1050.0" y="177" style="font:700 17px Arial;fill:#111827">-0.501</text>
+<text x="70" y="221" style="font:18px Arial;fill:#344054">average_confidence</text>
+<rect x="420" y="197" width="435.13061049447913" height="28" rx="7" fill="#b42318"/>
+<text x="865.1306104944791" y="219" style="font:700 17px Arial;fill:#111827">-0.351</text>
+<text x="70" y="263" style="font:18px Arial;fill:#344054">average_title_word_length</text>
+<rect x="420" y="239" width="425.70571299935904" height="28" rx="7" fill="#157347"/>
+<text x="855.7057129993591" y="261" style="font:700 17px Arial;fill:#111827">0.344</text>
+<text x="70" y="305" style="font:18px Arial;fill:#344054">minimum_recommendation</text>
+<rect x="420" y="281" width="379.74046817617483" height="28" rx="7" fill="#157347"/>
+<text x="809.7404681761748" y="303" style="font:700 17px Arial;fill:#111827">0.307</text>
+<text x="70" y="347" style="font:18px Arial;fill:#344054">title_word_count</text>
+<rect x="420" y="323" width="366.38197706142904" height="28" rx="7" fill="#b42318"/>
+<text x="796.3819770614291" y="345" style="font:700 17px Arial;fill:#111827">-0.296</text>
+<text x="70" y="389" style="font:18px Arial;fill:#344054">has_conclusion</text>
+<rect x="420" y="365" width="364.2061633934606" height="28" rx="7" fill="#157347"/>
+<text x="794.2061633934607" y="387" style="font:700 17px Arial;fill:#111827">0.294</text>
+<text x="70" y="431" style="font:18px Arial;fill:#344054">methodology_word_count</text>
+<rect x="420" y="407" width="317.2077411260258" height="28" rx="7" fill="#157347"/>
+<text x="747.2077411260258" y="429" style="font:700 17px Arial;fill:#111827">0.256</text>
+<text x="70" y="473" style="font:18px Arial;fill:#344054">average_recommendation</text>
+<rect x="420" y="449" width="291.4449288724061" height="28" rx="7" fill="#157347"/>
+<text x="721.4449288724061" y="471" style="font:700 17px Arial;fill:#111827">0.235</text>
+<text x="70" y="515" style="font:18px Arial;fill:#344054">review_count</text>
+<rect x="420" y="491" width="242.5402966351339" height="28" rx="7" fill="#b42318"/>
+<text x="672.5402966351339" y="513" style="font:700 17px Arial;fill:#111827">-0.196</text>
+<text x="70" y="557" style="font:18px Arial;fill:#344054">total_word_count</text>
+<rect x="420" y="533" width="240.3209669414784" height="28" rx="7" fill="#157347"/>
+<text x="670.3209669414784" y="555" style="font:700 17px Arial;fill:#111827">0.194</text>
+<text x="70" y="599" style="font:18px Arial;fill:#344054">has_experiments</text>
+<rect x="420" y="575" width="239.62519349149912" height="28" rx="7" fill="#157347"/>
+<text x="669.6251934914991" y="597" style="font:700 17px Arial;fill:#111827">0.194</text>
+<text x="70" y="641" style="font:18px Arial;fill:#344054">limitation_terms</text>
+<rect x="420" y="617" width="198.1562042524018" height="28" rx="7" fill="#b42318"/>
+<text x="628.1562042524018" y="639" style="font:700 17px Arial;fill:#111827">-0.160</text>
+</svg>

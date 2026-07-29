@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<rect x="16" y="16" width="1248" height="688" rx="22" fill="#ffffff" stroke="#d0d5dd" stroke-width="2"/>
+<text x="54" y="78" style="font:850 42px Arial;fill:#111827">Classification Metrics</text>
+<text x="54" y="116" style="font:22px Arial;fill:#667085">Dev vs test performance for PeerRead accept/reject screening</text>
+<line x1="100" y1="590" x2="1160" y2="590" stroke="#98a2b3" stroke-width="2"/>
+<line x1="100" y1="160" x2="100" y2="590" stroke="#98a2b3" stroke-width="2"/>
+<line x1="96" y1="590.0" x2="1160" y2="590.0" stroke="#eaecf0" stroke-width="1"/>
+<text x="82" y="597.0" text-anchor="end" style="font:16px Arial;fill:#667085">0.0</text>
+<line x1="96" y1="508.0" x2="1160" y2="508.0" stroke="#eaecf0" stroke-width="1"/>
+<text x="82" y="515.0" text-anchor="end" style="font:16px Arial;fill:#667085">0.2</text>
+<line x1="96" y1="426.0" x2="1160" y2="426.0" stroke="#eaecf0" stroke-width="1"/>
+<text x="82" y="433.0" text-anchor="end" style="font:16px Arial;fill:#667085">0.4</text>
+<line x1="96" y1="344.0" x2="1160" y2="344.0" stroke="#eaecf0" stroke-width="1"/>
+<text x="82" y="351.0" text-anchor="end" style="font:16px Arial;fill:#667085">0.6</text>
+<line x1="96" y1="262.0" x2="1160" y2="262.0" stroke="#eaecf0" stroke-width="1"/>
+<text x="82" y="269.0" text-anchor="end" style="font:16px Arial;fill:#667085">0.8</text>
+<line x1="96" y1="180.0" x2="1160" y2="180.0" stroke="#eaecf0" stroke-width="1"/>
+<text x="82" y="187.0" text-anchor="end" style="font:16px Arial;fill:#667085">1.0</text>
+<rect x="180" y="329.404" width="70" height="260.596" rx="8" fill="#2563eb"/>
+<rect x="262" y="339.531" width="70" height="250.469" rx="8" fill="#f97316"/>
+<text x="215" y="314.404" text-anchor="middle" style="font:700 17px Arial;fill:#111827">0.64</text>
+<text x="297" y="324.531" text-anchor="middle" style="font:700 17px Arial;fill:#111827">0.61</text>
+<text x="256" y="642" text-anchor="middle" style="font:700 20px Arial;fill:#344054">Accuracy</text>
+<rect x="420" y="351.626" width="70" height="238.37400000000002" rx="8" fill="#2563eb"/>
+<rect x="502" y="352.323" width="70" height="237.677" rx="8" fill="#f97316"/>
+<text x="455" y="336.626" text-anchor="middle" style="font:700 17px Arial;fill:#111827">0.58</text>
+<text x="537" y="337.323" text-anchor="middle" style="font:700 17px Arial;fill:#111827">0.58</text>
+<text x="496" y="642" text-anchor="middle" style="font:700 20px Arial;fill:#344054">Precision</text>
+<rect x="660" y="376.472" width="70" height="213.52800000000002" rx="8" fill="#2563eb"/>
+<rect x="742" y="432.31399999999996" width="70" height="157.686" rx="8" fill="#f97316"/>
+<text x="695" y="361.472" text-anchor="middle" style="font:700 17px Arial;fill:#111827">0.52</text>
+<text x="777" y="417.31399999999996" text-anchor="middle" style="font:700 17px Arial;fill:#111827">0.38</text>
+<text x="736" y="642" text-anchor="middle" style="font:700 20px Arial;fill:#344054">Recall</text>
+<rect x="900" y="364.70500000000004" width="70" height="225.295" rx="8" fill="#2563eb"/>
+<rect x="982" y="400.416" width="70" height="189.584" rx="8" fill="#f97316"/>
+<text x="935" y="349.70500000000004" text-anchor="middle" style="font:700 17px Arial;fill:#111827">0.55</text>
+<text x="1017" y="385.416" text-anchor="middle" style="font:700 17px Arial;fill:#111827">0.46</text>
+<text x="976" y="642" text-anchor="middle" style="font:700 20px Arial;fill:#344054">F1 Score</text>
+<rect x="940" y="70" width="22" height="22" fill="#2563eb"/><text x="972" y="88" style="font:18px Arial;fill:#344054">Dev</text>
+<rect x="1025" y="70" width="22" height="22" fill="#f97316"/><text x="1057" y="88" style="font:18px Arial;fill:#344054">Test</text>
+</svg>
