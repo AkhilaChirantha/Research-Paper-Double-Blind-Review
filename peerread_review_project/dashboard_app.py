@@ -118,7 +118,7 @@ def render_table(payload: dict) -> None:
         "suggestion_3",
     ]
     st.caption(f"Showing {len(filtered)} of {len(df)} papers.")
-    st.dataframe(filtered[columns], use_container_width=True, height=560)
+    st.dataframe(filtered[columns], width="stretch", height=560)
 
     st.download_button(
         "Download Filtered CSV",
@@ -166,7 +166,7 @@ def render_advanced_metrics(payload: dict) -> None:
         )
     metric_df = pd.DataFrame(metrics)
     st.subheader("Classification Metrics")
-    st.dataframe(metric_df, use_container_width=True, hide_index=True)
+    st.dataframe(metric_df, width="stretch", hide_index=True)
     st.bar_chart(metric_df, x="metric", y="value", color="split", height=320)
 
     test_confusion = training.get("test_evaluation", {}).get("confusion", {})
@@ -179,7 +179,7 @@ def render_advanced_metrics(payload: dict) -> None:
         columns=["Predicted Reject", "Predicted Accept"],
     )
     st.subheader("Test Confusion Matrix")
-    st.dataframe(heatmap_df.style.background_gradient(cmap="Blues"), use_container_width=True)
+    render_confusion_heatmap(heatmap_df)
 
     rows = payload.get("papers", [])
     if rows:
@@ -204,7 +204,7 @@ def render_advanced_metrics(payload: dict) -> None:
         )
         st.subheader("Regression-Style Calibration Table")
         st.caption("This checks whether predicted accept probability behaves like a calibrated numeric prediction.")
-        st.dataframe(calibration, use_container_width=True, hide_index=True)
+        st.dataframe(calibration, width="stretch", hide_index=True)
 
     figure_dir = DEFAULT_REPORT_DIR / "poster_figures"
     figures = [
@@ -220,7 +220,36 @@ def render_advanced_metrics(payload: dict) -> None:
         tabs = st.tabs([path.stem for path in existing])
         for tab, path in zip(tabs, existing):
             with tab:
-                st.image(str(path), use_container_width=True)
+                st.image(str(path), width="stretch")
+
+
+def render_confusion_heatmap(matrix: pd.DataFrame) -> None:
+    max_value = max([int(value) for value in matrix.to_numpy().flatten()] + [1])
+    rows = []
+    for actual_label, values in matrix.iterrows():
+        cells = [f"<th style='padding: 10px; color: #344054; text-align: right;'>{actual_label}</th>"]
+        for predicted_label, value in values.items():
+            intensity = int(245 - (int(value) / max_value) * 120)
+            cells.append(
+                "<td style='"
+                f"background: rgb({intensity}, {min(intensity + 20, 255)}, 255);"
+                "border: 1px solid #d0d5dd; padding: 22px; text-align: center;"
+                "font-size: 24px; font-weight: 800; color: #111827;"
+                f"'><div>{int(value)}</div><small style='font-size: 13px; font-weight: 600; color: #475467;'>{predicted_label}</small></td>"
+            )
+        rows.append(f"<tr>{''.join(cells)}</tr>")
+    html = (
+        "<table style='border-collapse: collapse; width: 100%; max-width: 760px;'>"
+        "<thead><tr><th></th>"
+        + "".join(
+            f"<th style='padding: 10px; color: #344054; text-align: center;'>{column}</th>"
+            for column in matrix.columns
+        )
+        + "</tr></thead><tbody>"
+        + "".join(rows)
+        + "</tbody></table>"
+    )
+    st.markdown(html, unsafe_allow_html=True)
 
 
 def render_xai_openai(payload: dict) -> None:
@@ -241,7 +270,7 @@ def render_xai_openai(payload: dict) -> None:
             "suggestion_3",
         ]
         st.subheader("Local XAI Suggestions")
-        st.dataframe(df[xai_columns], use_container_width=True, height=360)
+        st.dataframe(df[xai_columns], width="stretch", height=360)
 
     openai_payload = load_openai_reviews()
     if not openai_payload:
@@ -269,7 +298,7 @@ def render_xai_openai(payload: dict) -> None:
             }
         )
     st.subheader("XAI vs OpenAI Comparison")
-    st.dataframe(pd.DataFrame(comparison_rows), use_container_width=True, height=520)
+    st.dataframe(pd.DataFrame(comparison_rows), width="stretch", height=520)
 
 
 def render_figures() -> None:
@@ -292,7 +321,7 @@ def render_figures() -> None:
     tabs = st.tabs([path.stem for path in existing])
     for tab, path in zip(tabs, existing):
         with tab:
-            st.image(str(path), use_container_width=True)
+            st.image(str(path), width="stretch")
 
 
 def render_single_review(model: dict) -> None:
@@ -316,7 +345,7 @@ def render_single_review(model: dict) -> None:
     col2.metric("Accept Probability", prediction["accept_probability"])
     col3.metric("Reject Probability", prediction["reject_probability"])
     st.markdown("**XAI Risk Factors**")
-    st.dataframe(pd.DataFrame(xai["risk_factors"]), use_container_width=True)
+    st.dataframe(pd.DataFrame(xai["risk_factors"]), width="stretch")
     st.markdown("**Suggestions**")
     for rec in xai["recommendations"]:
         st.write(f"- {rec}")
@@ -418,7 +447,7 @@ def render_new_paper_agent(model: dict) -> None:
     if not factors.empty:
         st.dataframe(
             factors[["label", "value", "contribution", "direction", "recommendation"]],
-            use_container_width=True,
+            width="stretch",
             height=300,
         )
 

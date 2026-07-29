@@ -30,6 +30,12 @@ def main() -> None:
     args = parser.parse_args()
 
     paper_path = Path(args.paper)
+    if not paper_path.exists():
+        raise SystemExit(
+            f"Paper file not found: {paper_path}\n"
+            "Replace `path/to/paper.pdf` with your real paper path, for example: "
+            "`/Users/akhila/Desktop/my_paper.pdf`."
+        )
     text = read_document(paper_path)
     mode = parse_mode(args.confidentiality_mode)
     review_text, audit = prepare_review_text(text, str(paper_path), mode)
