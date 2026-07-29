@@ -1,0 +1,209 @@
+{
+  "paper": "peerread_review_project/README.md",
+  "title": "README",
+  "prediction": {
+    "decision": "Reject",
+    "accept_probability": 0.1022,
+    "reject_probability": 0.8978,
+    "features": {
+      "author_count": 2.8230316803648643,
+      "title_word_count": 1.0,
+      "abstract_word_count": 12.0,
+      "introduction_word_count": 0.0,
+      "methodology_word_count": 0.0,
+      "experiments_word_count": 0.0,
+      "results_word_count": 0.0,
+      "conclusion_word_count": 0.0,
+      "section_count": 1.0,
+      "total_word_count": 254.0,
+      "review_count": 0.18943876200202303,
+      "average_recommendation": 0.14193692864070928,
+      "average_confidence": 0.11710379517787994,
+      "recommendation_std": 0.03782229967109618,
+      "confidence_std": 0.027692757538724688,
+      "minimum_recommendation": 0.13118506105755046,
+      "maximum_recommendation": 0.15093911711137253,
+      "title_character_count": 6.0,
+      "average_title_word_length": 6.0,
+      "single_author": 1.0,
+      "multi_author": 0.0,
+      "large_collaboration": 0.0,
+      "contains_colon": 0.0,
+      "contains_question": 0.0,
+      "contains_dash": 0.0,
+      "has_introduction": 0.0,
+      "has_related_work": 0.0,
+      "has_background": 0.0,
+      "has_methodology": 0.0,
+      "has_experiments": 0.0,
+      "has_results": 0.0,
+      "has_discussion": 0.0,
+      "has_conclusion": 0.0,
+      "has_appendix": 0.0,
+      "citation_like_count": 0.0,
+      "numeric_result_count": 0.0,
+      "baseline_terms": 0.0,
+      "ablation_terms": 0.0,
+      "reproducibility_terms": 0.0,
+      "limitation_terms": 0.0,
+      "novelty_terms": 0.0,
+      "readability_sentence_words": 15.0
+    }
+  },
+  "agent_review": {
+    "decision": "Reject",
+    "quality_score": 10.2,
+    "probabilities": {
+      "accept": 0.1022,
+      "modify": 0.2044,
+      "reject": 0.8978
+    },
+    "overall_summary": "The paper has high rejection risk in the current form; address the core weaknesses before submitting.",
+    "good_points": [
+      "Conclusion Word Count currently supports the acceptance probability.",
+      "Title specificity currently supports the acceptance probability."
+    ],
+    "weak_points": [
+      "Paper length: Expand or tighten the manuscript so the contribution, method, evidence, and limitations are clear.",
+      "Introduction section: Add a clear introduction that states the problem, gap, contribution, and paper structure.",
+      "Introduction detail: Expand the introduction to explain the research problem, gap, contribution, and motivation.",
+      "Conclusion section: Add a concise conclusion that restates contribution, evidence, limitations, and future work.",
+      "Methodology detail: Clarify the methodology with reproducible details.",
+      "Experiment section: Add an experiments/evaluation section with datasets, metrics, and baselines."
+    ],
+    "must_modify": [
+      "Expand or tighten the manuscript so the contribution, method, evidence, and limitations are clear.",
+      "Add a clear introduction that states the problem, gap, contribution, and paper structure.",
+      "Expand the introduction to explain the research problem, gap, contribution, and motivation.",
+      "Add a concise conclusion that restates contribution, evidence, limitations, and future work.",
+      "Clarify the methodology with reproducible details."
+    ],
+    "acceptance_plan": [
+      "Do a major revision before submission, focusing first on evidence, novelty, and clarity.",
+      "Expand or tighten the manuscript so the contribution, method, evidence, and limitations are clear.",
+      "Add a clear introduction that states the problem, gap, contribution, and paper structure.",
+      "Expand the introduction to explain the research problem, gap, contribution, and motivation.",
+      "Add a concise conclusion that restates contribution, evidence, limitations, and future work.",
+      "Clarify the methodology with reproducible details.",
+      "Re-run the review after revision and compare the probability shift."
+    ]
+  },
+  "xai": {
+    "method": "PeerRead local XAI feature-distance explanation",
+    "key_factors": [
+      {
+        "feature": "total_word_count",
+        "label": "Paper length",
+        "value": 254.0,
+        "contribution": -1.0802,
+        "direction": "supports_reject",
+        "recommendation": "Expand or tighten the manuscript so the contribution, method, evidence, and limitations are clear."
+      },
+      {
+        "feature": "conclusion_word_count",
+        "label": "Conclusion Word Count",
+        "value": 0.0,
+        "contribution": 0.8471,
+        "direction": "supports_accept",
+        "recommendation": "Add a concise conclusion that summarizes contribution, evidence, limitations, and future work."
+      },
+      {
+        "feature": "has_introduction",
+        "label": "Introduction section",
+        "value": 0.0,
+        "contribution": -0.7163,
+        "direction": "supports_reject",
+        "recommendation": "Add a clear introduction that states the problem, gap, contribution, and paper structure."
+      },
+      {
+        "feature": "introduction_word_count",
+        "label": "Introduction detail",
+        "value": 0.0,
+        "contribution": -0.6719,
+        "direction": "supports_reject",
+        "recommendation": "Expand the introduction to explain the research problem, gap, contribution, and motivation."
+      },
+      {
+        "feature": "title_word_count",
+        "label": "Title specificity",
+        "value": 1.0,
+        "contribution": 0.5909,
+        "direction": "supports_accept",
+        "recommendation": "Revise the title so it clearly signals the task, method, and contribution."
+      },
+      {
+        "feature": "has_conclusion",
+        "label": "Conclusion section",
+        "value": 0.0,
+        "contribution": -0.5128,
+        "direction": "supports_reject",
+        "recommendation": "Add a concise conclusion that restates contribution, evidence, limitations, and future work."
+      }
+    ],
+    "risk_factors": [
+      {
+        "feature": "total_word_count",
+        "label": "Paper length",
+        "value": 254.0,
+        "contribution": -1.0802,
+        "direction": "supports_reject",
+        "recommendation": "Expand or tighten the manuscript so the contribution, method, evidence, and limitations are clear."
+      },
+      {
+        "feature": "has_introduction",
+        "label": "Introduction section",
+        "value": 0.0,
+        "contribution": -0.7163,
+        "direction": "supports_reject",
+        "recommendation": "Add a clear introduction that states the problem, gap, contribution, and paper structure."
+      },
+      {
+        "feature": "introduction_word_count",
+        "label": "Introduction detail",
+        "value": 0.0,
+        "contribution": -0.6719,
+        "direction": "supports_reject",
+        "recommendation": "Expand the introduction to explain the research problem, gap, contribution, and motivation."
+      },
+      {
+        "feature": "has_conclusion",
+        "label": "Conclusion section",
+        "value": 0.0,
+        "contribution": -0.5128,
+        "direction": "supports_reject",
+        "recommendation": "Add a concise conclusion that restates contribution, evidence, limitations, and future work."
+      },
+      {
+        "feature": "methodology_word_count",
+        "label": "Methodology detail",
+        "value": 0.0,
+        "contribution": -0.5105,
+        "direction": "supports_reject",
+        "recommendation": "Clarify the methodology with reproducible details."
+      },
+      {
+        "feature": "has_experiments",
+        "label": "Experiment section",
+        "value": 0.0,
+        "contribution": -0.289,
+        "direction": "supports_reject",
+        "recommendation": "Add an experiments/evaluation section with datasets, metrics, and baselines."
+      }
+    ],
+    "recommendations": [
+      "Expand or tighten the manuscript so the contribution, method, evidence, and limitations are clear.",
+      "Add a clear introduction that states the problem, gap, contribution, and paper structure.",
+      "Expand the introduction to explain the research problem, gap, contribution, and motivation.",
+      "Add a concise conclusion that restates contribution, evidence, limitations, and future work.",
+      "Clarify the methodology with reproducible details."
+    ]
+  },
+  "confidentiality_audit": {
+    "mode": "local_only",
+    "sent_full_paper": false,
+    "masked_sensitive_text": true,
+    "section_summaries_used": false,
+    "abstract_only": false,
+    "api_allowed": false
+  }
+}

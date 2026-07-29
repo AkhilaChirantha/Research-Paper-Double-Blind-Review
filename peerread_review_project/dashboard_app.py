@@ -1,15 +1,25 @@
 from __future__ import annotations
 
 import json
+import sys
+import tempfile
 from pathlib import Path
 
 import pandas as pd
 import streamlit as st
 
+ROOT = Path(__file__).resolve().parent.parent
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from peerread_review.agent import local_prediction_for_openai, review_new_paper
 from peerread_review.config import DEFAULT_DATASET_PATH, DEFAULT_MODEL_PATH, DEFAULT_REPORT_DIR
 from peerread_review.data import read_peerread_rows
 from peerread_review.model import load_model, predict
 from peerread_review.xai import explain
+from research_review.confidentiality import ConfidentialityMode, parse_mode, prepare_review_text
+from research_review.io import read_document
+from research_review.openai_reviewer import get_openai_recommendation
 
 
 st.set_page_config(page_title="PeerRead Review Dashboard", layout="wide")
@@ -286,7 +296,7 @@ def render_figures() -> None:
 
 
 def render_single_review(model: dict) -> None:
-    st.title("Review One PeerRead Paper")
+    st.title("Review Existing PeerRead Paper")
     rows = load_dataset_rows()
     paper_ids = [str(row.get("paper_id")) for row in rows]
     selected = st.selectbox("Paper ID", paper_ids[:1000], help="Showing first 1000 IDs for faster selection. Use search below for title filtering.")
@@ -312,6 +322,181 @@ def render_single_review(model: dict) -> None:
         st.write(f"- {rec}")
 
 
+def render_new_paper_agent(model: dict) -> None:
+    st.title("AI Agent: Review a New Paper")
+    st.caption("PeerRead-trained local model + XAI suggestions by default. OpenAI is optional for deeper edit feedback.")
+
+    source = st.radio("Paper input", ["Upload file", "Paste text"], horizontal=True)
+    uploaded = None
+    pasted_text = ""
+    paper_name = "new_paper.txt"
+    if source == "Upload file":
+        uploaded = st.file_uploader("Upload paper", type=["md", "txt", "tex", "pdf"])
+        if uploaded:
+            paper_name = uploaded.name
+    else:
+        paper_name = st.text_input("Paper title or file name", value="new_paper.txt")
+        pasted_text = st.text_area("Paste paper text", height=320)
+
+    review_mode = st.radio(
+        "Review model",
+        ["XAI Local Review", "XAI + OpenAI Detailed Review"],
+        index=0,
+        horizontal=True,
+        help="XAI Local Review is the default. OpenAI uses API credits only when selected.",
+    )
+    use_openai = review_mode == "XAI + OpenAI Detailed Review"
+    mode_value = st.selectbox(
+        "Confidentiality mode",
+        [mode.value for mode in ConfidentialityMode],
+        index=0,
+        help="OpenAI is blocked in local_only mode. Use abstract/section summary/full paper only with consent.",
+    )
+
+    run_review = st.button("Run AI Review", type="primary")
+    if not run_review:
+        return
+
+    try:
+        if uploaded:
+            text = read_uploaded_document(uploaded)
+            paper_name = uploaded.name
+        else:
+            text = pasted_text.strip()
+        if not text:
+            st.warning("Add a paper file or paste paper text first.")
+            return
+        mode = parse_mode(mode_value)
+        review_text, audit = prepare_review_text(text, paper_name, mode)
+        result = review_new_paper(review_text, paper_name, model)
+    except Exception as exc:
+        st.error(f"Could not review paper: {exc}")
+        return
+
+    prediction = result["prediction"]
+    agent = result["agent_review"]
+    xai = result["xai"]
+
+    st.subheader(result["title"])
+    col1, col2, col3 = st.columns(3)
+    col1.metric("Decision", agent["decision"])
+    col2.metric("Quality Score", f"{agent['quality_score']}/100")
+    col3.metric("Accept Probability", prediction["accept_probability"])
+
+    probability_df = pd.DataFrame(
+        [
+            {"label": "Accept", "probability": prediction["accept_probability"]},
+            {"label": "Modify", "probability": agent["probabilities"]["modify"]},
+            {"label": "Reject", "probability": prediction["reject_probability"]},
+        ]
+    )
+    st.bar_chart(probability_df, x="label", y="probability", height=260)
+
+    st.markdown("**Overall AI Agent Summary**")
+    st.write(agent["overall_summary"])
+
+    col1, col2 = st.columns(2)
+    with col1:
+        st.markdown("**Good Points**")
+        for point in agent["good_points"]:
+            st.write(f"- {point}")
+    with col2:
+        st.markdown("**Weak Points**")
+        for point in agent["weak_points"]:
+            st.write(f"- {point}")
+
+    st.markdown("**Must Modify Before Submission**")
+    for point in agent["must_modify"]:
+        st.write(f"- {point}")
+
+    st.markdown("**Plan to Reach Accept Level**")
+    for step in agent["acceptance_plan"]:
+        st.write(f"- {step}")
+
+    st.subheader("XAI Evidence")
+    factors = pd.DataFrame(xai["risk_factors"])
+    if not factors.empty:
+        st.dataframe(
+            factors[["label", "value", "contribution", "direction", "recommendation"]],
+            use_container_width=True,
+            height=300,
+        )
+
+    export_result = {
+        "title": result["title"],
+        "prediction": export_prediction(prediction),
+        "agent_review": agent,
+        "xai": xai,
+        "confidentiality_audit": audit,
+    }
+    st.download_button(
+        "Download AI Agent Review JSON",
+        json.dumps(export_result, indent=2, ensure_ascii=False).encode("utf-8"),
+        file_name="peerread_new_paper_ai_review.json",
+        mime="application/json",
+    )
+
+    with st.expander("Confidentiality Audit", expanded=False):
+        st.json(audit)
+
+    if use_openai:
+        if not audit.get("api_allowed"):
+            st.error("OpenAI review is blocked in local_only mode. Select abstract_only, section_summary_only, or full_paper_with_consent.")
+            return
+        with st.spinner("Calling OpenAI for detailed blind-review suggestions..."):
+            try:
+                ai_review = get_openai_recommendation(review_text, local_prediction_for_openai(prediction))
+            except Exception as exc:
+                st.error(f"OpenAI review failed: {exc}")
+                return
+        render_openai_agent_review(ai_review)
+
+
+def read_uploaded_document(uploaded) -> str:
+    suffix = Path(uploaded.name).suffix or ".txt"
+    with tempfile.NamedTemporaryFile(delete=False, suffix=suffix) as temp_file:
+        temp_file.write(uploaded.getvalue())
+        temp_path = Path(temp_file.name)
+    try:
+        return read_document(temp_path)
+    finally:
+        temp_path.unlink(missing_ok=True)
+
+
+def export_prediction(prediction: dict) -> dict:
+    hidden = {"text", "scaled_features"}
+    return {key: value for key, value in prediction.items() if key not in hidden}
+
+
+def render_openai_agent_review(ai_review: dict) -> None:
+    st.subheader("OpenAI Detailed Blind Review")
+    col1, col2 = st.columns(2)
+    col1.metric("OpenAI Verdict", ai_review.get("final_verdict", "unknown"))
+    col2.metric("OpenAI Confidence", ai_review.get("confidence", "unknown"))
+    st.write(ai_review.get("overall_summary", ""))
+
+    st.markdown("**Main Reasons**")
+    for reason in ai_review.get("main_reasons", []):
+        st.write(f"- {reason}")
+
+    st.markdown("**Section-Level Edit Suggestions**")
+    for item in ai_review.get("section_level_suggestions", []):
+        st.write(
+            f"- **{item.get('section')}** ({item.get('priority')}): "
+            f"{item.get('issue')} Recommendation: {item.get('recommendation')}"
+        )
+
+    st.markdown("**Acceptance Plan**")
+    for step in ai_review.get("acceptance_plan", []):
+        st.write(f"- {step}")
+
+    questions = ai_review.get("reviewer_questions", [])
+    if questions:
+        st.markdown("**Reviewer Questions to Answer**")
+        for question in questions:
+            st.write(f"- {question}")
+
+
 def main() -> None:
     payload = load_report()
     if not payload:
@@ -327,6 +512,7 @@ def main() -> None:
             "Dataset/Evaluation",
             "Advanced Metrics",
             "Poster Figures",
+            "AI Agent New Paper Review",
             "Single Paper Review",
         ],
     )
@@ -342,6 +528,8 @@ def main() -> None:
         render_advanced_metrics(payload)
     elif page == "Poster Figures":
         render_figures()
+    elif page == "AI Agent New Paper Review":
+        render_new_paper_agent(model)
     else:
         render_single_review(model)
 

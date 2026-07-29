@@ -47,9 +47,23 @@ Dashboard views include:
 
 - paper-by-paper XAI suggestions
 - optional XAI vs OpenAI comparison
+- AI Agent new paper review with upload/paste input
+- good points, weak points, must-modify items, and acceptance plan for a new paper
 - dataset and final evaluation summary
 - accuracy, precision, recall, F1, confusion heatmap, probability distribution, feature importance, and calibration figures
 - poster/thesis-ready SVG figures
+
+Review a new paper from terminal:
+
+```bash
+.venv312/bin/python peerread_review_project/review_new_paper.py path/to/paper.pdf
+```
+
+Optional OpenAI detailed review for a new paper:
+
+```bash
+.venv312/bin/python peerread_review_project/review_new_paper.py path/to/paper.pdf --use-openai --confidentiality-mode section_summary_only
+```
 
 ## XAI
 

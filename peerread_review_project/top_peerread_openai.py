@@ -2,11 +2,18 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
+from pathlib import Path
 
 from peerread_review.config import DEFAULT_REPORT_DIR
 from peerread_review.data import paper_text, read_peerread_rows
 from peerread_review.model import load_model, predict
 from peerread_review.config import DEFAULT_DATASET_PATH, DEFAULT_MODEL_PATH
+
+ROOT = Path(__file__).resolve().parent.parent
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
 from research_review.openai_reviewer import get_openai_recommendation
 
 
