@@ -46,7 +46,7 @@ peerread_review_project/reports/
 Dashboard views include:
 
 - paper-by-paper XAI suggestions
-- optional XAI vs OpenAI comparison
+- OpenAI Comparison page with detailed good points, weak points, must-modify suggestions, priorities, and acceptance plan
 - AI Agent new paper review with upload/paste input
 - good points, weak points, must-modify items, and acceptance plan for a new paper
 - dataset and final evaluation summary
@@ -69,10 +69,10 @@ Optional OpenAI detailed review for a new paper:
 
 Default explanations are local XAI explanations. No XAI API key is required.
 
-OpenAI is not required for this PeerRead supervised model.
+OpenAI is not required for the local PeerRead supervised model, but it is used for the LLM agent feedback layer.
 
-Optional OpenAI sample:
+Generate detailed OpenAI comparison reviews for top Accept/Modify/Reject papers:
 
 ```bash
-.venv312/bin/python peerread_review_project/top_peerread_openai.py --per-group 3
+.venv312/bin/python peerread_review_project/top_peerread_openai.py --per-group 5 --confidentiality-mode section_summary_only
 ```

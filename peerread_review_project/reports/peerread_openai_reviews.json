@@ -1,0 +1,1435 @@
+{
+  "model": "gpt-4.1-mini",
+  "per_group": 5,
+  "max_chars": 14000,
+  "confidentiality_mode": "section_summary_only",
+  "papers": [
+    {
+      "paper_id": "383.0",
+      "conference": "iclr_2017",
+      "split": "dev",
+      "title": "DESIGNING NEURAL NETWORK ARCHITECTURES",
+      "actual_label": "Accept",
+      "predicted_decision": "Accept",
+      "quality_score": 85.9,
+      "accept_probability": 0.8593,
+      "modify_probability": 0.2814,
+      "reject_probability": 0.1407,
+      "suggestions": "Improve clarity so reviewers can judge the contribution with higher confidence. Improve this paper aspect before submission. Add a concise conclusion that restates contribution, evidence, limitations, and future work. Make the novelty and contribution claims more explicit.",
+      "xai_focus": "Reviewer confidence: 3.667; Review Count: 10.0; Conclusion section: 0.0",
+      "group": "Top Accept Candidates",
+      "ai_review": {
+        "ai_decision": "MODIFY",
+        "confidence": 0.85,
+        "short_summary": "The paper presents a robust and interesting approach to automating neural network architecture design using Q-learning, backed by solid experiments on CIFAR-10 and SVHN datasets. The methodology and results are generally sound and the paper is well-structured. However, the presentation would benefit from clearer exposition of its novelty relative to past work, a more explicit statement of contributions, and a detailed conclusion section summarizing key findings and limitations. Additional discussion about ethical considerations and reproducibility details would strengthen the work.",
+        "good_points": [
+          "The paper tackles an important and timely problem of automating CNN architecture design by leveraging reinforcement learning, specifically Q-learning, which is a novel approach compared to prior genetic or random search methods.",
+          "Experimental evaluation on standard datasets CIFAR-10 and SVHN with extensive analysis of the learning agent's behavior convincingly shows the efficacy and improvement of the proposed method.",
+          "The inclusion of ablation via different values of exploration-exploitation parameter (epsilon) provides insight into the learning dynamics and model selection process.",
+          "The writing is generally well-organized with clear sections for methodology and experiments, aiding reader comprehension.",
+          "Adding dropout layers with progressively increasing dropout probabilities is an interesting design detail that helps regularize the networks during exploration."
+        ],
+        "weak_points": [
+          "The novelty claim is somewhat implicit and could be overshadowed by references to prior genetic algorithm and random search methods; the paper should explicitly emphasize what differentiates MetaQNN from these.",
+          "The conclusion section is missing, which makes it difficult to grasp the overall contributions, summarize evidence, or understand limitations and future work.",
+          "Limited discussion on the generalizability of the approach to other architectures, tasks, or scales is provided.",
+          "Reproducibility information such as details on hyperparameters, code availability, or random seeds is sparse or absent.",
+          "Ethical considerations related to automated neural architecture search (e.g., compute costs, accessibility) are not discussed, missing an opportunity to address broader impacts."
+        ],
+        "must_modify": [
+          {
+            "section": "Abstract and Introduction",
+            "problem": "Novelty and contribution claims are not explicitly and clearly stated, making it difficult for reviewers to understand the exact advancements over prior automated design methods.",
+            "suggestion": "Add a concise and explicit statement highlighting how MetaQNN differs from and improves upon earlier approaches like genetic algorithms and random search, emphasizing the use of reinforcement learning for architecture search.",
+            "priority": "high"
+          },
+          {
+            "section": "Conclusion (Missing)",
+            "problem": "The paper lacks a conclusion section, which leaves the reader without a succinct summary of contributions, key findings, limitations, and future research directions.",
+            "suggestion": "Add a conclusion section that restates the main contributions, summarizes experimental evidence, candidly discusses limitations (e.g., scaling, computational cost), and outlines future work to improve or extend the approach.",
+            "priority": "high"
+          },
+          {
+            "section": "Related Work",
+            "problem": "The discussion on prior work is informative but does not sufficiently contrast MetaQNN's novelty and contribution relative to those methods.",
+            "suggestion": "Explicitly compare how MetaQNN's Q-learning based approach differs from and improves on genetic algorithms, network morphisms, or random search techniques, ideally with a dedicated paragraph for clarity.",
+            "priority": "medium"
+          },
+          {
+            "section": "Experiments and Method",
+            "problem": "Reproducibility details such as the exact hyperparameters, training schedules, random seeds, and code availability are missing or insufficiently described.",
+            "suggestion": "Include a detailed appendix or supplemental section with all relevant experimental settings, model training details, and explicitly mention plans to release code and data splits for reproducibility purposes.",
+            "priority": "medium"
+          },
+          {
+            "section": "Broader Impact and Limitations",
+            "problem": "The paper does not discuss the computational cost of architecture search or potential ethical implications such as environmental impact or unequal access to compute resources.",
+            "suggestion": "Add a section addressing the compute resources required, possible fairness and access issues, and how these might be mitigated in future work.",
+            "priority": "low"
+          }
+        ],
+        "acceptance_plan": [
+          "Add a clear and concise conclusion section summarizing the manuscript's contributions, key experimental results, limitations, and proposed future work.",
+          "Clarify the novelty and contribution of the MetaQNN method relative to prior work, particularly genetic algorithms and random search approaches, both in Introduction and Related Work sections.",
+          "Expand the Related Work section with explicit comparisons emphasizing the advantages of Q-learning-based search.",
+          "Provide a detailed description of experimental hyperparameters, training procedures, and validation splits in the main text or supplementary material to improve reproducibility.",
+          "Disclose plans or provide links to code repositories and datasets to facilitate replication by other researchers.",
+          "Briefly discuss the computing cost involved in the automated search and its implications on environmental and social aspects.",
+          "Consider editorial refinement to improve sentences flagged as unclear or ambiguous for increased clarity and precision."
+        ],
+        "supervisor_note": "Overall, this paper presents an interesting and methodologically sound approach to neural architecture search using reinforcement learning, supported by convincing empirical results. However, there are critical presentation improvements needed before it reaches the standard for acceptance without modification. The lack of a conclusion section and insufficient explicit claims regarding novelty reduce clarity and impact. Addressing reproducibility details and broader impact considerations will enhance the paper's contribution and ethical awareness. The authors should be encouraged to revise accordingly to strengthen the work and facilitate understanding and adoption by the community."
+      },
+      "confidentiality": {
+        "mode": "section_summary_only",
+        "sent_full_paper": false,
+        "masked_sensitive_text": true,
+        "section_summaries_used": true,
+        "abstract_only": false,
+        "api_allowed": true,
+        "sections": [
+          "introduction",
+          "related_work",
+          "method",
+          "experiments",
+          "results"
+        ]
+      }
+    },
+    {
+      "paper_id": "1205.3054",
+      "conference": "arxiv.cs.ai_2007-2017",
+      "split": "train",
+      "title": "Approximate Modified Policy Iteration",
+      "actual_label": "Accept",
+      "predicted_decision": "Accept",
+      "quality_score": 84.3,
+      "accept_probability": 0.8432,
+      "modify_probability": 0.3136,
+      "reject_probability": 0.1568,
+      "suggestions": "Add a concise conclusion that restates contribution, evidence, limitations, and future work. Add a related-work section comparing the closest prior studies. Clarify the methodology with reproducible details. Find and fix the strongest negative reviewer concern. Address reviewer concerns that lowered recommendation scores.",
+      "xai_focus": "Conclusion section: 0.0; Related-work section: 0.0; Methodology detail: 69.0",
+      "group": "Top Accept Candidates",
+      "ai_review": {
+        "ai_decision": "MODIFY",
+        "confidence": 0.75,
+        "short_summary": "The paper presents Approximate Modified Policy Iteration (AMPI) algorithms, including the CBMPI variant, providing theoretical error bounds and empirical comparisons to DPI and LSPI. The methodology and experimental evaluation are sound, but the paper lacks a dedicated related-work section, a clear and concise conclusion, and methodological details necessary for full reproducibility.",
+        "good_points": [
+          "The paper generalizes Modified Policy Iteration (MPI) with approximate algorithms, unifying Value Iteration and Policy Iteration in a single framework.",
+          "It provides rigorous theoretical error bounds for the CBMPI algorithm, enhancing understanding of contributions and limitations.",
+          "Empirical evaluation is thorough, comparing CBMPI favorably against strong baselines such as DPI and LSPI using established experimental settings.",
+          "The paper highlights how the parameter m balances between policy and value evaluation errors, an insightful contribution.",
+          "Writing in technical sections is overall clear and detailed, facilitating comprehension of complex iterative procedures."
+        ],
+        "weak_points": [
+          "Absence of a related-work section comparing the proposed AMPI algorithms to closest prior studies reduces context for novelty claims.",
+          "The manuscript lacks a concise conclusion that restates core contributions, summarizes evidence, discusses limitations, and suggests future directions.",
+          "Key methodological details needed for reproducing experiments and implementations are insufficiently described, limiting reproducibility.",
+          "There is no explicit discussion about limitations, assumptions, or potential ethical considerations in applying these algorithms.",
+          "Some notation is dense and could benefit from additional explanation or illustrative examples for better clarity, especially for readers less familiar with MPI variants."
+        ],
+        "must_modify": [
+          {
+            "section": "Related Work",
+            "problem": "No dedicated related-work section is present to position the proposed algorithms with respect to existing approximate policy iteration approaches and recent advances in reinforcement learning.",
+            "suggestion": "Add a thorough related-work section comparing AMPI and CBMPI to standard Approximate Policy Iteration, LSPI, DPI, and other relevant methods, emphasizing distinctions and improvements.",
+            "priority": "high"
+          },
+          {
+            "section": "Conclusion",
+            "problem": "The paper lacks a concise conclusion that summarizes major contributions, overall experimental and theoretical findings, discusses limitations, and outlines future research directions.",
+            "suggestion": "Add a brief conclusion section restating the significance of AMPI and CBMPI contributions, summarizing key results and their implications, acknowledging limitations, and describing possible extensions or open problems.",
+            "priority": "high"
+          },
+          {
+            "section": "Methodology",
+            "problem": "The methodology section does not provide sufficient implementation details necessary for reproducing the experiments and exactly understanding algorithmic steps, such as choices for function space F, policy space Π, or parameter settings.",
+            "suggestion": "Include exact definitions and instantiations of approximation spaces, parameter values used in experiments, pseudo-code of algorithms, and computational complexity considerations to improve reproducibility and clarity.",
+            "priority": "high"
+          },
+          {
+            "section": "Discussion and Analysis",
+            "problem": "No explicit discussion is made regarding limitations of the proposed approach or any ethical considerations relevant to real-world deployment.",
+            "suggestion": "Incorporate a discussion about assumptions made, scalability and generalization limits of AMPI algorithms, and any ethical issues related to the application of policy iteration in sensitive domains.",
+            "priority": "medium"
+          }
+        ],
+        "acceptance_plan": [
+          "Add a thorough related work section comparing the proposed methods with prior algorithms to clarify novelty and background.",
+          "Include a concise yet comprehensive conclusion summarizing key contributions, empirical and theoretical insights, limitations, and future work.",
+          "Enhance the methodology section with detailed descriptions and pseudo-code to enable exact reproducibility.",
+          "Discuss limitations and ethical considerations explicitly to provide a balanced view of the approach.",
+          "Proofread and clarify dense notation and add illustrative examples where beneficial for clearer presentation."
+        ],
+        "supervisor_note": "This paper addresses an important problem and provides significant theoretical and empirical advances in approximate policy iteration. However, it requires additions to contextualize contributions and to ensure reproducibility, which are essential for the paper to meet high academic standards. I recommend revision to address these points before final acceptance. Once improved, this work will be a valuable contribution to the reinforcement learning literature."
+      },
+      "confidentiality": {
+        "mode": "section_summary_only",
+        "sent_full_paper": false,
+        "masked_sensitive_text": true,
+        "section_summaries_used": true,
+        "abstract_only": false,
+        "api_allowed": true,
+        "sections": [
+          "introduction",
+          "method",
+          "experiments",
+          "results"
+        ]
+      }
+    },
+    {
+      "paper_id": "1507.03867",
+      "conference": "arxiv.cs.lg_2007-2017",
+      "split": "train",
+      "title": "Rich Component Analysis",
+      "actual_label": "Accept",
+      "predicted_decision": "Accept",
+      "quality_score": 83.9,
+      "accept_probability": 0.8388,
+      "modify_probability": 0.3224,
+      "reject_probability": 0.1612,
+      "suggestions": "Add a concise conclusion that restates contribution, evidence, limitations, and future work. Add a related-work section comparing the closest prior studies. Find and fix the strongest negative reviewer concern. Improve this paper aspect before submission. Address reviewer concerns that lowered recommendation scores.",
+      "xai_focus": "Conclusion section: 0.0; Related-work section: 0.0; Lowest recommendation: 0.0",
+      "group": "Top Accept Candidates",
+      "ai_review": {
+        "ai_decision": "MODIFY",
+        "confidence": 0.85,
+        "short_summary": "This paper presents a novel approach, Rich Component Analysis (RCA), for disentangling latent components from multi-view complex data by leveraging cumulant methods. The idea of modeling shared and view-specific components with unknown linear transformations is technically sound and thoughtfully motivated, supported by experiments on diverse settings including PCA, regression, and Ising models. However, the paper lacks a dedicated related work section and a formal conclusion that summarizes contributions, limitations, and future directions. Experimental evaluation can be enhanced with clearer baseline comparisons, ablation studies, and explicit discussion on reproducibility. Addressing these points will strengthen the paper's clarity and impact towards acceptance.",
+        "good_points": [
+          "The problem addressed is timely and relevant for multi-view heterogeneous data analysis, especially in biomedical contexts.",
+          "Introduction clearly motivates the challenge of joint modeling when data has complex and independent latent factors.",
+          "The method section presents a clear and elegant probabilistic model capturing shared and private latent components with a linear mixing structure.",
+          "Use of cumulants to disentangle components is technically sound and well articulated.",
+          "Experiments cover a diverse set of applications: PCA, mixture models, logistic regression, and Ising models, demonstrating method versatility.",
+          "The model can recover not only the distribution of interest S1 but also the shared component S2 and additional parts S3, showing comprehensive modeling capability."
+        ],
+        "weak_points": [
+          "Absence of a dedicated related work section prevents situating this work in the broader literature and showing novelty over prior methods.",
+          "No formal conclusion section — missing summary of contributions, limitations, and future work, which reduces clarity.",
+          "Experimental evaluation lacks detailed baseline comparisons; it is unclear how RCA compares with standard or recent alternatives quantitatively.",
+          "Ablation or sensitivity analyses are missing; the impact of various assumptions or choices (e.g., choice of cumulant order, dimensionality) is not studied.",
+          "Reproducibility aspects such as hyperparameter settings, code, and dataset details are not sufficiently discussed.",
+          "Discussion of limitations, failure cases, or ethical considerations is absent, which is important for practical deployment."
+        ],
+        "must_modify": [
+          {
+            "section": "Related Work",
+            "problem": "The paper currently lacks a dedicated section comparing and contrasting its approach with existing work on multi-view learning, contrastive learning, and disentanglement methods, making it hard to assess novelty.",
+            "suggestion": "Add a related work section that critically reviews the closest studies, highlighting differences and situating the contribution effectively.",
+            "priority": "high"
+          },
+          {
+            "section": "Conclusion",
+            "problem": "There is no conclusion section that summarizes the paper's contributions, acknowledges limitations, and outlines future work, undermining the paper's clarity and completeness.",
+            "suggestion": "Include a concise conclusion that restates key contributions, discusses experimental support, mentions known limitations, and proposes avenues for future research.",
+            "priority": "high"
+          },
+          {
+            "section": "Experiments",
+            "problem": "The experiments lack clear baseline comparisons and ablation studies, limiting evaluation of the method's comparative advantage and robustness.",
+            "suggestion": "Incorporate baseline methods and provide quantitative performance comparisons. Add ablation studies to analyze the effect of model choices and parameters.",
+            "priority": "high"
+          },
+          {
+            "section": "Reproducibility",
+            "problem": "Details related to experimental setup, hyperparameters, and code availability are minimal, impacting reproducibility.",
+            "suggestion": "Provide thorough experimental details and consider releasing code or pseudocode to enable reproducibility of results.",
+            "priority": "medium"
+          },
+          {
+            "section": "Discussion and Ethics",
+            "problem": "No discussion on limitations or broader impacts is presented, which is important especially for applications in biomedical domains.",
+            "suggestion": "Add a section on limitations and ethical considerations relevant to the deployment and interpretation of RCA.",
+            "priority": "medium"
+          }
+        ],
+        "acceptance_plan": [
+          "Add a related work section to clearly position RCA relative to prior multi-view and contrastive learning methods.",
+          "Write a formal conclusion summarizing contributions, experimental support, limitations, and future directions.",
+          "Augment experiments with quantitative benchmark comparisons and ablation analyses to demonstrate robustness and superiority.",
+          "Detail all experimental settings, including hyperparameters, and provide access to source code or detailed algorithmic descriptions for reproducibility.",
+          "Include a discussion addressing limitations, potential ethical issues, and application scope of RCA."
+        ],
+        "supervisor_note": "Overall, this paper proposes a valuable method addressing an important problem with a solid theoretical basis and diverse experiments. However, it requires improvements in clarity, positioning against prior work, and experimental rigor to reach a polished, publication-ready state. Addressing the suggested modifications will substantially boost the paper's contribution and impact."
+      },
+      "confidentiality": {
+        "mode": "section_summary_only",
+        "sent_full_paper": false,
+        "masked_sensitive_text": true,
+        "section_summaries_used": true,
+        "abstract_only": false,
+        "api_allowed": true,
+        "sections": [
+          "introduction",
+          "method",
+          "experiments",
+          "results"
+        ]
+      }
+    },
+    {
+      "paper_id": "1106.0681",
+      "conference": "arxiv.cs.ai_2007-2017",
+      "split": "train",
+      "title": "Accelerating Reinforcement Learning through Implicit Imitation",
+      "actual_label": "Reject",
+      "predicted_decision": "Accept",
+      "quality_score": 83.0,
+      "accept_probability": 0.8295,
+      "modify_probability": 0.341,
+      "reject_probability": 0.1705,
+      "suggestions": "Add a concise conclusion that restates contribution, evidence, limitations, and future work. Make the novelty and contribution claims more explicit. Find and fix the strongest negative reviewer concern. Improve this paper aspect before submission. Address reviewer concerns that lowered recommendation scores.",
+      "xai_focus": "Conclusion section: 0.0; Novelty framing: 32.0; Lowest recommendation: 0.0",
+      "group": "Top Accept Candidates",
+      "ai_review": {
+        "ai_decision": "MODIFY",
+        "confidence": 0.75,
+        "short_summary": "The paper proposes an implicit imitation approach to accelerate reinforcement learning by leveraging observations of expert mentors. It formalizes the approach well, provides experiments in grid world settings, and discusses theoretical and empirical aspects of the method. However, the presentation lacks a strong explicit conclusion, clear novelty framing, and thorough baseline comparisons. Some methodological details and evaluation rigor need enhancement for acceptance.",
+        "good_points": [
+          "The paper presents a clear formal model of implicit imitation grounded in Markov decision processes and model-based RL, demonstrating technical soundness.",
+          "Experiments on a well-defined grid world environment illustrate the practical impact of the approach and compare it to independent RL baselines.",
+          "The analysis section offers insights into when implicit imitation may lead to suboptimal solutions and how domain structure affects performance, showing thoughtful ablation and interpretation.",
+          "The paper situates the work within established literature on imitation and multi-agent RL, giving adequate contextualization of contributions.",
+          "The state-space structural analysis and exploration of metrics predicting imitation performance contribute useful theoretical understanding."
+        ],
+        "weak_points": [
+          "The novelty and contribution claims are implicit and not explicitly outlined, which hampers clarity and the perceived significance of the work.",
+          "The conclusion section is missing or insufficient, lacking a concise restatement of contributions, limitations, and future research directions.",
+          "Baseline comparisons are limited to independent RL and do not include other state-of-the-art imitation learning or knowledge transfer methods, limiting experimental rigor.",
+          "Some experimental details such as parameter settings, hyperparameters, and statistical significance tests are not adequately reported, affecting reproducibility.",
+          "Discussion of the limitations, ethical considerations, and potential negative impacts of imitation in multi-agent contexts is minimal or absent.",
+          "The writing occasionally lacks precision, and the structure could be improved to highlight the flow from motivation to method to empirical findings and broader implications."
+        ],
+        "must_modify": [
+          {
+            "section": "Introduction and Abstract",
+            "problem": "The paper does not explicitly frame the novelty and main contributions, making it unclear what advances over prior work are achieved.",
+            "suggestion": "Add clear, concrete statements early in the paper (Abstract/Introduction) summarizing the novel aspects of the implicit imitation approach and its specific contributions relative to existing methods.",
+            "priority": "high"
+          },
+          {
+            "section": "Conclusion",
+            "problem": "There is no formal conclusion summarizing results, highlighting key contributions, discussing limitations, and outlining future work.",
+            "suggestion": "Add a concise conclusion section that recaps the main achievements, reflects on limitations, and proposes avenues for future research to strengthen the paper's overall impact.",
+            "priority": "high"
+          },
+          {
+            "section": "Experiments and Results",
+            "problem": "Experimental comparisons are limited primarily to independent RL without benchmarking against other related imitation or transfer learning techniques; details on experimental setup and analysis are sparse.",
+            "suggestion": "Incorporate comparisons to additional relevant baseline methods in imitation learning. Expand experimental details with hyperparameters, seeds, and provide statistical significance measures to enhance reproducibility and robustness of findings.",
+            "priority": "high"
+          },
+          {
+            "section": "Related Work and Discussion",
+            "problem": "The ethical implications, limitations, and broader impacts of implicit imitation in multi-agent systems are not discussed.",
+            "suggestion": "Include a discussion section addressing potential limitations, risks, and ethical considerations related to imitation, such as bias amplification or over-reliance on expert demonstrations, improving paper balance and responsibility.",
+            "priority": "medium"
+          },
+          {
+            "section": "Clarity and Structure",
+            "problem": "Some sections' flow and clarity could be improved to better guide the reader through motivation, methodology, and results.",
+            "suggestion": "Revise for clearer transitions and precise language, especially in methodological explanations and motivation framing, enhancing overall readability and comprehension.",
+            "priority": "medium"
+          }
+        ],
+        "acceptance_plan": [
+          "Revise the Abstract and Introduction to clearly state novelty and contributions of implicit imitation.",
+          "Add a dedicated Conclusion section summarizing key results, limitations, and future work.",
+          "Expand experiments to include comparisons with other imitation learning methods and provide detailed experimental protocols with statistical analysis.",
+          "Incorporate a discussion on limitations and ethical considerations of the proposed approach.",
+          "Improve clarity and structure by revising sections for logical flow and precision in language."
+        ],
+        "supervisor_note": "While the paper addresses a relevant problem and presents solid methodological and experimental work, it falls short in explicitly articulating novelty and situating contributions clearly. The lack of a proper conclusion and limited baseline comparisons weaken the manuscript's current impact. The authors should focus on restructuring and clarifying their contributions, strengthening the experimental validation, and addressing ethical considerations before acceptance. The foundational work is sound and promising, but revisions as specified are necessary."
+      },
+      "confidentiality": {
+        "mode": "section_summary_only",
+        "sent_full_paper": false,
+        "masked_sensitive_text": true,
+        "section_summaries_used": true,
+        "abstract_only": false,
+        "api_allowed": true,
+        "sections": [
+          "introduction",
+          "related_work",
+          "method",
+          "experiments",
+          "results"
+        ]
+      }
+    },
+    {
+      "paper_id": "471.0",
+      "conference": "iclr_2017",
+      "split": "test",
+      "title": "IMPROVING NEURAL CONVERSATION MODELS",
+      "actual_label": "Accept",
+      "predicted_decision": "Accept",
+      "quality_score": 81.2,
+      "accept_probability": 0.8125,
+      "modify_probability": 0.375,
+      "reject_probability": 0.1875,
+      "suggestions": "Improve clarity so reviewers can judge the contribution with higher confidence. Improve this paper aspect before submission. Add a concise conclusion that summarizes contribution, evidence, limitations, and future work. Add background needed for reviewers to understand the technical setting.",
+      "xai_focus": "Reviewer confidence: 3.0; Review Count: 10.0; Conclusion Word Count: 237.0",
+      "group": "Top Accept Candidates",
+      "ai_review": {
+        "ai_decision": "MODIFY",
+        "confidence": 0.8,
+        "short_summary": "The paper presents a policy gradient batch reinforcement learning (BPG) approach to improve Seq2Seq chatbots trained on unlabelled data with minimal labelled rewards. The method is promising, showing improvements over maximum likelihood baselines, but the exposition lacks clarity in parts, and some key experimental details and ablation analyses are missing. Enhancing clarity, adding comprehensive experimental comparisons, and discussing limitations will strengthen the paper towards acceptance.",
+        "good_points": [
+          "Addresses an important practical scenario of improving chatbots with reinforcement learning from noisy limited reward data.",
+          "Proposes a policy gradient batch reinforcement learning (BPG) method that effectively leverages unlabelled sequence data with limited labels.",
+          "Demonstrates qualitative improvements over maximum likelihood baseline in example conversations, reducing redundant or generic responses.",
+          "Implements experiments with relevant real-world inspired data (customer service chat logs).",
+          "Algorithmic description grounded in established Seq2Seq and reinforcement learning frameworks."
+        ],
+        "weak_points": [
+          "Introduction and related work could better situate the novelty of BPG relative to prior RL methods in dialogue systems.",
+          "Lack of quantitative evaluation metrics makes it difficult to objectively assess improvement beyond qualitative examples.",
+          "Absence of baseline comparisons with recent neural conversation models employing advanced training methods (e.g., maximum mutual information, adversarial learning).",
+          "Limited ablation studies or analysis to isolate the contribution of BPG components (e.g., batch size, reward noise levels).",
+          "Insufficient discussion on scalability and computational overhead of batch reinforcement learning in large-scale chatbot systems.",
+          "The conclusion is somewhat brief and does not sufficiently outline limitations, future work, or ethical considerations regarding chatbot deployment."
+        ],
+        "must_modify": [
+          {
+            "section": "Introduction",
+            "problem": "The introduction is somewhat generic and does not clearly highlight the unique contribution and novelty of the proposed BPG method relative to existing reinforcement learning approaches for dialogue models.",
+            "suggestion": "Enhance the introduction by explicitly stating the challenges in applying RL to chatbots (scarce labelled rewards, noisy data), then clarify how BPG addresses these gaps differently or more effectively than existing methods.",
+            "priority": "high"
+          },
+          {
+            "section": "Experiments and Results",
+            "problem": "The paper provides mostly qualitative examples but lacks quantitative evaluation metrics and comprehensive baseline comparisons, making it hard to objectively judge improvements.",
+            "suggestion": "Include quantitative metrics such as BLEU, ROUGE, or dialogue-specific metrics like perplexity and response relevance. Also, compare against state-of-the-art dialogue model baselines and simple ablations (e.g., ML model with fine-tuning, or other RL methods).",
+            "priority": "high"
+          },
+          {
+            "section": "Method",
+            "problem": "The method description is concise but could benefit from clearer exposition of the BPG algorithm details and the reward design to enable reproducibility.",
+            "suggestion": "Add pseudocode or algorithm boxes explaining BPG clearly. Elaborate on the reward signals used, how noisy labels are handled, and any stabilisation techniques applied during training.",
+            "priority": "medium"
+          },
+          {
+            "section": "Conclusion",
+            "problem": "The conclusion lacks a summary of the paper's limitations, possible negative societal impacts of chatbots, and avenues for future work.",
+            "suggestion": "Expand the conclusion to discuss these points, showing awareness of ethical considerations and limitations, e.g., handling ambiguous user input or bias in training data.",
+            "priority": "medium"
+          },
+          {
+            "section": "Overall Clarity and Structure",
+            "problem": "Some technical terms and experimental setups are not defined or explained in detail, hindering understanding especially for reviewers not deeply familiar with RL-based dialogue models.",
+            "suggestion": "Add background sections or paragraphs to explain RL terminology (such as Q-learning, policy gradient) in the chatbot context. Clarify all experimental settings and implementation details explicitly.",
+            "priority": "medium"
+          }
+        ],
+        "acceptance_plan": [
+          "Revise the introduction to clearly articulate the novelty of BPG in the context of prior RL work for dialogue generation.",
+          "Add comprehensive quantitative evaluations using standard dialogue metrics alongside qualitative examples.",
+          "Include more baseline comparisons with recent dialogue models and ablation studies isolating BPG components.",
+          "Enhance method section with algorithmic details, reward design explanation, and training procedures.",
+          "Expand conclusion to address limitations, ethical considerations, and future research directions.",
+          "Improve overall clarity by adding background information and clarifying experimental details for better reproducibility."
+        ],
+        "supervisor_note": "The paper addresses a significant problem and proposes a novel approach with promising qualitative results. To reach acceptance level, the authors should strengthen empirical validation with quantitative metrics and baselines, clarify methodology and experimental setups, and provide a more comprehensive discussion of limitations and future work. These improvements will greatly increase the paper's impact and clarity."
+      },
+      "confidentiality": {
+        "mode": "section_summary_only",
+        "sent_full_paper": false,
+        "masked_sensitive_text": true,
+        "section_summaries_used": true,
+        "abstract_only": false,
+        "api_allowed": true,
+        "sections": [
+          "introduction",
+          "related_work",
+          "method",
+          "experiments",
+          "results",
+          "conclusion"
+        ]
+      }
+    },
+    {
+      "paper_id": "1708.0858",
+      "conference": "arxiv.cs.cl_2007-2017",
+      "split": "train",
+      "title": "Generating Sentence Planning Variations for Story Telling",
+      "actual_label": "Reject",
+      "predicted_decision": "Modify",
+      "quality_score": 50.0,
+      "accept_probability": 0.5002,
+      "modify_probability": 0.9996,
+      "reject_probability": 0.4998,
+      "suggestions": "Add a concise conclusion that restates contribution, evidence, limitations, and future work. Add limitations, failure cases, and future work. Add a related-work section comparing the closest prior studies. Make the novelty and contribution claims more explicit. Find and fix the strongest negative reviewer concern.",
+      "xai_focus": "Conclusion section: 0.0; Limitation discussion: 4.0; Related-work section: 0.0",
+      "group": "Top Modify Candidates",
+      "ai_review": {
+        "ai_decision": "MODIFY",
+        "confidence": 0.85,
+        "short_summary": "This paper presents a pipeline for generating sentence planning variations in storytelling using existing NLG tools and a story annotation representation. It contributes by integrating content planning (via SCHEHERAZADE) with sentence planning and realization (via EST and PERSONAGE) and evaluates variants through human judgments. However, the work lacks a dedicated related-work section positioning it among prior narrative generation research, does not clearly state its novel contributions, and the paper omits discussion of limitations and future directions. Additionally, experimental analysis could be strengthened by more thorough baseline comparisons and detailed ablation studies. Addressing these issues will improve clarity, technical rigor, and contextualization, making the paper suitable for acceptance.",
+        "good_points": [
+          "The paper addresses an important challenge in NLG for interactive storytelling—generating varied sentence plans automatically rather than relying on handcrafted templates.",
+          "It leverages a well-thought-out pipeline combining three established tools: SCHEHERAZADE for story annotation, ES-TRANSLATOR for mapping narrative representations, and PERSONAGE for linguistic realization, showcasing modular integration.",
+          "Conducted human evaluation experiments via Mechanical Turk to assess preferences regarding sentence planning variations, demonstrating empirical validation beyond automatic metrics.",
+          "The authors identify and fix bugs introduced by domain differences between fable data and blog stories, indicating careful attention to data quality and robustness.",
+          "Detailed linguistic description of the process for transforming deep syntactic structures into varying output sentences shows technical soundness and respect for linguistic complexity."
+        ],
+        "weak_points": [
+          "No dedicated related-work section; the paper misses comparing its approach and contributions with closest prior studies on story generation and sentence planning variation, weakening its scholarly positioning.",
+          "Contribution and novelty claims are vague or implicit; the paper does not explicitly state what is novel beyond the integration of existing tools, nor how this advances state-of-the-art in narrative generation or language variation.",
+          "The conclusion section is missing or lacks depth; the paper does not summarize key findings, discuss limitations, or suggest future work, which reduces clarity and completeness.",
+          "Experimental evaluation lacks baseline comparisons with other narrative variation or NLG systems, and the analysis does not include ablation studies to isolate the impact of individual modules or parameters.",
+          "The paper does not explicitly discuss ethical considerations or limitations of the approach, such as applicability to other genres or potential biases in story corpora.",
+          "Some sections (e.g., methods, results) could benefit from clearer structure and signposting, improving readability and comprehension for the audience."
+        ],
+        "must_modify": [
+          {
+            "section": "Introduction and Related Work",
+            "problem": "There is no dedicated related-work section, and the paper does not position itself among existing research on narrative generation or sentence planning variations.",
+            "suggestion": "Add a Related Work section that surveys recent and classic literature on storytelling systems, sentence planning, and natural language variation clearly distinguishing prior approaches and highlighting how the paper's integrated system contributes differently or advances the state-of-the-art.",
+            "priority": "high"
+          },
+          {
+            "section": "Contribution and Novelty",
+            "problem": "The paper lacks an explicit statement of its principal novel contributions beyond tool integration, making it difficult for readers to appreciate its scientific value.",
+            "suggestion": "Explicitly state what is novel in the approach (e.g., the pipeline's modular combination, the ability to generate point-of-view and aggregation variations, empirical findings from human evaluations) early in the introduction and summarize contributions at the end of the intro or in a dedicated section.",
+            "priority": "high"
+          },
+          {
+            "section": "Conclusion",
+            "problem": "The conclusion section is missing or does not restate core results, limitations, and future work, decreasing clarity and completeness.",
+            "suggestion": "Add a concise conclusion that summarizes the main contributions, findings from experiments, acknowledges limitations (e.g., domain constraints, system scalability), and outlines directions for future research.",
+            "priority": "high"
+          },
+          {
+            "section": "Experiments and Analysis",
+            "problem": "Evaluation lacks baseline comparisons and ablation analysis, reducing the strength of experimental evidence for the system's effectiveness.",
+            "suggestion": "Include comparisons against existing narrative generation or variation baselines or a handcrafted baseline. Also, perform ablation studies isolating impact of sentence planning parameters like deaggregation and point of view to better understand their contributions.",
+            "priority": "medium"
+          },
+          {
+            "section": "Limitations and Ethics",
+            "problem": "The paper does not discuss any limitations, failure cases, or ethical considerations, which weakens the scientific rigor and responsible AI practice.",
+            "suggestion": "Add a limitations section discussing generalizability, potential biases in corpus or generated story styles, limitations of the current approach, and possible ethical implications or misuse scenarios in story generation.",
+            "priority": "medium"
+          }
+        ],
+        "acceptance_plan": [
+          "Add a dedicated Related Work section comparing with prior narrative storytelling and sentence planning variations research.",
+          "Explicitly state novel contributions of the approach early in the paper and summarize them clearly.",
+          "Write a conclusion section summarizing contributions, experiments, limitations, and future work.",
+          "Enrich experimental evaluation by including baseline comparisons and ablation studies clarifying the effect of key parameters.",
+          "Add discussion on limitations and ethical considerations to increase completeness and responsible research reporting.",
+          "Improve clarity and structure of methods and results sections with additional signposting and explanations."
+        ],
+        "supervisor_note": "The paper tackles an important problem and showcases a technically sound pipeline for generating storytelling variations. However, it currently reads more like a system description without sufficient contextualization or critical analysis. I recommend the authors focus on strengthening the scholarly contribution by explicitly stating novelty, situating the work within existing research through a related work section, and improving evaluation rigor. The absence of a concluding discussion and limited treatment of limitations also hurt its overall impact. Addressing these concerns should bring the paper up to an acceptance-ready standard."
+      },
+      "confidentiality": {
+        "mode": "section_summary_only",
+        "sent_full_paper": false,
+        "masked_sensitive_text": true,
+        "section_summaries_used": true,
+        "abstract_only": false,
+        "api_allowed": true,
+        "sections": [
+          "introduction",
+          "method",
+          "experiments",
+          "results"
+        ]
+      }
+    },
+    {
+      "paper_id": "1501.03084",
+      "conference": "arxiv.cs.lg_2007-2017",
+      "split": "train",
+      "title": "Deep Learning with Nonparametric Clustering",
+      "actual_label": "Reject",
+      "predicted_decision": "Modify",
+      "quality_score": 50.0,
+      "accept_probability": 0.5002,
+      "modify_probability": 0.9996,
+      "reject_probability": 0.4998,
+      "suggestions": "Add a concise conclusion that restates contribution, evidence, limitations, and future work. Improve this paper aspect before submission. Improve related-work coverage with precise citations. Find and fix the strongest negative reviewer concern. Expand or tighten the manuscript so the contribution, method, evidence, and limitations are clear.",
+      "xai_focus": "Conclusion section: 0.0; Multi Author: 0.0; Author Count: 1.0",
+      "group": "Top Modify Candidates",
+      "ai_review": {
+        "ai_decision": "MODIFY",
+        "confidence": 0.85,
+        "short_summary": "This paper proposes combining deep belief networks with nonparametric maximum margin clustering to improve clustering quality on image and document datasets. While the approach is promising and evaluated on standard benchmarks like MNIST, the manuscript lacks clarity, detailed experimental comparisons, and a strong conclusion. Addressing these issues would improve its contribution and presentation quality.",
+        "good_points": [
+          "The paper tackles an important problem by integrating deep learning features with nonparametric clustering, potentially addressing the drawbacks of parametric models in unsupervised clustering.",
+          "Use of deep belief networks (DBN) and restricted Boltzmann machines (RBM) for feature representation is well-motivated and aligns with recent trends in unsupervised feature learning.",
+          "Experiments are conducted on two standard domains: images (MNIST) and documents, which demonstrates the method's applicability across different data types.",
+          "Adjusted Rand Index (ARI) is used for evaluation, which is a suitable metric for clustering quality assessment.",
+          "The paper compares against competitive baseline methods, including parametric and nonparametric clustering models, providing context for performance gains."
+        ],
+        "weak_points": [
+          "The manuscript lacks a clear and concise conclusion section summarizing contributions, limitations, and future work.",
+          "Related work coverage is somewhat superficial and misses citing some relevant recent nonparametric clustering and deep clustering methods, reducing contextual clarity.",
+          "The description of the nonparametric maximum margin clustering (NMMC) method is too brief and needs more mathematical detail and intuition for better technical soundness.",
+          "Experimental section omits ablation studies and in-depth analysis to understand the contribution of each component (e.g., DBN feature learning versus clustering method).",
+          "The baseline comparison lacks statistical significance tests or error bars, making it hard to judge robustness of results.",
+          "Some notation and technical descriptions are ambiguous or missing; for example, lacking clear variable definitions and objective function formulations hurts reproducibility.",
+          "Paper does not discuss limitations or ethical implications of the approach, which is increasingly expected in ML papers.",
+          "Figures and tables need clearer captions and better formatting to improve readability."
+        ],
+        "must_modify": [
+          {
+            "section": "Conclusion",
+            "problem": "Lacks a proper conclusion that restates contributions, summarizes evidence, acknowledges limitations, and suggests future research directions.",
+            "suggestion": "Add a concise conclusion section that clearly restates the main contributions, summarizes key experimental results, discusses limitations such as model assumptions or scalability, and outlines possible future work to improve or extend the method.",
+            "priority": "high"
+          },
+          {
+            "section": "Related Work",
+            "problem": "Related work coverage misses some recent important literature on deep clustering and nonparametric clustering, making the positioning of the paper less clear.",
+            "suggestion": "Expand the related work section to include recent advances in deep clustering and nonparametric Bayesian models, citing works that combine unsupervised feature learning with flexible clustering methods. Highlight how this paper differentiates from them.",
+            "priority": "high"
+          },
+          {
+            "section": "Method",
+            "problem": "Description of the nonparametric maximum margin clustering (NMMC) method is cursory and lacks sufficient mathematical detail and intuition.",
+            "suggestion": "Provide a more detailed and rigorous description of NMMC, including the objective function, optimization procedure, and how it integrates with DBN features. Include equations and illustrative explanations to improve clarity.",
+            "priority": "high"
+          },
+          {
+            "section": "Experiments",
+            "problem": "Missing ablation studies and analysis to clearly attribute performance gains to components of the proposed method.",
+            "suggestion": "Include ablation experiments that evaluate the effect of different components—such as clustering without DBN features, with DBN features but without fine-tuning, and with fully fine-tuned models. Analyze results qualitatively and quantitatively to support claims.",
+            "priority": "medium"
+          },
+          {
+            "section": "Experiments",
+            "problem": "Baseline comparisons lack statistical significance testing and error bars, reducing confidence in the results.",
+            "suggestion": "Report multiple runs with standard deviations or confidence intervals, and conduct statistical significance tests to show robustness of improvements relative to baselines.",
+            "priority": "medium"
+          },
+          {
+            "section": "Presentation",
+            "problem": "Notation and technical descriptions are ambiguous or incomplete, which hinders reproducibility.",
+            "suggestion": "Define all variables and symbols clearly when introduced, explicate all mathematical steps, and provide algorithmic pseudocode for the overall framework. Consider including implementation details such as hyperparameter settings.",
+            "priority": "medium"
+          },
+          {
+            "section": "Presentation",
+            "problem": "Figures and tables have unclear captions and poor formatting, affecting readability.",
+            "suggestion": "Revise figure and table captions to be fully self-contained, improve formatting and font sizes for clarity, and ensure all results are clearly presented and easy to interpret.",
+            "priority": "low"
+          },
+          {
+            "section": "Ethics and Limitations",
+            "problem": "The paper does not discuss limitations or ethical considerations of the proposed method.",
+            "suggestion": "Add a brief discussion on potential limitations such as model scalability, data bias impact, and application contexts where clustering errors might be critical. Mention the ethical implications of automated clustering in sensitive domains.",
+            "priority": "low"
+          }
+        ],
+        "acceptance_plan": [
+          "Add a dedicated Conclusion section addressing contributions, limitations, and future directions.",
+          "Expand Related Work with more comprehensive citations on deep and nonparametric clustering.",
+          "Deepen Method section with formal definitions and detailed explanations of the NMMC approach and its integration with DBN features.",
+          "Add ablation studies isolating the effect of deep feature learning, clustering component, and fine-tuning to strengthen empirical support.",
+          "Include multiple experimental runs, standard deviations, and significance tests for all reported metrics.",
+          "Clarify notation, provide algorithmic pseudocode, and include implementation details to improve reproducibility.",
+          "Improve figures and tables captions and formatting for better readability.",
+          "Include a discussion on limitations and ethical implications to contextualize the method responsibly."
+        ],
+        "supervisor_note": "The paper presents a promising approach combining deep feature learning with nonparametric clustering but currently falls short in clarity and rigor needed for acceptance. The lack of a robust conclusion, insufficient theoretical explanations, and limited experimental analysis are the main weaknesses. I recommend a moderate revision focused on expanding and clarifying the method, enriching the comparisons and analyses, and improving the presentation. Addressing the outlined modifications should significantly enhance the manuscript's technical quality and readability."
+      },
+      "confidentiality": {
+        "mode": "section_summary_only",
+        "sent_full_paper": false,
+        "masked_sensitive_text": true,
+        "section_summaries_used": true,
+        "abstract_only": false,
+        "api_allowed": true,
+        "sections": [
+          "introduction",
+          "related_work",
+          "method",
+          "experiments"
+        ]
+      }
+    },
+    {
+      "paper_id": "558.0",
+      "conference": "iclr_2017",
+      "split": "train",
+      "title": "#Exploration: A Study of Count-Based Exploration for Deep Reinforcement Learning",
+      "actual_label": "Reject",
+      "predicted_decision": "Modify",
+      "quality_score": 50.0,
+      "accept_probability": 0.5002,
+      "modify_probability": 0.9996,
+      "reject_probability": 0.4998,
+      "suggestions": "Improve clarity so reviewers can judge the contribution with higher confidence. Improve this paper aspect before submission. Make the novelty and contribution claims more explicit. Revise the title so it clearly signals the task, method, and contribution.",
+      "xai_focus": "Reviewer confidence: 3.667; Review Count: 12.0; Recommendation Std: 1.366",
+      "group": "Top Modify Candidates",
+      "ai_review": {
+        "ai_decision": "MODIFY",
+        "confidence": 0.85,
+        "short_summary": "The paper proposes a count-based exploration method adapted for deep RL using hashing to generalize counting in high-dimensional spaces, evaluated on Atari games. While the approach addresses an important problem and shows promising performance, the paper lacks clarity, explicit novelty claims, and thorough comparative analyses. The experimental section also needs deeper ablation studies and clearer baseline comparisons to fully establish contributions and robustness.",
+        "good_points": [
+          "Addresses a key challenge in deep RL: effective exploration in high-dimensional spaces.",
+          "Leverages classical count-based ideas adapted via hashing for scalable exploration bonuses.",
+          "Evaluates method on a meaningful and challenging benchmark suite (Atari games), including difficult exploration tasks like Montezuma's Revenge.",
+          "Methodology section describes training details and environment setup clearly.",
+          "Paper situates the approach in the context of previous count-based exploration research and contemporary deep RL algorithms."
+        ],
+        "weak_points": [
+          "The novelty and specific contributions are not clearly emphasized, making it difficult to understand what is new beyond prior count-based methods.",
+          "The title does not clearly indicate the key methodological innovation, potentially reducing initial clarity.",
+          "Experimental section lacks detailed baseline comparisons against current state-of-the-art exploration methods beyond broad statements.",
+          "Ablation studies on the impact of hashing parameters and state preprocessing approaches are missing or not detailed enough.",
+          "Clarity suffers from occasional jargon and insufficient explanation of why the count-based method is preferable in the deep RL context beyond theoretical discussion.",
+          "Lack of discussion on limitations, e.g., scalability to environments beyond Atari or robustness to different hyperparameters.",
+          "Reproducibility could be improved with more precise algorithmic details and hyperparameter settings.",
+          "Ethical considerations and broader impacts are not discussed."
+        ],
+        "must_modify": [
+          {
+            "section": "Title",
+            "problem": "Title does not clearly convey the core method or key contribution, making it ambiguous.",
+            "suggestion": "Revise the title to explicitly mention the use of hashing-based counting for exploration in deep RL to signal both task and approach.",
+            "priority": "high"
+          },
+          {
+            "section": "Introduction",
+            "problem": "Novelty and contribution claims are not explicitly stated, limiting reader understanding of the paper's unique aspects.",
+            "suggestion": "Add clear statements highlighting what exactly is novel compared to prior count-based and exploration methods, and the main contributions of the paper.",
+            "priority": "high"
+          },
+          {
+            "section": "Experiments",
+            "problem": "Baseline comparisons and evaluation are presented without sufficient detail or rigorous analysis against recent state-of-the-art exploration methods.",
+            "suggestion": "Include thorough comparisons with competitive baselines, provide quantitative tables, and present statistical significance where appropriate.",
+            "priority": "high"
+          },
+          {
+            "section": "Experiments",
+            "problem": "Lack of ablation studies on hashing parameters, state preprocessing methods, and exploration bonus design hinders understanding of key components’ impact.",
+            "suggestion": "Conduct and report ablation experiments to analyze the contributions of different elements of the method.",
+            "priority": "medium"
+          },
+          {
+            "section": "Clarity and Structure",
+            "problem": "Certain sections use dense terminology and omit detailed explanations, which affects clarity, especially for readers unfamiliar with classical count-based methods.",
+            "suggestion": "Improve exposition by elaborating on key concepts, providing intuitions, and defining technical terms clearly.",
+            "priority": "medium"
+          },
+          {
+            "section": "Conclusion and Discussion",
+            "problem": "No discussion on limitations, ethical considerations, or application scope is present.",
+            "suggestion": "Include a discussion on potential limitations, future work, and ethical implications of deploying RL agents using this exploration technique.",
+            "priority": "low"
+          }
+        ],
+        "acceptance_plan": [
+          "Revise the title to better reflect the method's novelty and focus on hashing in count-based exploration.",
+          "Enhance the Introduction to clearly state unique contributions and how this work advances the field beyond prior methods.",
+          "Expand the experimental section to include comprehensive baseline comparisons with recent exploration techniques, adding quantitative results and statistical validation.",
+          "Add ablation studies detailing the effect of hashing parameters and preprocessing choices on performance.",
+          "Improve clarity by elaborating technical parts, including background on classical methods, and simplifying jargon where possible.",
+          "Include a dedicated section or paragraph discussing limitations, broader impact, and ethics.",
+          "Provide sufficient implementation details and hyperparameters to aid reproducibility."
+        ],
+        "supervisor_note": "The paper tackles an important topic in deep reinforcement learning and provides promising results using a hashing-based count approximation for exploration. However, the presentation currently lacks clarity and explicit articulation of novelty, which hinders confidence in the contribution. Additionally, the experimental evaluation is insufficiently comprehensive and omits critical analysis through ablations and robust baseline comparisons. To reach acceptance, the authors should focus on clarifying the paper's core contributions, strengthening empirical validation, and improving readability. The suggested revisions aim to help the authors bring the paper to a publishable standard by making its value proposition and method more transparent and verifiable."
+      },
+      "confidentiality": {
+        "mode": "section_summary_only",
+        "sent_full_paper": false,
+        "masked_sensitive_text": true,
+        "section_summaries_used": true,
+        "abstract_only": false,
+        "api_allowed": true,
+        "sections": [
+          "introduction",
+          "related_work",
+          "method",
+          "experiments",
+          "conclusion"
+        ]
+      }
+    },
+    {
+      "paper_id": "1602.05772",
+      "conference": "arxiv.cs.cl_2007-2017",
+      "split": "train",
+      "title": "Corpus analysis without prior linguistic knowledge - unsupervised mining of phrases and subphrase structure",
+      "actual_label": "Reject",
+      "predicted_decision": "Modify",
+      "quality_score": 50.0,
+      "accept_probability": 0.4997,
+      "modify_probability": 0.9994,
+      "reject_probability": 0.5003,
+      "suggestions": "Add a concise conclusion that summarizes contribution, evidence, limitations, and future work. Revise the title so it clearly signals the task, method, and contribution. Add limitations, failure cases, and future work. Add implementation details, code/data notes, and hyperparameters. Make the novelty and contribution claims more explicit.",
+      "xai_focus": "Conclusion Word Count: 571.0; Title specificity: 14.0; Limitation discussion: 2.0",
+      "group": "Top Modify Candidates",
+      "ai_review": {
+        "ai_decision": "MODIFY",
+        "confidence": 0.92,
+        "short_summary": "The paper addresses unsupervised mining of phrases and subphrase structures without prior linguistic knowledge and evaluates the approach on multi-lingual corpora. The method is interesting but the paper requires significant improvements in clarity, explicitness of novelty and contributions, presentation of experiments, and discussion of limitations to reach acceptance level.",
+        "good_points": [
+          "The paper tackles an important problem of unsupervised phrase detection across multiple languages without linguistic priors, which is a challenging and relevant task.",
+          "Evaluation is performed on a diverse set of corpora spanning six languages and multiple domains, demonstrating the method's general applicability.",
+          "The paper attempts to link psycholinguistic motivation with NLP methodology, which is a useful perspective.",
+          "Function words and phrase structures detected by the algorithm are analyzed with quantitative and qualitative results.",
+          "The approach includes a recursive phrase splitting technique to identify subphrase structures, an interesting methodological contribution."
+        ],
+        "weak_points": [
+          "The title and abstract lack specificity and do not clearly communicate the novel task, method, or main contributions.",
+          "The introduction and related work sections are somewhat unfocused and do not adequately position the paper against closely related unsupervised phrase mining or segmentation literature, making the novelty claims unclear.",
+          "Method description lacks sufficient formal rigor and implementation details; details like algorithmic steps, hyperparameters, and complexity are missing or insufficiently explained.",
+          "Experimental results lack baseline comparisons with state-of-the-art unsupervised or supervised phrase mining methods, limiting interpretation of effectiveness.",
+          "The qualitative and quantitative evaluation is not sufficiently comprehensive or detailed; statistical significance and error analysis are absent.",
+          "The conclusion is overly long and unfocused without a concise summary, explicit contribution recap, or a discussion of limitations and future work.",
+          "No mention of code or data release, reducing reproducibility potential.",
+          "Discussion of limitations and failure cases is minimal, which is a significant omission for an unsupervised method applied across many languages."
+        ],
+        "must_modify": [
+          {
+            "section": "Title and Abstract",
+            "problem": "The current title does not clearly indicate the task, method, or main technical contributions. The abstract is missing or insufficiently informative, lacking a concise overview of the work's goals, methods, results, and contributions.",
+            "suggestion": "Revise the title to explicitly include key aspects such as 'unsupervised phrase and subphrase mining from raw corpora without linguistic knowledge.' Add a concise abstract summarizing motivation, method, datasets, main results, and novelty claims.",
+            "priority": "high"
+          },
+          {
+            "section": "Introduction and Related Work",
+            "problem": "The related work does not situate the paper well among existing phrase mining or segmentation approaches; the introduction lacks a clear statement of novelty and technical contributions.",
+            "suggestion": "Add paragraphs comparing to existing unsupervised phrase mining and segmentation literature. State clear contributions explicitly at the end of the introduction section. Emphasize differences from prior work and highlight novel aspects.",
+            "priority": "high"
+          },
+          {
+            "section": "Methodology",
+            "problem": "Algorithm description is informal and lacks essential implementation details such as pseudocode, input/output description, parameters, and computational complexity.",
+            "suggestion": "Add a formalized and detailed algorithm description (e.g., pseudocode or stepwise procedures). Document important hyperparameters and discuss scalability and computational costs.",
+            "priority": "high"
+          },
+          {
+            "section": "Experiments and Results",
+            "problem": "The evaluation lacks baseline comparisons and comprehensive quantitative metrics. There is minimal discussion of error cases or statistical validation.",
+            "suggestion": "Include experiments comparing the method with established baselines for phrase mining or segmentation. Provide quantitative metrics such as precision, recall, F1 regarding phrase boundary detection or function word identification. Add error analysis and statistical significance testing where possible.",
+            "priority": "high"
+          },
+          {
+            "section": "Conclusion",
+            "problem": "The conclusion is overly verbose, without a concise statement of contributions, limitations, or future work.",
+            "suggestion": "Rewrite the conclusion concisely to summarize key contributions, clearly state limitations of the approach, and suggest concrete future research directions.",
+            "priority": "medium"
+          },
+          {
+            "section": "Reproducibility",
+            "problem": "There is no information on code release, parameter settings, or detailed dataset preprocessing, impacting reproducibility.",
+            "suggestion": "Add a section or appendix describing implementation details, parameter values, corpus preprocessing steps, and plans to release code and data if possible.",
+            "priority": "medium"
+          },
+          {
+            "section": "Limitations and Ethics",
+            "problem": "No discussion on potential failure modes, limitations, or ethical considerations related to the unsupervised mining approach is included.",
+            "suggestion": "Add a dedicated section or text describing known limitations, failure cases, and possible ethical concerns or biases in the data and their impact on results.",
+            "priority": "medium"
+          }
+        ],
+        "acceptance_plan": [
+          "Revise the title and add a concise, informative abstract.",
+          "Strengthen the related work to clearly position the approach among existing phrase mining literature.",
+          "Provide a formalized and detailed description of the methodology including algorithm pseudocode and parameter details.",
+          "Augment experiments with baseline comparisons and comprehensive quantitative evaluations including error analysis.",
+          "Add a concise conclusion summarizing contributions, limitations, and future work.",
+          "Include a reproducibility section with code/data release plans and implementation details.",
+          "Discuss limitations and ethical considerations explicitly to increase transparency."
+        ],
+        "supervisor_note": "This paper deals with an interesting problem and presents a method evaluated on diverse corpora, but it currently falls short of a publication standard. Key improvements include better framing of contributions and novelty, detailed and precise methodology, rigorous experiments with baselines, and a clear, concise presentation of conclusions and limitations. The authors should also improve reproducibility information and ethical considerations discussion. Addressing these issues could bring the paper to an acceptable quality level."
+      },
+      "confidentiality": {
+        "mode": "section_summary_only",
+        "sent_full_paper": false,
+        "masked_sensitive_text": true,
+        "section_summaries_used": true,
+        "abstract_only": false,
+        "api_allowed": true,
+        "sections": [
+          "introduction",
+          "related_work",
+          "method",
+          "experiments",
+          "results",
+          "conclusion"
+        ]
+      }
+    },
+    {
+      "paper_id": "1708.09086",
+      "conference": "arxiv.cs.ai_2007-2017",
+      "split": "train",
+      "title": "A Deep Learning Approach for Population Estimation from Satellite Imagery",
+      "actual_label": "Reject",
+      "predicted_decision": "Modify",
+      "quality_score": 50.0,
+      "accept_probability": 0.5004,
+      "modify_probability": 0.9992,
+      "reject_probability": 0.4996,
+      "suggestions": "Add a concise conclusion that summarizes contribution, evidence, limitations, and future work. Revise the title so it clearly signals the task, method, and contribution. Improve readability by simplifying long sentences. Find and fix the strongest negative reviewer concern. Address reviewer concerns that lowered recommendation scores.",
+      "xai_focus": "Conclusion Word Count: 498.0; Title specificity: 10.0; Sentence complexity: 23.155",
+      "group": "Top Modify Candidates",
+      "ai_review": {
+        "ai_decision": "MODIFY",
+        "confidence": 0.85,
+        "short_summary": "The paper proposes CNN-based models to estimate high-resolution population density from satellite images, evaluated at county level for the USA. The approach is relevant and promising, but the presentation and experimental validation need strengthening. Key weaknesses include unclear novelty over related work, insufficient baseline comparisons, high sentence complexity impacting clarity, and a lengthy conclusion lacking concise summary. Addressing these points will improve the paper's clarity, rigor, and impact.",
+        "good_points": [
+          "The use of CNNs for high-resolution gridded population estimation from satellite imagery is a timely and relevant application with practical significance for urban planning and resource allocation.",
+          "The authors train and validate their models across a large geographic area (continental USA) with millions of samples, demonstrating scalability of the approach.",
+          "The evaluation includes aggregating predictions at county level and comparing with census data, which is a meaningful real-world benchmark.",
+          "The paper attempts to interpret model predictions and analyze per-pixel errors, providing insights beyond overall accuracy metrics.",
+          "The methodology of training regionally-parameterized models on spatial chunks is sensible and motivated by prior work, addressing potential spatial heterogeneity."
+        ],
+        "weak_points": [
+          "The paper's novelty relative to existing work on population mapping with remote sensing and deep learning is not clearly articulated; related methods and baselines are not adequately compared.",
+          "Baseline methods are insufficiently described or quantitatively compared against; it remains unclear if the deep learning models offer substantial improvement over simpler or traditional approaches.",
+          "Writing clarity is hindered by long, complex sentences and insufficiently specific title and abstract, reducing accessibility to a broad audience.",
+          "The conclusion section is overly lengthy and verbose, lacking a concise synthesis of contributions, key results, limitations, and future work.",
+          "Figures, tables, or visualizations of predicted population maps and errors are missing or insufficiently highlighted, limiting intuition about model performance.",
+          "Reproducibility details such as code, hyperparameters, computational resources, and data preprocessing steps are not explicitly provided.",
+          "Ethical considerations regarding the impact of population estimation errors or biases in satellite imagery data are not discussed."
+        ],
+        "must_modify": [
+          {
+            "section": "Title",
+            "problem": "Title is generic and does not clearly convey the specific task, method, and key contribution of the paper.",
+            "suggestion": "Revise the title to explicitly state the use of CNNs for high-resolution population estimation from satellite imagery in the USA, highlighting novelty or scale if possible.",
+            "priority": "high"
+          },
+          {
+            "section": "Abstract and Introduction",
+            "problem": "The paper lacks a concise summary of the problem, novelty, approach, and key results that clearly motivate the work and contributions.",
+            "suggestion": "Add a succinct abstract and strengthen the introduction to better contextualize the research gap and the proposed method's advantages.",
+            "priority": "high"
+          },
+          {
+            "section": "Related Work",
+            "problem": "The discussion does not sufficiently differentiate this work from prior approaches and fails to include comparative baselines within experiments.",
+            "suggestion": "Expand related work to critically analyze existing population mapping methods and clarify the novelty. Include baseline models such as traditional interpolation or random forests in experiments for direct comparison.",
+            "priority": "high"
+          },
+          {
+            "section": "Method and Experiments",
+            "problem": "Methodological details are incomplete, and experimental protocols lack clarity. In particular, data preprocessing, model architectures, training procedures, and hyperparameters are insufficiently detailed.",
+            "suggestion": "Provide comprehensive details on CNN architectures, training details (epochs, optimization), data normalization, and sampling strategies to ensure reproducibility.",
+            "priority": "high"
+          },
+          {
+            "section": "Results and Analysis",
+            "problem": "Results lack sufficient quantitative metrics beyond median absolute error at county level; visualizations of predicted vs ground truth, error maps, and detailed analysis are missing.",
+            "suggestion": "Include standard evaluation metrics (e.g., RMSE, R^2), qualitative visualizations of predicted population grids, error heatmaps, and ablation studies.",
+            "priority": "high"
+          },
+          {
+            "section": "Conclusion",
+            "problem": "The conclusion is excessively long and does not provide a concise summary of contributions, limitations, and future directions.",
+            "suggestion": "Condense the conclusion to succinctly restate the main contributions, key quantitative findings, discuss limitations, and outline future work.",
+            "priority": "medium"
+          },
+          {
+            "section": "Clarity and Writing Style",
+            "problem": "Sentences are often overly long and complex, which impedes reader comprehension.",
+            "suggestion": "Rewrite complex sentences into shorter, clearer ones. Use simpler language to improve readability throughout the paper.",
+            "priority": "medium"
+          },
+          {
+            "section": "Ethics and Limitations",
+            "problem": "No discussion on the ethical implications or potential biases in the population estimates from satellite imagery is provided.",
+            "suggestion": "Add a section addressing limitations of the model, data biases, and ethical considerations regarding the use of estimated population data in decision-making.",
+            "priority": "low"
+          }
+        ],
+        "acceptance_plan": [
+          "Revise the title to be more specific and descriptive of the method and task.",
+          "Add a clear, focused abstract summarizing the motivation, method, results, and contributions.",
+          "Expand related work to better position the contributions and include quantitative comparisons to baseline methods in experiments.",
+          "Enhance the methodological section with detailed information on CNN architectures, training procedures, and data preprocessing to improve reproducibility.",
+          "Improve experimental results by adding comprehensive quantitative metrics, visual comparisons, and ablation studies to demonstrate the model's strengths and weaknesses.",
+          "Shorten and improve the conclusion by summarizing contributions, discussing limitations, and proposing future work.",
+          "Simplify and clarify the writing style, reducing sentence complexity to improve reader comprehension.",
+          "Incorporate a discussion on ethical considerations and limitations relevant to population estimation from satellite data."
+        ],
+        "supervisor_note": "This paper tackles an important problem using deep learning, but currently lacks sufficient clarity, justification, and thorough experimental validation to warrant acceptance. The suggested revisions are concrete and address key weaknesses including clarity, reproducibility, methodological rigor, and comprehensiveness of evaluation. The authors should carefully implement these improvements to elevate the paper to a publishable standard."
+      },
+      "confidentiality": {
+        "mode": "section_summary_only",
+        "sent_full_paper": false,
+        "masked_sensitive_text": true,
+        "section_summaries_used": true,
+        "abstract_only": false,
+        "api_allowed": true,
+        "sections": [
+          "introduction",
+          "related_work",
+          "method",
+          "experiments",
+          "results",
+          "conclusion"
+        ]
+      }
+    },
+    {
+      "paper_id": "1511.00813",
+      "conference": "arxiv.cs.ai_2007-2017",
+      "split": "train",
+      "title": "SAT as a game",
+      "actual_label": "Reject",
+      "predicted_decision": "Reject",
+      "quality_score": 4.0,
+      "accept_probability": 0.0397,
+      "modify_probability": 0.0794,
+      "reject_probability": 0.9603,
+      "suggestions": "Add a clear introduction that states the problem, gap, contribution, and paper structure. Expand or tighten the manuscript so the contribution, method, evidence, and limitations are clear. Expand the introduction to explain the research problem, gap, contribution, and motivation. Add a concise conclusion that restates contribution, evidence, limitations, and future work. Clarify the methodology with reproducible details.",
+      "xai_focus": "Introduction section: 0.0; Paper length: 765.0; Introduction detail: 0.0",
+      "group": "Top Reject-Risk Papers",
+      "ai_review": {
+        "ai_decision": "REJECT",
+        "confidence": 0.95,
+        "short_summary": "The paper explores connections between SAT problems and games, citing related work on SAT encodings for Sudoku and NP-hardness proofs via Candy Crush, but lacks original contributions, detailed methodology, and comprehensive evaluation. The manuscript suffers from insufficient clarity, weak structure, and missing experimental validation, which collectively undermine its suitability for acceptance without major revision.",
+        "good_points": [
+          "The paper identifies and discusses interesting existing links between SAT problems and games, such as known Sudoku encodings and NP-hardness proofs related to Candy Crush, demonstrating awareness of relevant literature.",
+          "References to a practical application, e.g., Olivier Roussel's SAT game web app, help ground the discussion in tangible examples, illustrating the interplay between SAT and game-like representations."
+        ],
+        "weak_points": [
+          "The manuscript lacks a clear and comprehensive introduction outlining the research problem, gap in the literature, paper contributions, and motivation.",
+          "There is no detailed description of the proposed method or framework; the paper does not explain how SAT is being modeled or treated 'as a game' beyond cursory references.",
+          "Experimental evidence and baseline comparisons are absent; the paper does not provide any evaluation, examples, or performance analysis to support its claims.",
+          "The structure is incomplete and unclear, with missing sections such as methodology, experimental setup, results, discussion, and conclusion.",
+          "Reproducibility is poor due to missing methodological details, formal definitions, and implementation specifics.",
+          "Limitations and ethical considerations are not addressed, reducing the paper's completeness and scholarly rigor."
+        ],
+        "must_modify": [
+          {
+            "section": "Introduction",
+            "problem": "The introduction lacks a clear statement of the research problem, the gap in knowledge, the paper's unique contributions, and motivation for the work.",
+            "suggestion": "Expand the introduction to explicitly articulate the problem being addressed, identify what is missing in current literature, and summarize the novel contributions of this paper along with motivation and paper organization.",
+            "priority": "high"
+          },
+          {
+            "section": "Methodology / Main Content",
+            "problem": "No concrete methodology or framework describing how SAT is interpreted 'as a game' is provided, leaving the core idea vague and unsubstantiated.",
+            "suggestion": "Provide a detailed explanation of the proposed approach, including formal definitions, theoretical foundations, and illustrative examples to demonstrate the modeling of SAT as a game.",
+            "priority": "high"
+          },
+          {
+            "section": "Experimental Section",
+            "problem": "The paper does not include any experimental evaluation, benchmarks, or comparative analysis to demonstrate the effectiveness or novelty of the proposed approach.",
+            "suggestion": "Introduce experiments that evaluate the proposed concept, including comparisons to existing SAT solving or game-based approaches, supported by quantitative metrics and qualitative discussion.",
+            "priority": "high"
+          },
+          {
+            "section": "Manuscript Structure and Clarity",
+            "problem": "The paper's organization and formatting are incomplete, missing key sections such as methodology, experiments, and conclusion, which hampers reader comprehension and scholarly completeness.",
+            "suggestion": "Reorganize the manuscript into standard sections (Introduction, Related Work, Methodology, Experiments, Discussion, Conclusion) and ensure clarity and logical flow throughout the text.",
+            "priority": "high"
+          },
+          {
+            "section": "Reproducibility",
+            "problem": "Reproducibility is not addressed due to the absence of methodological details, algorithms, and implementation information.",
+            "suggestion": "Include sufficient technical details, pseudocode, and potentially code availability to enable reproducibility of the described work.",
+            "priority": "medium"
+          }
+        ],
+        "acceptance_plan": [
+          "Revise the introduction to clearly define the research problem, motivation, and novel contributions.",
+          "Develop a thorough methodology section explaining how SAT is modeled or treated as a game, supported by formal definitions and examples.",
+          "Conduct and document experimental evaluations comparing the approach against existing techniques or baselines.",
+          "Improve manuscript structure by adding all standard sections and enhancing clarity and logical flow.",
+          "Address reproducibility by providing detailed methods and code or pseudocode.",
+          "Discuss limitations and possible ethical considerations related to the approach.",
+          "Add a concise conclusion summarizing contributions, experimental findings, limitations, and future directions."
+        ],
+        "supervisor_note": "This submission shows some awareness of the intersection between SAT and game theory but is currently far below the acceptance threshold due to fundamental deficiencies in clarity, contribution, methodology, and evaluation. Authors should undertake substantial revisions to clearly state their problem and contribution, develop a reproducible method, and empirically validate their claims. Only after such improvements should the paper be resubmitted for review."
+      },
+      "confidentiality": {
+        "mode": "section_summary_only",
+        "sent_full_paper": false,
+        "masked_sensitive_text": true,
+        "section_summaries_used": true,
+        "abstract_only": false,
+        "api_allowed": true,
+        "sections": [
+          "related_work"
+        ]
+      }
+    },
+    {
+      "paper_id": "1709.01634",
+      "conference": "arxiv.cs.cl_2007-2017",
+      "split": "train",
+      "title": "The Voynich Manuscript is Written in Natural Language: The Pahlavi Hypothesis",
+      "actual_label": "Reject",
+      "predicted_decision": "Reject",
+      "quality_score": 4.5,
+      "accept_probability": 0.0452,
+      "modify_probability": 0.0904,
+      "reject_probability": 0.9548,
+      "suggestions": "Add a clear introduction that states the problem, gap, contribution, and paper structure. Expand the introduction to explain the research problem, gap, contribution, and motivation. Clarify the methodology with reproducible details. Add an experiments/evaluation section with datasets, metrics, and baselines. Improve this paper aspect before submission.",
+      "xai_focus": "Introduction section: 0.0; Introduction detail: 0.0; Methodology detail: 0.0",
+      "group": "Top Reject-Risk Papers",
+      "ai_review": {
+        "ai_decision": "REJECT",
+        "confidence": 0.95,
+        "short_summary": "The paper presents an intriguing hypothesis that the Voynich Manuscript (VM) is written in a natural language related to Pahlavi script, supported by partial readings and cultural analysis. However, it lacks sufficient methodological detail, comprehensive experimental validation, reproducibility, and clarity necessary for acceptance.",
+        "good_points": [
+          "Addresses a longstanding, enigmatic problem about the VM which attracts significant interest.",
+          "Attempts to link the manuscript's astronomical content to Zoroastrian culture, providing a culturally contextual hypothesis.",
+          "Highlights potential identification of a colophon on f116v, which, if substantiated, could be a valuable finding.",
+          "Acknowledges the speculative nature of the interpretation, showing cautiousness in claims."
+        ],
+        "weak_points": [
+          "Introduction and motivation are insufficiently detailed, lacking a clear outline of problem, gap, and contributions.",
+          "Methodology is inadequately explained; the manuscript provides only a few word readings with no reproducible decoding framework or analytic procedure.",
+          "No experimental section describing data sources, evaluation metrics, or comparison to existing hypotheses or methods.",
+          "Lacks baseline comparisons or competing approaches to evaluating the Pahlavi hypothesis objectively.",
+          "Insufficient ablation or in-depth analysis of alternative interpretations or linguistic testing.",
+          "No explicit discussion of limitations beyond speculation nor ethical considerations about possible cultural misinterpretation.",
+          "Reproducibility is severely limited due to missing computational or linguistic procedures, datasets, or code.",
+          "Structure is poor; the excerpt provides only partial summaries without a coherent narrative or thorough argumentation for the claims."
+        ],
+        "must_modify": [
+          {
+            "section": "Introduction",
+            "problem": "Lacks sufficient detail about the research problem, existing gaps, and specific contributions of the paper.",
+            "suggestion": "Expand the introduction to clearly state the problem addressed (deciphering VM), gaps in prior work, the novel angle of using Pahlavi language for decipherment, and outline the paper structure.",
+            "priority": "high"
+          },
+          {
+            "section": "Methodology",
+            "problem": "Missing detailed and reproducible description of the decipherment approach, linguistic analysis methods, and criteria for identifying colophons or cultural symbols.",
+            "suggestion": "Include a comprehensive methodology section explaining how the linguistic matches were found, what scripts or lexicons were used, and how conclusions were drawn from visual or textual evidence.",
+            "priority": "high"
+          },
+          {
+            "section": "Experimental Evidence",
+            "problem": "No clear experimental results, datasets, metrics, or objective validation of the hypothesis are presented.",
+            "suggestion": "Incorporate an experiments section that details tested samples from the VM, criteria for validating readings, and quantitative or qualitative evidence supporting the Pahlavi hypothesis compared against baselines.",
+            "priority": "high"
+          },
+          {
+            "section": "Baseline Comparison",
+            "problem": "No comparison with other leading hypotheses or competing interpretations of the VM to assess relative strengths and weaknesses.",
+            "suggestion": "Add a discussion comparing findings with alternative theories, such as linguistic or statistical treatments, to place this work in context.",
+            "priority": "medium"
+          },
+          {
+            "section": "Clarity and Structure",
+            "problem": "The paper lacks a coherent narrative with clear explanation of arguments, making it difficult to assess claims' validity.",
+            "suggestion": "Reorganize the paper for clarity: clearly introduce goals, background, methodology, results, discussion, and conclusion with explicit signposting and logical flow.",
+            "priority": "high"
+          },
+          {
+            "section": "Reproducibility",
+            "problem": "Insufficient information and data are provided to allow replication of the study or verification of claims.",
+            "suggestion": "Provide all relevant data, transcriptions, scripts, or code used for analysis in supplementary material or appendices to enable reproducibility.",
+            "priority": "high"
+          }
+        ],
+        "acceptance_plan": [
+          "Complete the introduction with explicit problem definition, motivation, and paper outline.",
+          "Thoroughly detail the methodology used for linguistic decipherment and cultural analysis, enabling reproducibility.",
+          "Add a dedicated experimental section reporting analyses on various manuscript sections, supporting evidence quantitatively or qualitatively.",
+          "Include comparisons to alternative decipherment approaches or linguistic theories to contextualize contributions.",
+          "Reorganize content to improve clarity, ensuring logical flow of arguments and definitions.",
+          "Explicitly discuss limitations, uncertainties, and potential ethical implications related to cultural interpretation."
+        ],
+        "supervisor_note": "The paper proposes a potentially significant hypothesis linking the Voynich Manuscript to the Pahlavi language and Zoroastrian culture. However, the current manuscript is premature for acceptance due to insufficient methodological rigor, lack of reproducible analysis, and limited validation. The author should substantially strengthen the introduction, methodology, and experimental sections, as well as situate their work relative to existing literature. Clear articulation of claims and provision of data or code for reproducibility are essential. With thorough revision along these lines, the work could make a meaningful contribution to the field of manuscript decipherment and historical linguistics."
+      },
+      "confidentiality": {
+        "mode": "section_summary_only",
+        "sent_full_paper": false,
+        "masked_sensitive_text": true,
+        "section_summaries_used": true,
+        "abstract_only": false,
+        "api_allowed": true,
+        "sections": [
+          "results",
+          "conclusion"
+        ]
+      }
+    },
+    {
+      "paper_id": "1405.6068",
+      "conference": "arxiv.cs.cl_2007-2017",
+      "split": "train",
+      "title": "Building of Networks of Natural Hierarchies of Terms Based on Analysis of Texts Corpora",
+      "actual_label": "Reject",
+      "predicted_decision": "Reject",
+      "quality_score": 4.5,
+      "accept_probability": 0.0453,
+      "modify_probability": 0.0906,
+      "reject_probability": 0.9547,
+      "suggestions": "Add a clear introduction that states the problem, gap, contribution, and paper structure. Expand the introduction to explain the research problem, gap, contribution, and motivation. Expand or tighten the manuscript so the contribution, method, evidence, and limitations are clear. Add a concise conclusion that restates contribution, evidence, limitations, and future work. Revise the title so it clearly signals the task, method, and contribution.",
+      "xai_focus": "Introduction section: 0.0; Introduction detail: 0.0; Paper length: 1085.0",
+      "group": "Top Reject-Risk Papers",
+      "ai_review": {
+        "ai_decision": "REJECT",
+        "confidence": 0.95,
+        "short_summary": "The paper introduces a method to build natural hierarchies of terms using horizontal visibility graphs on arXiv preprint corpora. However, the paper lacks clarity in motivation, detailed explanation, experimental rigor, and proper structure, impairing its technical soundness and reproducibility.",
+        "good_points": [
+          "The paper addresses an interesting problem of constructing networks of term hierarchies from text corpora, which has relevance to information retrieval and language network analysis.",
+          "It proposes the novel use of horizontal visibility graphs methodology for building hierarchical term networks, which is an innovative approach worth exploring.",
+          "The application domain involving arXiv electronic preprints on information retrieval is timely and practical, potentially providing useful insights for academic text analysis."
+        ],
+        "weak_points": [
+          "The introduction is minimal and does not clearly articulate the research problem, existing gaps, or specific contributions of the work, making it hard to understand the motivation and novelty.",
+          "The methodological section lacks sufficient detail on how horizontal visibility graphs are applied to text corpora and how the networks are constructed and analyzed, limiting reproducibility.",
+          "Experimental evidence is sparse and lacks quantitative evaluation, baseline comparisons, or ablation studies to establish the effectiveness of the proposed technique.",
+          "The paper is very short (less than 5 pages) and does not contain clear sections on related work, error analysis, limitations, or ethical considerations.",
+          "The title is vague and does not clearly reflect the task, method, and contribution, reducing the paper's accessibility and searchability.",
+          "No clear conclusion is provided that summarizes contributions, main findings, limitations, and future directions."
+        ],
+        "must_modify": [
+          {
+            "section": "Title",
+            "problem": "Title does not clearly indicate the specific task, method used, or the key contributions of the paper.",
+            "suggestion": "Revise the title to explicitly mention the use of horizontal visibility graphs for building term hierarchy networks from text corpora, highlighting novelty or application domain, e.g., \"Constructing Natural Hierarchies of Terms from Text Corpora using Horizontal Visibility Graphs\".",
+            "priority": "high"
+          },
+          {
+            "section": "Introduction",
+            "problem": "Introduction fails to clearly define the research problem, the existing gap in knowledge, the motivation behind the work, or explicitly state the novel contributions.",
+            "suggestion": "Expand the introduction to include a clear problem statement, motivation, research gap, and elaboration on how the proposed method addresses these gaps. Explicitly list contributions and outline the paper structure.",
+            "priority": "high"
+          },
+          {
+            "section": "Methodology",
+            "problem": "The approach using horizontal visibility graphs is insufficiently described; key methodological steps are missing or unclear, limiting replication possibilities.",
+            "suggestion": "Provide a comprehensive explanation of the method, including definitions, algorithms, data preprocessing steps, parameter choices, and how the visibility graphs are constructed and interpreted for text corpora.",
+            "priority": "high"
+          },
+          {
+            "section": "Experiments and Results",
+            "problem": "Experimental validation lacks rigor, with no quantitative metrics, baseline comparisons, or ablation studies to support the claims.",
+            "suggestion": "Include detailed experimental evaluations using quantitative metrics, compare with existing baseline methods, analyze different components of the method (ablation), and discuss robustness or scalability.",
+            "priority": "high"
+          },
+          {
+            "section": "Manuscript Structure and Length",
+            "problem": "Paper is too short and lacks standard structure, with missing sections such as related work, conclusion, limitations, and ethical considerations.",
+            "suggestion": "Expand the manuscript to include separate sections for related work, detailed methodology, experiments, discussion, limitations, future work, and conclusions.",
+            "priority": "medium"
+          },
+          {
+            "section": "Conclusion",
+            "problem": "Absence of a concise conclusion summarizing the work and its implications.",
+            "suggestion": "Add a conclusion that succinctly restates contributions, summarizes findings, discusses limitations, and outlines directions for future research.",
+            "priority": "medium"
+          }
+        ],
+        "acceptance_plan": [
+          "Revise the title as recommended to clearly reflect the task and method.",
+          "Expand the introduction substantially to include problem motivation, gap, and contributions.",
+          "Thoroughly detail the methodology with clear explanations, algorithms, and data processing steps.",
+          "Add comprehensive experiments with quantitative evaluations, baseline comparisons, and ablation analysis.",
+          "Reorganize the manuscript to follow conventional structure including related work, results, limitations, and conclusion sections.",
+          "Include a clear conclusion summarizing key points and future directions."
+        ],
+        "supervisor_note": "This paper proposes an intriguing approach applying horizontal visibility graphs to build natural hierarchies of terms from text corpora, but currently falls short in clarity, methodological detail, experimental support, and structure. To reach an acceptance level, the authors must substantially improve the exposition and provide rigorous empirical validation. The title, introduction, and conclusion need rewriting for clearer communication. The methodology section requires expansion with reproducible details, and solid experimental evidence including comparisons to baselines must be added. The paper length should be increased to meet community standards, with well-organized sections reflecting thorough scholarship."
+      },
+      "confidentiality": {
+        "mode": "section_summary_only",
+        "sent_full_paper": false,
+        "masked_sensitive_text": true,
+        "section_summaries_used": true,
+        "abstract_only": false,
+        "api_allowed": true,
+        "sections": [
+          "method"
+        ]
+      }
+    },
+    {
+      "paper_id": "1412.5212",
+      "conference": "arxiv.cs.cl_2007-2017",
+      "split": "train",
+      "title": "Application of Topic Models to Judgments from Public Procurement Domain",
+      "actual_label": "Reject",
+      "predicted_decision": "Reject",
+      "quality_score": 4.6,
+      "accept_probability": 0.0457,
+      "modify_probability": 0.0914,
+      "reject_probability": 0.9543,
+      "suggestions": "Expand or tighten the manuscript so the contribution, method, evidence, and limitations are clear. Add a clear introduction that states the problem, gap, contribution, and paper structure. Expand the introduction to explain the research problem, gap, contribution, and motivation. Add a concise conclusion that restates contribution, evidence, limitations, and future work. Improve this paper aspect before submission.",
+      "xai_focus": "Paper length: 684.0; Introduction section: 0.0; Introduction detail: 0.0",
+      "group": "Top Reject-Risk Papers",
+      "ai_review": {
+        "ai_decision": "MODIFY",
+        "confidence": 0.85,
+        "short_summary": "The paper presents an application of latent Dirichlet allocation (LDA) topic models to legal judgments in the public procurement domain. While the choice of method is sound and the domain application relevant, the manuscript lacks a clear problem statement, detailed methodology, comprehensive experimental results, and structured discussion. It requires significant improvements in clarity, structure, and experimental validation before being considered for acceptance.",
+        "good_points": [
+          "The paper addresses an important domain—legal judgments in public procurement—where text mining can provide valuable insights.",
+          "Utilization of a well-established statistical topic modeling technique (LDA) is appropriate for uncovering latent themes in legal texts.",
+          "The paper references a final published version, indicating that the work has been peer-reviewed in some form, suggesting a good baseline of quality."
+        ],
+        "weak_points": [
+          "The manuscript lacks a clear and detailed introduction section that states the research problem, existing gap, and the authors' contributions explicitly.",
+          "There is insufficient explanation of the methodology, including data preprocessing steps, parameter tuning of LDA, and rationale behind chosen settings.",
+          "Experimental evidence is sparse; no quantitative metrics or qualitative evaluations of topic coherence or relevance are provided.",
+          "The paper does not include baseline comparisons with other text mining or topic modeling methods, limiting assessment of novelty and effectiveness.",
+          "No ablation study or detailed analysis is presented to assess the impact of different parameters or components of the approach.",
+          "Limitations of the approach and ethical considerations regarding legal text mining are not discussed.",
+          "The paper lacks a concise conclusion summarizing contributions, results, limitations, and future directions.",
+          "Overall, the structure is weak, making it difficult to follow the narrative and technical details."
+        ],
+        "must_modify": [
+          {
+            "section": "Introduction",
+            "problem": "Absence of a clear introduction explaining the research problem, gap in literature, contribution, and paper outline.",
+            "suggestion": "Add an expanded introduction that clearly states the challenge in applying topic models to public procurement judgments, identifies the gap in existing work, explicitly states the novel contributions, and provides a roadmap of the paper.",
+            "priority": "high"
+          },
+          {
+            "section": "Methodology",
+            "problem": "Insufficient detail about the dataset, preprocessing pipeline, LDA parameters, and methodological choices.",
+            "suggestion": "Include a comprehensive methodology section detailing the data collection process, text preprocessing steps (tokenization, stop-word removal, etc.), parameter settings for LDA (number of topics, alpha, beta), and justification for these choices.",
+            "priority": "high"
+          },
+          {
+            "section": "Experimental Evidence",
+            "problem": "Lack of quantitative or qualitative evaluation of the topic modeling results and absence of comparison to baselines.",
+            "suggestion": "Provide experiments that evaluate topic coherence scores, domain expert evaluation of topics, and at least one baseline comparison (e.g., with other topic modeling or clustering methods).",
+            "priority": "high"
+          },
+          {
+            "section": "Discussion and Limitations",
+            "problem": "No discussion on limitations or ethical considerations regarding analyzing legal judgment texts.",
+            "suggestion": "Add a section discussing potential limitations of LDA on legal texts, data bias, interpretability challenges, and any ethical issues regarding privacy or data use.",
+            "priority": "medium"
+          },
+          {
+            "section": "Conclusion",
+            "problem": "No concise conclusion summarizing contributions and results exist in current draft.",
+            "suggestion": "Add a concise conclusion that reiterates the problem, approach, key findings, limitations, and outlines future research directions.",
+            "priority": "medium"
+          }
+        ],
+        "acceptance_plan": [
+          "Revise the introduction to clearly state the problem, research gap, and contributions.",
+          "Expand methodology to describe dataset used, preparation steps, and detailed LDA implementation.",
+          "Add quantitative evaluations such as topic coherence and qualitative expert assessments.",
+          "Include baseline comparisons and discuss advantages over existing approaches.",
+          "Incorporate a limitations and ethics discussion focused on legal text mining.",
+          "Write a clear conclusion summarizing the key insights and future work.",
+          "Restructure the paper for better clarity and logical flow."
+        ],
+        "supervisor_note": "The paper covers a promising application area with an appropriate technique but suffers from structural and experimental weaknesses that impede understanding and assessment. Addressing these core issues with specific additions and a tighter narrative will significantly enhance the manuscript's quality and impact."
+      },
+      "confidentiality": {
+        "mode": "section_summary_only",
+        "sent_full_paper": false,
+        "masked_sensitive_text": true,
+        "section_summaries_used": true,
+        "abstract_only": false,
+        "api_allowed": true,
+        "sections": [
+          "method"
+        ]
+      }
+    },
+    {
+      "paper_id": "1610.00378",
+      "conference": "arxiv.cs.ai_2007-2017",
+      "split": "train",
+      "title": "",
+      "actual_label": "Reject",
+      "predicted_decision": "Reject",
+      "quality_score": 4.7,
+      "accept_probability": 0.0465,
+      "modify_probability": 0.093,
+      "reject_probability": 0.9535,
+      "suggestions": "Improve title readability with clearer, reviewer-friendly wording. Add a clear introduction that states the problem, gap, contribution, and paper structure. Expand the introduction to explain the research problem, gap, contribution, and motivation. Improve this paper aspect before submission. Add a concise conclusion that summarizes contribution, evidence, limitations, and future work.",
+      "xai_focus": "Title readability: 0.0; Introduction section: 0.0; Introduction detail: 0.0",
+      "group": "Top Reject-Risk Papers",
+      "ai_review": {
+        "ai_decision": "MODIFY",
+        "confidence": 0.85,
+        "short_summary": "The paper proposes a simple yet effective modification to the PC algorithm by selecting conditioning sets with the highest p-value for independence tests, improving collider orientation and performance. However, the manuscript suffers from lack of clarity, insufficient introduction of the problem and motivation, missing related work discussion, and minimal experimental evaluation. Significant enhancements in presentation, experimental validation, and detailed discussion are needed for acceptance.",
+        "good_points": [
+          "The proposed modification to the PC algorithm is conceptually simple and intuitively sound, focusing on highest p-value conditioning sets to resolve ambiguities in collider orientation.",
+          "The approach addresses a known limitation in the Conservative PC algorithm and avoids ambiguities with a clear rule, which is a meaningful contribution to constraint-based causal discovery methods.",
+          "Preliminary experimental results suggest that the proposed PC-Max algorithm performs comparably to the score-based FGS algorithm, indicating potential practical value.",
+          "The paper highlights pleasant side effects of the proposed tweak, such as avoiding bidirected edges during collider orientation, indicating insightful understanding of graphical model properties."
+        ],
+        "weak_points": [
+          "The title is missing or unreadable, significantly hampering reader comprehension and initial engagement.",
+          "The introduction is minimal and lacks a clear statement of the research problem, motivation, literature gap, contributions, and paper organization.",
+          "Related work and background literature are not adequately discussed, leaving unclear how the proposal compares to existing methods beyond CPC and FGS references.",
+          "Experimental evaluation is very limited; there is no detailed description of datasets, metrics, or thorough baseline comparisons to established methods beyond a brief statement.",
+          "No ablation study or analysis is provided to demonstrate the impact of choosing highest p-value conditioning sets or to dissect failure cases and limitations.",
+          "There is no clear conclusion section that summarizes contributions, evidence, limitations, or outlines future work, diminishing the paper's clarity and impact.",
+          "Reproducibility information such as algorithm pseudocode, parameter settings, or availability of code/data is missing, limiting the paper's usability by others."
+        ],
+        "must_modify": [
+          {
+            "section": "Title",
+            "problem": "The paper lacks a clear, readable, and informative title, which hinders initial understanding and reviewer engagement.",
+            "suggestion": "Provide a concise and descriptive title that reflects the core contribution, e.g., \"PC-Max: Enhancing the PC Algorithm by Maximizing Conditioning Set p-Values for Robust Collider Orientation.\"",
+            "priority": "high"
+          },
+          {
+            "section": "Introduction",
+            "problem": "The introduction is insufficient; it does not contextualize the research problem, state the motivation, literature gap, and main contributions.",
+            "suggestion": "Expand the introduction to clearly describe the causal discovery problem, limitations of existing PC and CPC algorithms, motivation for using highest p-value conditioning sets, a summary of contributions, and paper organization.",
+            "priority": "high"
+          },
+          {
+            "section": "Related Work",
+            "problem": "The paper inadequately discusses prior work, lacking a comprehensive literature review of constraint-based and score-based causal discovery methods.",
+            "suggestion": "Add a dedicated related work section that compares and contrasts PC-Max with CPC, FGS, and other relevant algorithms, highlighting novelty and relevance.",
+            "priority": "medium"
+          },
+          {
+            "section": "Experimental Evaluation",
+            "problem": "The experiments section is minimal with no detailed methodology, datasets, evaluation metrics, or comparative analysis.",
+            "suggestion": "Include a detailed experimental setup section describing datasets (synthetic and/or real), metrics used (e.g., precision, recall, structural hamming distance), and comparative results against baseline algorithms with statistical significance where appropriate.",
+            "priority": "high"
+          },
+          {
+            "section": "Analysis and Ablation",
+            "problem": "No ablation or deeper analysis is provided to validate the impact of the proposed conditioning set selection strategy.",
+            "suggestion": "Perform ablation studies varying the conditioning set selection criteria, discuss failure modes, and justify how the highest p-value selection improves performance.",
+            "priority": "medium"
+          },
+          {
+            "section": "Conclusion",
+            "problem": "The conclusion is brief and lacks a summary of contributions, key findings, limitations, and future directions.",
+            "suggestion": "Add a concise conclusion that recaps the main contributions, experimental validation, acknowledges limitations, and proposes future research avenues.",
+            "priority": "medium"
+          },
+          {
+            "section": "Reproducibility",
+            "problem": "The manuscript lacks pseudocode, algorithmic descriptions, parameter tuning details, and links to code or data.",
+            "suggestion": "Provide detailed pseudocode or algorithmic steps of PC-Max, specify parameter settings, and ideally share code repositories to improve reproducibility.",
+            "priority": "high"
+          }
+        ],
+        "acceptance_plan": [
+          "Revise and add a clear, descriptive title.",
+          "Expand the introduction significantly to frame the problem and contributions.",
+          "Add a related work section to position the work in the context of existing literature.",
+          "Design and report comprehensive experiments with detailed methodology, datasets, and metrics.",
+          "Include ablation studies to analyze the effect of selecting the highest p-value conditioning set.",
+          "Write a thorough conclusion summarizing findings, limitations, and future work.",
+          "Provide pseudocode and share code or detailed instructions for reproducibility."
+        ],
+        "supervisor_note": "The paper addresses a relevant problem in causal discovery with an elegant and simple idea. However, the incomplete presentation and limited experiments make it unsuitable for acceptance in its current form. The author is encouraged to strengthen the motivation, clarify the contributions, and conduct a thorough empirical evaluation to demonstrate the method's benefits convincingly."
+      },
+      "confidentiality": {
+        "mode": "section_summary_only",
+        "sent_full_paper": false,
+        "masked_sensitive_text": true,
+        "section_summaries_used": true,
+        "abstract_only": false,
+        "api_allowed": true,
+        "sections": [
+          "method",
+          "conclusion"
+        ]
+      }
+    }
+  ]
+}

@@ -253,8 +253,8 @@ def render_confusion_heatmap(matrix: pd.DataFrame) -> None:
 
 
 def render_xai_openai(payload: dict) -> None:
-    st.title("XAI and Optional OpenAI Comparison")
-    st.caption("Default path is local XAI. OpenAI is optional and only appears after running the OpenAI script.")
+    st.title("OpenAI Comparison")
+    st.caption("Detailed OpenAI paper-level reviews compared with the PeerRead local model and XAI suggestions.")
     rows = payload.get("papers", [])
     if rows:
         df = pd.DataFrame(rows)
@@ -277,8 +277,8 @@ def render_xai_openai(payload: dict) -> None:
         st.subheader("Optional OpenAI Reviews")
         st.info(
             "OpenAI comparison file is not generated yet. Run "
-            "`.venv312/bin/python peerread_review_project/top_peerread_openai.py --per-group 3` "
-            "only when you want to spend API credits."
+            "`.venv312/bin/python peerread_review_project/top_peerread_openai.py --per-group 5 --confidentiality-mode section_summary_only` "
+            "to generate the detailed OpenAI review report."
         )
         return
 
@@ -291,14 +291,59 @@ def render_xai_openai(payload: dict) -> None:
                 "group": item.get("group"),
                 "paper_id": item.get("paper_id"),
                 "title": item.get("title"),
-                "local_decision": item.get("local_decision"),
+                "actual_label": item.get("actual_label"),
+                "local_decision": item.get("predicted_decision") or item.get("local_decision"),
                 "accept_probability": item.get("accept_probability"),
-                "openai_verdict": ai_review.get("verdict"),
-                "openai_summary": ai_review.get("summary") or ai_review.get("recommendation") or str(ai_review)[:300],
+                "openai_decision": ai_review.get("ai_decision") or ai_review.get("verdict") or ai_review.get("final_verdict"),
+                "openai_confidence": ai_review.get("confidence"),
+                "openai_summary": ai_review.get("short_summary") or ai_review.get("summary") or ai_review.get("overall_summary"),
             }
         )
     st.subheader("XAI vs OpenAI Comparison")
-    st.dataframe(pd.DataFrame(comparison_rows), width="stretch", height=520)
+    comparison_df = pd.DataFrame(comparison_rows)
+    st.dataframe(comparison_df, width="stretch", height=360)
+
+    if comparison_df.empty:
+        return
+    selected_id = st.selectbox("Open detailed OpenAI review", comparison_df["paper_id"].astype(str).tolist())
+    item = next((row for row in ai_rows if str(row.get("paper_id")) == str(selected_id)), None)
+    if not item:
+        return
+    ai = item.get("ai_review") or {}
+    st.subheader(item.get("title", selected_id))
+    cols = st.columns(4)
+    cols[0].metric("PeerRead Label", item.get("actual_label", "unknown"))
+    cols[1].metric("Local Decision", item.get("predicted_decision") or item.get("local_decision", "unknown"))
+    cols[2].metric("OpenAI Decision", ai.get("ai_decision") or ai.get("final_verdict") or "unknown")
+    cols[3].metric("OpenAI Confidence", ai.get("confidence", "unknown"))
+    st.write(ai.get("short_summary") or ai.get("overall_summary") or "")
+
+    col1, col2 = st.columns(2)
+    with col1:
+        st.markdown("**Good Points**")
+        for point in ai.get("good_points", []) or ai.get("main_reasons", []):
+            st.write(f"- {point}")
+    with col2:
+        st.markdown("**Weak Points**")
+        for point in ai.get("weak_points", []):
+            st.write(f"- {point}")
+
+    st.markdown("**Must Modify**")
+    for change in ai.get("must_modify", []) or ai.get("section_level_suggestions", []):
+        section = change.get("section", "Section")
+        problem = change.get("problem") or change.get("issue", "")
+        suggestion = change.get("suggestion") or change.get("recommendation", "")
+        priority = change.get("priority", "medium")
+        st.write(f"- **{section}** ({priority}): {problem} Recommendation: {suggestion}")
+
+    st.markdown("**Acceptance Plan**")
+    for step in ai.get("acceptance_plan", []):
+        st.write(f"- {step}")
+
+    note = ai.get("supervisor_note")
+    if note:
+        st.markdown("**Supervisor Note**")
+        st.info(note)
 
 
 def render_figures() -> None:
@@ -537,7 +582,7 @@ def main() -> None:
         [
             "Overview",
             "Paper Table",
-            "XAI / OpenAI Comparison",
+            "OpenAI Comparison",
             "Dataset/Evaluation",
             "Advanced Metrics",
             "Poster Figures",
@@ -549,7 +594,7 @@ def main() -> None:
         render_overview(payload, model)
     elif page == "Paper Table":
         render_table(payload)
-    elif page == "XAI / OpenAI Comparison":
+    elif page == "OpenAI Comparison":
         render_xai_openai(payload)
     elif page == "Dataset/Evaluation":
         render_evaluation()
