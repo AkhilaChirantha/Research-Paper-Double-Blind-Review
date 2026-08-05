@@ -253,8 +253,8 @@ def render_confusion_heatmap(matrix: pd.DataFrame) -> None:
 
 
 def render_xai_openai(payload: dict) -> None:
-    st.title("OpenAI Comparison")
-    st.caption("Detailed OpenAI paper-level reviews compared with the PeerRead local model and XAI suggestions.")
+    st.title("Agentic AI")
+    st.caption("Detailed Agentic AI paper-level reviews compared with the PeerRead local model and XAI suggestions.")
     rows = payload.get("papers", [])
     if rows:
         df = pd.DataFrame(rows)
@@ -274,11 +274,11 @@ def render_xai_openai(payload: dict) -> None:
 
     openai_payload = load_openai_reviews()
     if not openai_payload:
-        st.subheader("Optional OpenAI Reviews")
+        st.subheader("Optional Agentic AI Reviews")
         st.info(
-            "OpenAI comparison file is not generated yet. Run "
+            "Agentic AI comparison file is not generated yet. Run "
             "`.venv312/bin/python peerread_review_project/top_peerread_openai.py --per-group 5 --confidentiality-mode section_summary_only` "
-            "to generate the detailed OpenAI review report."
+            "to generate the detailed Agentic AI review report."
         )
         return
 
@@ -299,13 +299,13 @@ def render_xai_openai(payload: dict) -> None:
                 "openai_summary": ai_review.get("short_summary") or ai_review.get("summary") or ai_review.get("overall_summary"),
             }
         )
-    st.subheader("XAI vs OpenAI Comparison")
+    st.subheader("XAI vs Agentic AI")
     comparison_df = pd.DataFrame(comparison_rows)
     st.dataframe(comparison_df, width="stretch", height=360)
 
     if comparison_df.empty:
         return
-    selected_id = st.selectbox("Open detailed OpenAI review", comparison_df["paper_id"].astype(str).tolist())
+    selected_id = st.selectbox("Open detailed Agentic AI review", comparison_df["paper_id"].astype(str).tolist())
     item = next((row for row in ai_rows if str(row.get("paper_id")) == str(selected_id)), None)
     if not item:
         return
@@ -314,8 +314,8 @@ def render_xai_openai(payload: dict) -> None:
     cols = st.columns(4)
     cols[0].metric("PeerRead Label", item.get("actual_label", "unknown"))
     cols[1].metric("Local Decision", item.get("predicted_decision") or item.get("local_decision", "unknown"))
-    cols[2].metric("OpenAI Decision", ai.get("ai_decision") or ai.get("final_verdict") or "unknown")
-    cols[3].metric("OpenAI Confidence", ai.get("confidence", "unknown"))
+    cols[2].metric("Agentic AI Decision", ai.get("ai_decision") or ai.get("final_verdict") or "unknown")
+    cols[3].metric("Agentic AI Confidence", ai.get("confidence", "unknown"))
     st.write(ai.get("short_summary") or ai.get("overall_summary") or "")
 
     col1, col2 = st.columns(2)
@@ -398,7 +398,7 @@ def render_single_review(model: dict) -> None:
 
 def render_new_paper_agent(model: dict) -> None:
     st.title("AI Agent: Review a New Paper")
-    st.caption("PeerRead-trained local model + XAI suggestions by default. OpenAI is optional for deeper edit feedback.")
+    st.caption("PeerRead-trained local model + XAI suggestions by default. Agentic AI is optional for deeper edit feedback.")
 
     source = st.radio("Paper input", ["Upload file", "Paste text"], horizontal=True)
     uploaded = None
@@ -414,17 +414,17 @@ def render_new_paper_agent(model: dict) -> None:
 
     review_mode = st.radio(
         "Review model",
-        ["XAI Local Review", "XAI + OpenAI Detailed Review"],
+        ["XAI Local Review", "XAI + Agentic AI Detailed Review"],
         index=0,
         horizontal=True,
-        help="XAI Local Review is the default. OpenAI uses API credits only when selected.",
+        help="XAI Local Review is the default. Agentic AI uses API credits only when selected.",
     )
-    use_openai = review_mode == "XAI + OpenAI Detailed Review"
+    use_openai = review_mode == "XAI + Agentic AI Detailed Review"
     mode_value = st.selectbox(
         "Confidentiality mode",
         [mode.value for mode in ConfidentialityMode],
         index=0,
-        help="OpenAI is blocked in local_only mode. Use abstract/section summary/full paper only with consent.",
+        help="Agentic AI is blocked in local_only mode. Use abstract/section summary/full paper only with consent.",
     )
 
     run_review = st.button("Run AI Review", type="primary")
@@ -515,13 +515,13 @@ def render_new_paper_agent(model: dict) -> None:
 
     if use_openai:
         if not audit.get("api_allowed"):
-            st.error("OpenAI review is blocked in local_only mode. Select abstract_only, section_summary_only, or full_paper_with_consent.")
+            st.error("Agentic AI review is blocked in local_only mode. Select abstract_only, section_summary_only, or full_paper_with_consent.")
             return
-        with st.spinner("Calling OpenAI for detailed blind-review suggestions..."):
+        with st.spinner("Calling Agentic AI for detailed blind-review suggestions..."):
             try:
                 ai_review = get_openai_recommendation(review_text, local_prediction_for_openai(prediction))
             except Exception as exc:
-                st.error(f"OpenAI review failed: {exc}")
+                st.error(f"Agentic AI review failed: {exc}")
                 return
         render_openai_agent_review(ai_review)
 
@@ -543,10 +543,10 @@ def export_prediction(prediction: dict) -> dict:
 
 
 def render_openai_agent_review(ai_review: dict) -> None:
-    st.subheader("OpenAI Detailed Blind Review")
+    st.subheader("Agentic AI Detailed Blind Review")
     col1, col2 = st.columns(2)
-    col1.metric("OpenAI Verdict", ai_review.get("final_verdict", "unknown"))
-    col2.metric("OpenAI Confidence", ai_review.get("confidence", "unknown"))
+    col1.metric("Agentic AI Verdict", ai_review.get("final_verdict", "unknown"))
+    col2.metric("Agentic AI Confidence", ai_review.get("confidence", "unknown"))
     st.write(ai_review.get("overall_summary", ""))
 
     st.markdown("**Main Reasons**")
@@ -582,7 +582,7 @@ def main() -> None:
         [
             "Overview",
             "Paper Table",
-            "OpenAI Comparison",
+            "Agentic AI",
             "Dataset/Evaluation",
             "Advanced Metrics",
             "Poster Figures",
@@ -594,7 +594,7 @@ def main() -> None:
         render_overview(payload, model)
     elif page == "Paper Table":
         render_table(payload)
-    elif page == "OpenAI Comparison":
+    elif page == "Agentic AI":
         render_xai_openai(payload)
     elif page == "Dataset/Evaluation":
         render_evaluation()
