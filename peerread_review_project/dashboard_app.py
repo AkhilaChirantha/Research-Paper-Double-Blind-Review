@@ -454,7 +454,7 @@ def render_new_paper_agent(model: dict) -> None:
     st.subheader(result["title"])
     col1, col2, col3 = st.columns(3)
     col1.metric("Decision", agent["decision"])
-    col2.metric("Quality Score", f"{agent['quality_score']}/100")
+    col2.metric("Confidence Score", f"{agent['quality_score']}/100")
     col3.metric("Accept Probability", prediction["accept_probability"])
 
     probability_df = pd.DataFrame(
